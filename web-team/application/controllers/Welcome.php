@@ -25,11 +25,4 @@ class Welcome extends CI_Controller {
 		$this->load->view('index');
 		$this->load->view('includes/footer');
 	}
-	public function addJobOffer()
-	{
-		$this->load->view('includes/header');
-		$this->load->view('includes/nav');
-		$this->load->view('add-joboffer');
-		$this->load->view('includes/footer');
-	}
 }
