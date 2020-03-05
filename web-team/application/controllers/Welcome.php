@@ -25,4 +25,11 @@ class Welcome extends CI_Controller {
 		$this->load->view('index');
 		$this->load->view('includes/footer');
 	}
+	public function viewProducts()
+	{
+		$this->load->view('includes/header');
+		$this->load->view('includes/nav');
+		$this->load->view('index');
+		$this->load->view('includes/footer');
+	}
 }
