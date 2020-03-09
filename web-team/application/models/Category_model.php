@@ -1,3 +1,5 @@
+
+<?php
 Class Category_model extends CI_Model
 {
 	function get_category($id)
@@ -61,4 +63,4 @@ Class Category_model extends CI_Model
 		return $this->db->get()->result_array();
 	}
 }
-
+?>
