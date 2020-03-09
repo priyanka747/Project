@@ -54,6 +54,7 @@ $this->db->where('id', $id);
 		$this->db->order_by('date_created','desc');
 		return $this->db->get()->result();
 	}
+
 	
 }
 ?>
