@@ -9,7 +9,7 @@ class Order_model extends CI_Model
 	//get all active orders
 	function get_orders()
 	{
-		$this->select->(*);
+		$this->db->select('*');
 		$this->db->from('orders');
 		$this->db->join('order_info', 'orders.order_id = order_info.order_id', 'inner'); 
 		$this->db->where('orders.status','active');
@@ -20,7 +20,7 @@ class Order_model extends CI_Model
 	//get all active and inactive orders
 	function get_all_orders()
 	{
-		$this->select->(*);
+		$this->db->select('*');
 		$this->db->from('orders');
 		$this->db->join('order_info', 'orders.order_id = order_info.order_id', 'inner'); 
 		$this->db->where('orders.status !=','delete');
@@ -30,7 +30,7 @@ class Order_model extends CI_Model
 	//get orders by user_id
 	function get_orders_by_user_id($user_id)
 	{
-		$this->db->select(*);
+		$this->db->select('*');
 		$this->db->from('orders');
 		$this->db->join('order_info', 'orders.order_id = order_info.order_id', 'inner'); 
 		$this->db->where('orders.user_id',$user_id);
@@ -42,7 +42,7 @@ class Order_model extends CI_Model
 	//get orders by status function
 	function get_orders_by_status($status)
 	{
-		$this->db->select(*);
+		$this->db->select('*');
 		$this->db->from('orders');
 		$this->db->join('order_info', 'orders.order_id = order_info.order_id', 'inner'); 
 		$this->db->where('orders.status', $status);
@@ -53,7 +53,7 @@ class Order_model extends CI_Model
 	//get order by order_id
 	function get_order_by_order_id($order_id)
 	{
-		$this->db->select(*);
+		$this->db->select('*');
 		$this->db->from('orders');
 		$this->db->join('order_info', 'orders.order_id = order_info.order_id', 'inner'); 
 		$this->db->where('order_id',$order_id);
