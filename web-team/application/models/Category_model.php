@@ -9,7 +9,7 @@ Class Category_model extends CI_Model
 		$this->db->where('category_id',$id);
 		$this->db->where('status','active');
 		$this->db->order_by('data_created','desc');
-		return $this->db->get()->result_arrary();
+		return $this->db->get()->result_array();
 	}
 
 	function get_categories()
