@@ -3,9 +3,8 @@ class User_model extends CI_Model
 {	
 	function verify_login($email,$password)
 	{
-		$res= $this->db->select('*')->from('users')->where('email',$email)->where('password',$password)->get()->result();
+		return $res= $this->db->select('*')->from('users')->where('email',$email)->where('password',$password)->get()->result_array();
 	  
-		return json_decode(json_encode($res),true);
 	}
 	function get_users()
 	{
@@ -13,7 +12,7 @@ class User_model extends CI_Model
 		$this->db->from('users');
 		$this->db->where('user_type','candidate');
 		$this->db->order_by('date_created','desc');
-		return $this->db->get()->result();
+		return $this->db->get()->result_array();
 	}
 	
 	function add_user($data)
@@ -32,7 +31,7 @@ class User_model extends CI_Model
 		$this->db->from('users');
 		$this->db->where('id',$id);
 		$this->db->order_by('date_created','desc');
-		return $this->db->get()->result();
+		return $this->db->get()->result_array();
 	}
 	function update_user($data,$user_id)
 	{
@@ -52,7 +51,7 @@ class User_model extends CI_Model
         $this->db->from('users');
         $this->db->where($data);
 		$this->db->order_by('date_created','desc');
-		return $this->db->get()->result();
+		return $this->db->get()->result_array();
 	}
 	
 }
