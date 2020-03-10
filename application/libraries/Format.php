@@ -406,7 +406,7 @@ class Format {
 
         if (empty($callback) === TRUE)
         {
-            return json_encode($data, JSON_UNESCAPED_UNICODE);
+            return json_encode($data,JSON_UNESCAPED_UNICODE);
         }
 
         // We only honour a jsonp callback which are valid javascript identifiers

@@ -1,6 +1,12 @@
 <?php
 class User_model extends CI_Model
 {	
+	public function __construct() { 
+        parent::__construct();
+        
+        //load user model
+        // $this->load->model('user_model');
+    }
 	function verify_login($email,$password)
 	{
 		return $res= $this->db->select('*')->from('users')->where('email',$email)->where('password',$password)->get()->result_array();
@@ -10,8 +16,8 @@ class User_model extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('users');
-		$this->db->where('user_type','candidate');
-		$this->db->order_by('date_created','desc');
+		$this->db->where('user_type','customer');
+		$this->db->order_by('created_date','desc');
 		return $this->db->get()->result_array();
 	}
 	
@@ -30,7 +36,7 @@ class User_model extends CI_Model
 		$this->db->select('*');
 		$this->db->from('users');
 		$this->db->where('id',$id);
-		$this->db->order_by('date_created','desc');
+		$this->db->order_by('created_date','desc');
 		return $this->db->get()->result_array();
 	}
 	function update_user($data,$user_id)
@@ -50,7 +56,7 @@ class User_model extends CI_Model
 		$this->db->select('*');
         $this->db->from('users');
         $this->db->where($data);
-		$this->db->order_by('date_created','desc');
+		$this->db->order_by('created_date','desc');
 		return $this->db->get()->result_array();
 	}
 	

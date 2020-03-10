@@ -640,7 +640,7 @@ abstract class REST_Controller extends \CI_Controller {
         $controller_method = $object_called.'_'.$this->request->method;
 	    // Does this method exist? If not, try executing an index method
 	    if (!method_exists($this, $controller_method)) {
-		    $controller_method = "index_" . $this->request->method;
+		    $controller_method = "users_" . $this->request->method;
 		    array_unshift($arguments, $object_called);
 	    }
 
