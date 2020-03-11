@@ -54,6 +54,6 @@ $route['view-products'] = 'welcome/viewProducts';
 
 
 /*=========================API ROUTES================================*/
-$route['api/users']='api/users_get';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
