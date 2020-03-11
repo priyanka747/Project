@@ -5,10 +5,10 @@
   	  	return $this->db->select('*')->from ('product')->where ('product_id',$id)->get()->result_array(); 
   	  }
 
-  	  function get_all_products {
+  	  function get_all_products() {
   	  	return $this->db->select('*')->from ('product')->where ('status !=','delete')->order_by('date_created',desc)->get()->result_array(); 
   	  }
-  	   function get_products {
+  	   function get_products() {
   	  	return $this->db->select('*')->from ('product')->where ('status ','active')->order_by('date_created',desc)->get()->result_array(); 
   	  }
   	  function create_product($data,$images)
