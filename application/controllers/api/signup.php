@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php';
 
 
-class Users extends REST_Controller {
+class login extends REST_Controller {
 
     public function __construct() { 
         parent::__construct();
@@ -15,7 +15,7 @@ class Users extends REST_Controller {
         //load user model
         $this->load->model('user_model');
     }
-    public function index_get($id=0) {
+    public function index_post($id=0) {
         //returns all rows if the id parameter doesn't exist,
         //otherwise single row will be returned
         if($id==0){
@@ -38,4 +38,3 @@ class Users extends REST_Controller {
             $this->response($res);
         }
     }
-}

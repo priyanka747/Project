@@ -18,8 +18,10 @@ class login extends REST_Controller {
     public function index_post() {
         //returns login authentication result if login succesful then send user detail
         //otherwise single row will be returned
-        if(!empty($data)){
-            $users= $this->user_model->get_users();
+        $email=$_POST['email'];
+        $password=$_POST['password'];
+        if(!empty($email) && !empty($password)){
+            $users= $this->user_model->verify_login($email,$password);
         }
         else{
             $users = $this->user_model->get_user($id);
