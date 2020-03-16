@@ -33,27 +33,9 @@ class Product extends REST_Controller {
             //set the response and exit
             $res=array(
                 'status' => FALSE,
-                'message' => 'No user were found.'
+                'message' => 'No product were found.'
             );
             $this->response($res);
-        }
-    }
-  
-    public function users_get() {
-        //returns all rows if the id parameter doesn't exist,
-        //otherwise single row will be returned
-        $users = $this->user_model->get_users();
-        
-        
-        //check if the user data exists
-        if(!empty($users)){
-            $this->response($users, REST_Controller::HTTP_OK);
-        }else{
-            //set the response and exit
-            $this->response([
-                'status' => FALSE,
-                'message' => 'No user were found.'
-            ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
 }

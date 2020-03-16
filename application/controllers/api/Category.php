@@ -33,7 +33,7 @@ class Category extends REST_Controller {
             //set the response and exit
             $res=array(
                 'status' => FALSE,
-                'message' => 'No user were found.'
+                'message' => 'No category were found.'
             );
             $this->response($res);
         }
