@@ -25,6 +25,12 @@ class Welcome extends CI_Controller {
 		$this->load->view('index');
 		$this->load->view('includes/footer');
 	}
+	public function login()
+	{
+		$this->load->view('includes/header-login');
+		$this->load->view('login');
+		$this->load->view('includes/footer-login');
+	}
 	public function viewProducts()
 	{
 		$this->load->view('includes/header');
@@ -32,4 +38,8 @@ class Welcome extends CI_Controller {
 		$this->load->view('index');
 		$this->load->view('includes/footer');
 	}
+	public function comments()
+    {
+         echo 'Look at this!';
+    }
 }
