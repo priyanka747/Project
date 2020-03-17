@@ -55,14 +55,16 @@
  */
 	// define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 	$server_ip = getHostByName(getHostName());
-
-if (preg_match("/^(127\.0\.|10\.0\.).+/i", $server_ip)) {
-    define("ENVIRONMENT", "development");
-    define("BASEURL", "http://localhost/Project/");
-} else {
-    define("ENVIRONMENT", "production");
-    define("BASEURL", "http://stylestamp.dipenoverseas.com/");
-}
+	if (preg_match("(^10\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])|^127\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])|^172\.16\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])|^192\.168\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])$)", $server_ip)) {
+		// echo $server_ip;
+		define("ENVIRONMENT", "development");
+		define("BASEURL", "http://localhost/Project/");
+	} else {
+	
+		define("ENVIRONMENT", "production");
+		define("BASEURL", "http://stylestamp.dipenoverseas.com/");
+   
+	}
 
 /*
  *---------------------------------------------------------------

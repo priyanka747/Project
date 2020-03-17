@@ -24,7 +24,7 @@ class Order_model extends CI_Model
 		$this->db->from('orders');
 		$this->db->join('order_info', 'orders.order_id = order_info.order_id', 'inner'); 
 		$this->db->where('orders.status !=','delete');
-		$this->db->order_by('orders.data_create','desc');
+		$this->db->order_by('orders.date_create','DESC');
 		return $this->db->get()->result_array();
 	}
 	//get orders by user_id
@@ -67,7 +67,7 @@ class Order_model extends CI_Model
 	function cancel_order($order_id)
 	{
 		
-		$this->db->set('status', 'cancled');
+		$this->db->set('status', 'delete');
 		$this->db->where('order_id', $order_id);
 		$result1 = $this->db->update('orders');
 
