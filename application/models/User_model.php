@@ -15,9 +15,6 @@ class User_model extends CI_Model
 	function verify_admin($email,$password)
 	{
 		 return $this->db->select('*')->from('users')->where('email',$email)->where('password',$password)->where('user_type','admin')->get()->result_array();
-		 
-
-	  
 	}
 	function get_users()
 	{

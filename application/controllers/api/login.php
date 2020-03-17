@@ -15,38 +15,49 @@ class login extends REST_Controller {
         //load user model
         $this->load->model('user_model');
     }
+
     public function index_post() {
-        //returns login authentication result if login succesful then send user detail
-        //otherwise single row will be returned
-        $email=$_POST['email'];
-        $password=$_POST['password'];
-        if(!empty($email) && !empty($password)){
-            $users= $this->user_model->verify_login($email,$password);
-        }
-        else{
-            $users = $this->user_model->get_user($id);
-        }
-        //check if the user data exists
-        if(!empty($users)){
-            //set the response and exit
-         
-             $this->response($users);
-        }else{
-            //set the response and exit
+        $this->form_validation->set_rules('email','Email','required|valid_email');
+        $this->form_validation->set_rules('password','Password','required|min_length[8]');
+        
+        if ($this->form_validation->run() == TRUE) {
+            
+            $email = $this->security->xss_clean($this->input->post('email'));
+            $password = sha1($this->security->xss_clean($this->input->post('password')));
+        
+            $res= $this->user_model->verify_login($email,$password);
+            // print_r($res);
+            if($res)
+            {
+                $this->response($res);
+            }
+            else{
+                $res=array(
+                'status' => FALSE,
+                'login_status' => 'failed',
+                'message' => 'Invalid credentials!.'
+                );
+                $this->response($res);
+            }
+
+        }else {
+
             $res=array(
                 'status' => FALSE,
-                'message' => 'No user were found.'
+                'login_status' => 'failed',
+                'message' => 'Login Unsuccessful.'
             );
             $this->response($res);
         }
     }
   
+
+
     public function users_get() {
         //returns all rows if the id parameter doesn't exist,
         //otherwise single row will be returned
         $users = $this->user_model->get_users();
-        
-        
+                
         //check if the user data exists
         if(!empty($users)){
             $this->response($users, REST_Controller::HTTP_OK);
