@@ -67,4 +67,14 @@
 
     }
 
+    //get product by category id
+    function get_product_by_category($category_id){
+ 
+    	$this->db->select('*');
+		$this->db->from('product');
+		$this->db->where('product.category_id',$category_id);
+		$this->db->where('product.status','active');
+		$this->db->order_by('product.data_created','desc');
+		return $this->db->get()->result_arrary();
+    }
   }
