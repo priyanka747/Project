@@ -203,6 +203,89 @@ class Order extends REST_Controller {
           "message" => "Failed to delete order"
         ), REST_Controller::HTTP_NOT_FOUND);
       }
-    }  
+    }
 
-  }  
+      // PUT: <project_url>/index.php/student
+    public function index_put(){
+      // updating data method
+      //echo "This is PUT Method";
+      //$data = json_decode(file_get_contents("php://input"));
+
+     if(isset($data->id) && isset($data->name) && isset($data->email) && isset($data->mobile) && isset($data->course)){
+  
+          $order_id = $data->order_id;
+          $order = array(
+            "order_id" => $data->name,
+            "email" => $data->email,
+            "mobile" => $data->mobile,
+            "course" => $data->course,
+
+            "order_id" => $data->name,
+            "email" => $data->email,
+            "mobile" => $data->mobile,
+            "course" => $data->course,
+
+            "order_id" => $data->name,
+            "email" => $data->email,
+            "mobile" => $data->mobile,
+            "course" => $data->course,
+            
+
+          );
+          $student_info = array(
+            "name" => $data->name,
+            "email" => $data->email,
+            "mobile" => $data->mobile,
+            "course" => $data->course
+          );
+  
+      $order_id = $data->order_id;
+      $user_id = $data->user_id;
+      $date = $data->date;
+      $shipped_status = $data->shipped_status;
+  
+      $order_status = $data->order_status
+      $payment_type = $data->payment_type
+      $promotion_id = $data->promotion_id;
+      $status = $data->status;
+ 
+      $date_create = $data->date_create;
+      $date_modified = $data->date_modified;
+      $created_by = $data->created_by;
+      $modified_by = $data->modified_by;
+
+      $shipping_address_id = $data->shipping_address_id;
+      $shipping_date = $data->shipping_date;
+      $mail_address = $data->mail_address;
+      $total = $data->total;
+  
+      //  ----------------
+  
+      $product_id = $data->product_id;
+      $quantity = $data->quantity;
+
+
+  
+          if($this->student_model->update_student_information($student_id, $student_info)){
+  
+              $this->response(array(
+                "status" => 1,
+                "message" => "Student data updated successfully"
+              ), REST_Controller::HTTP_OK);
+          }else{
+  
+            $this->response(array(
+              "status" => 0,
+              "messsage" => "Failed to update student data"
+            ), REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
+          }
+        }else{
+  
+          $this->response(array(
+            "status" => 0,
+            "message" => "All fields are needed"
+          ), REST_Controller::HTTP_NOT_FOUND);
+        }
+    }  
+  
+}    
