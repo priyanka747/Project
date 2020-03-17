@@ -67,7 +67,7 @@ class Order_model extends CI_Model
 	function cancel_order($order_id)
 	{
 		
-		$this->db->set('status', 'cancled');
+		$this->db->set('status', 'delete');
 		$this->db->where('order_id', $order_id);
 		$result1 = $this->db->update('orders');
 
