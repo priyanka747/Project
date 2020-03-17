@@ -44,6 +44,20 @@ class Welcome extends CI_Controller {
 		$this->load->view('index');
 		$this->load->view('includes/footer');
 	}
+	public function addCategory()
+	{
+		$this->load->view('includes/header');
+		$this->load->view('includes/nav');
+		$this->load->view('addcategory');
+		$this->load->view('includes/footer');
+	}
+	public function addSubCategory()
+	{
+		$this->load->view('includes/header');
+		$this->load->view('includes/nav');
+		$this->load->view('addsubcategory');
+		$this->load->view('includes/footer');
+	}
 	public function comments()
     {
          echo 'Look at this!';

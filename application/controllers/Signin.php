@@ -63,7 +63,6 @@ class Signin extends CI_Controller
 		$password = sha1($this->security->xss_clean($this->input->post('password')));
 		
 		$res= $this->user_model->verify_login($email,$password);
-		// print_r($res[0]['user_type']);
 		if($res)
 		{
 			
@@ -75,28 +74,91 @@ class Signin extends CI_Controller
 			{
 				redirect('index.php/login');
 			}
-			// if($this->session->userdata('redirectTo'))
-			// {	
-			// 	$re = $this->session->userdata('redirectTo');
-			// 	$this->session->unset_userdata('redirectTo');
-			// 	// redirect($re);				
-			// }
-			// else
-				// redirect('/');
 		}
 		else
 		{
 			$this->session->set_userdata('login_status','failed');
-			// redirect('index.php/login');
 		}	 
+	}
+	/* change password */
+	function forget_password()
+	{	$this->form_validation->set_rules('lemail','email','required|valid_email');
+		
+		if ($this->form_validation->run() == TRUE) {
+			
+			$email = $this->security->xss_clean($this->input->post('lemail'));
+		
+			$res= $this->user_model->check_email($email);
+			// print_r($res);
+			if($res)
+			{
+				$que=$this->db->query("select email, password from users where email='email'");
+				$row=$que->row();
+				$user_email=$row->email;
+				if((!strcmp($email, $super_email))){
+					$pass=$row->pass;
+					$to="jeelg46@gmail.com";
+					$subject= "password";
+					$txt = "Your password is $password";
+					$headers = "From : rraajj.llaadd@gmail.com" . "\r\n" . "cc: thakker747@gmail.com";
+					mail($to,$subject,$txt,$headers);
+				}
+				else{
+					$data['error']="Invalid Email ID..!";
+				}
+				
+					
+			}
+			else{
+				
+				// $this->session->set_userdata('error','Invalid credentials!.');
+				// $this->session->set_userdata('login_status','failed');
+				// $this->load->view('includes/header-login');
+				// $this->load->view('login');
+				// $this->load->view('includes/footer-login');
+			}
+
+		}else {
+			// $this->session->set_userdata('login_status','failed');
+			// $this->load->view('includes/header-login');
+			// 	$this->load->view('login');
+			// 	$this->load->view('includes/footer-login');
+		}
+		
 	}
 	/*Avoid email duplication while registration*/
 	function check_email()
 	{
-		if($this->user_model->check_email($_POST['email'])>0)
-			echo json_encode(false);
+		$this->form_validation->set_rules('femail','email','required|valid_email');
+		
+		
+		if ($this->form_validation->run() == TRUE) {
+			
+			$email = $this->security->xss_clean($this->input->post('femail'));
+			if($this->user_model->check_email($_POST['email'])>0)
+			{
+					redirect('/','refresh');
+					
+			}
+			else{
+				
+				$this->session->set_userdata('error','Invalid email');
+				$this->session->set_userdata('login_status','failed');
+				$this->load->view('includes/header-login');
+				$this->load->view('login');
+				$this->load->view('includes/footer-login');
+			}
+
+		}else {
+			$this->session->set_userdata('login_status','failed');
+			$this->load->view('includes/header-login');
+				$this->load->view('login');
+				$this->load->view('includes/footer-login');
+		}
+		
+	}
 		else
-			echo json_encode(true);
+
 	}
 	
 	function logout()
