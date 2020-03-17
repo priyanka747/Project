@@ -75,14 +75,6 @@ class Signin extends CI_Controller
 			{
 				redirect('index.php/login');
 			}
-			// if($this->session->userdata('redirectTo'))
-			// {	
-			// 	$re = $this->session->userdata('redirectTo');
-			// 	$this->session->unset_userdata('redirectTo');
-			// 	// redirect($re);				
-			// }
-			// else
-				// redirect('/');
 		}
 		else
 		{
@@ -93,10 +85,36 @@ class Signin extends CI_Controller
 	/*Avoid email duplication while registration*/
 	function check_email()
 	{
-		if($this->user_model->check_email($_POST['email'])>0)
-			echo json_encode(false);
+		$this->form_validation->set_rules('femail','email','required|valid_email');
+		
+		
+		if ($this->form_validation->run() == TRUE) {
+			
+			$email = $this->security->xss_clean($this->input->post('femail'));
+			if($this->user_model->check_email($_POST['email'])>0)
+			{
+					redirect('/','refresh');
+					
+			}
+			else{
+				
+				$this->session->set_userdata('error','Invalid email');
+				$this->session->set_userdata('login_status','failed');
+				$this->load->view('includes/header-login');
+				$this->load->view('login');
+				$this->load->view('includes/footer-login');
+			}
+
+		}else {
+			$this->session->set_userdata('login_status','failed');
+			$this->load->view('includes/header-login');
+				$this->load->view('login');
+				$this->load->view('includes/footer-login');
+		}
+		
+	}
 		else
-			echo json_encode(true);
+
 	}
 	
 	function logout()
