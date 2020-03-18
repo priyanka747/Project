@@ -9,7 +9,7 @@ class User_model extends CI_Model
     }
 	function verify_login($email,$password)
 	{
-		return $res= $this->db->select('*')->from('users')->where('email',$email)->where('password',$password)->get()->result_array();
+		return $res= $this->db->select('*')->from('users')->where('email',$email)->where('password',$password)->where('user_type','customer')->get()->result_array();
 	  
 	}
 	function verify_admin($email,$password)
