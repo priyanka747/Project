@@ -26,10 +26,15 @@ class login extends REST_Controller {
             $password = sha1($this->security->xss_clean($this->input->post('password')));
         
             $res= $this->user_model->verify_login($email,$password);
-            // print_r($res);
             if($res)
             {
-                $this->response($res);
+                $res=array(
+                    'status' => TRUE,
+                    'login_status' => 'success',
+                    'message' => 'loggedin successfully'
+                    );
+                    $this->response($res);
+                // $this->response($res);
             }
             else{
                 $res=array(
@@ -48,25 +53,6 @@ class login extends REST_Controller {
                 'message' => 'Login Unsuccessful.'
             );
             $this->response($res);
-        }
-    }
-  
-
-
-    public function users_get() {
-        //returns all rows if the id parameter doesn't exist,
-        //otherwise single row will be returned
-        $users = $this->user_model->get_users();
-                
-        //check if the user data exists
-        if(!empty($users)){
-            $this->response($users, REST_Controller::HTTP_OK);
-        }else{
-            //set the response and exit
-            $this->response([
-                'status' => FALSE,
-                'message' => 'No user were found.'
-            ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
 }
