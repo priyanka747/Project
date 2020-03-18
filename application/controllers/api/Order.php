@@ -205,7 +205,7 @@ class Order extends REST_Controller {
       }
     }
 
-      // PUT: <project_url>/index.php/student
+    /*  // PUT: <project_url>/index.php/student
     public function index_put(){
       // updating data method
       //echo "This is PUT Method";
@@ -286,6 +286,6 @@ class Order extends REST_Controller {
             "message" => "All fields are needed"
           ), REST_Controller::HTTP_NOT_FOUND);
         }
-    }  
+    }  */
   
 }    

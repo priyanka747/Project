@@ -23,7 +23,7 @@ class login extends REST_Controller {
         if ($this->form_validation->run() == TRUE) {
             
             $email = $this->security->xss_clean($this->input->post('email'));
-            $password = sha1($this->security->xss_clean($this->input->post('password')));
+            $password = $this->security->xss_clean($this->input->post('password'));
         
             $res= $this->user_model->verify_login($email,$password);
             if($res)
