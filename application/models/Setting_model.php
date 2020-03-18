@@ -16,6 +16,26 @@ class Setting_model extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
+	//get setting by settings_id
+	function get_setting_by_settings_id($settings_id)
+	{
+		$this->db->select('*');
+		$this->db->from('settings');
+		$this->db->where('settings.settings_id',$settings_id);
+		return $this->db->get()->result_array();
+	}
+
+	//get setting by settings_id
+/*	function get_setting_by_settings_id($settings_id)
+	{
+		$this->db->select('*');
+		$this->db->from('settings');
+		$this->db->where('settings.settings_id',$settings_id);
+		$this->db->where('settings.status','active');
+		$this->db->order_by('settings.entry_date','desc');
+		return $this->db->get()->result_array();
+	}*/
+
 	//get all active and inactive settings
 	function get_setting_active_inactive()
 	{
@@ -44,18 +64,6 @@ class Setting_model extends CI_Model
 		$this->db->order_by('settings.entry_date','desc');
 		return $this->db->get()->result_array();
 	}
-
-	//get setting by settings_id
-	function get_setting_by_settings_id($settings_id)
-	{
-		$this->db->select('*');
-		$this->db->from('settings');
-		$this->db->where('settings.settings_id',$settings_id);
-		$this->db->where('settings.status','active');
-		$this->db->order_by('settings.entry_date','desc');
-		return $this->db->get()->result_array();
-	}
-
 
 	//delete settings function
 	function delete_settings($settings_id)

@@ -47,7 +47,7 @@ class Order_model extends CI_Model
 		$this->db->join('order_info', 'orders.order_id = order_info.order_id', 'inner'); 
 		$this->db->where('orders.status', $status);
 		$this->db->order_by('orders.data_create','desc');
-		return $this->db->get()->result_arrary();
+		return $this->db->get()->result_array();
 	}
 
 	//get order by order_id
@@ -56,10 +56,10 @@ class Order_model extends CI_Model
 		$this->db->select('*');
 		$this->db->from('orders');
 		$this->db->join('order_info', 'orders.order_id = order_info.order_id', 'inner'); 
-		$this->db->where('order_id',$order_id);
+		$this->db->where('orders.order_id',$order_id);
 		$this->db->where('orders.status','active');
-		$this->db->order_by('orders.data_create','desc');
-		return $this->db->get()->result_arrary();
+		$this->db->order_by('orders.date_create','desc');
+		return $this->db->get()->result_array();
 	}
 
 

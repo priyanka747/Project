@@ -13,7 +13,7 @@ class Changepassword extends REST_Controller {
         parent::__construct();
         
         //load user model
-        $this->load->model('uer_model');
+        $this->load->model('user_model');
     }
     public function index_post() {
 

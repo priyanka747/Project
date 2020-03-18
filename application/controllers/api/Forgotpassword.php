@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php';
 
 
-class login extends REST_Controller {
+class Forgotpassword extends REST_Controller {
 
     public function __construct() { 
         parent::__construct();
@@ -15,42 +15,36 @@ class login extends REST_Controller {
         //load user model
         $this->load->model('user_model');
     }
-
     public function index_post() {
+
         $this->form_validation->set_rules('email','Email','required|valid_email');
-        $this->form_validation->set_rules('password','Password','required|min_length[8]');
-        
+
         if ($this->form_validation->run() == TRUE) {
-            
+
             $email = $this->security->xss_clean($this->input->post('email'));
-            $password = $this->security->xss_clean($this->input->post('password'));
-        
-            $res= $this->user_model->verify_login($email,$password);
+
+            $res= $this->user_model->check_email($email);
+            // print_r($res);
             if($res)
             {
+                $this->emailhelper->forget_email($email);
                 $res=array(
-                    'status' => TRUE,
-                    'login_status' => 'success',
-                    'message' => 'loggedin successfully'
+                    'status' => '1',
+                    'message' => 'password link is sent to the email address'
                     );
-                    $this->response($res);
-                // $this->response($res);
+                $this->response($res);
             }
             else{
                 $res=array(
-                'status' => FALSE,
-                'login_status' => 'failed',
-                'message' => 'Invalid credentials!.'
+                'status' => '0',
+                'message' => 'Invalid email address do not match to the database'
                 );
                 $this->response($res);
             }
-
-        }else {
-
+        }else{
             $res=array(
-                'status' => FALSE,
-                'login_status' => 'failed',
-                'message' => 'Login Unsuccessful.'
+                'status' => '0',
+                'message' => 'Invalid email address do not match to the database'
             );
             $this->response($res);
         }
