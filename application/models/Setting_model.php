@@ -17,7 +17,7 @@ class Setting_model extends CI_Model
 	}
 
 	//get all active and inactive settings
-	function get_setting()
+	function get_setting_active_inactive()
 	{
 		$this->db->select('*');
 		$this->db->from('settings');
