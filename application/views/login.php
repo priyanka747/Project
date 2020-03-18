@@ -20,7 +20,10 @@
                 if($this->session->userdata('error')){?>
                     <div class="alert alert-danger"><?php echo $this->session->userdata('error'); $this->session->unset_userdata('error'); ?></div>
                 <?php }
-                ?>
+                if($this->session->userdata('success')){?>
+                    <div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('error'); ?></div>
+                <?php }?>
+                
                     <form action="<?php echo base_url();?>index.php/authenticate" method="post"> 
 					    <div class="form-group">
                             <label>Login</label> 
@@ -39,7 +42,7 @@
                                 <input type="checkbox"> Remember Me
                             </label> -->
                             <label class="pull-right">
-                                <a href="<?php echo base_url();?>forget-password">Forgot Password?</a>
+                                <a href="<?php echo base_url();?>index.php/forget-password">Forgot Password?</a>
                             </label>
                             
                         </div>

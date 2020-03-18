@@ -17,29 +17,26 @@ class Signin extends CI_Controller
 				$this->load->view('includes/footer-login');
 	}	
 	function verify_admin()
-	{	$this->form_validation->set_rules('lemail','email','required|valid_email');
+	{	
+		$this->form_validation->set_rules('lemail','email','required|valid_email');
 		$this->form_validation->set_rules('lpassword','password','required|min_length[8]');
 		
 		if ($this->form_validation->run() == TRUE) {
-			
-			$email = $this->security->xss_clean($this->input->post('lemail'));
-			$password = sha1($this->security->xss_clean($this->input->post('lpassword')));
-		
-			$res= $this->user_model->verify_admin($email,$password);
-			// print_r($res);
-			if($res)
-			{
-				$this->session->set_userdata('user',$res);
-				if($this->session->userdata('redirectTo'))
-				{	
-					$re = $this->session->userdata('redirectTo');
-					$this->session->unset_userdata('redirectTo');
-					redirect($re);				
-				}
-				else
-					
-					redirect('/','refresh');
-					
+				$email = $this->security->xss_clean($this->input->post('lemail'));
+				$password = sha1($this->security->xss_clean($this->input->post('lpassword')));
+				$res= $this->user_model->verify_admin($email,$password);
+				// print_r($res);
+				if($res)
+				{
+						$this->session->set_userdata('user',$res);
+						if($this->session->userdata('redirectTo'))
+						{	
+							$re = $this->session->userdata('redirectTo');
+							$this->session->unset_userdata('redirectTo');
+							redirect($re);				
+						}
+					else
+						redirect('/','refresh');	
 			}
 			else{
 				
@@ -51,16 +48,17 @@ class Signin extends CI_Controller
 			}
 
 		}else {
-			$this->session->set_userdata('login_status','failed');
-			$this->load->view('includes/header-login');
+				$this->session->set_userdata('login_status','failed');
+				$this->load->view('includes/header-login');
 				$this->load->view('login');
 				$this->load->view('includes/footer-login');
 		}
 		
 	}
-	function verify_candidate(){
-		$email = $this->security->xss_clean($this->input->post('email'));
+	function change_password(){
+		
 		$password = sha1($this->security->xss_clean($this->input->post('password')));
+		$match_password=sha1($this->security->xss_clean($this->input->post('password')));
 		
 		$res= $this->user_model->verify_login($email,$password);
 		if($res)
@@ -80,7 +78,6 @@ class Signin extends CI_Controller
 			$this->session->set_userdata('login_status','failed');
 		}	 
 	}
-	/* change password */
 	function forget_password()
 	{	$this->form_validation->set_rules('lemail','email','required|valid_email');
 		
@@ -106,23 +103,12 @@ class Signin extends CI_Controller
 				else{
 					$data['error']="Invalid Email ID..!";
 				}
-				
-					
 			}
 			else{
-				
-				// $this->session->set_userdata('error','Invalid credentials!.');
-				// $this->session->set_userdata('login_status','failed');
-				// $this->load->view('includes/header-login');
-				// $this->load->view('login');
-				// $this->load->view('includes/footer-login');
 			}
 
 		}else {
-			// $this->session->set_userdata('login_status','failed');
-			// $this->load->view('includes/header-login');
-			// 	$this->load->view('login');
-			// 	$this->load->view('includes/footer-login');
+			
 		}
 		
 	}
@@ -135,30 +121,30 @@ class Signin extends CI_Controller
 		if ($this->form_validation->run() == TRUE) {
 			
 			$email = $this->security->xss_clean($this->input->post('femail'));
-			if($this->user_model->check_email($_POST['email'])>0)
+			if($this->user_model->check_email($email)>0)
 			{
-					redirect('/','refresh');
-					
-			}
-			else{
-				
-				$this->session->set_userdata('error','Invalid email');
+				$this->session->set_userdata('success','email with temporary password sent to '.$email.' successfully');
 				$this->session->set_userdata('login_status','failed');
 				$this->load->view('includes/header-login');
 				$this->load->view('login');
 				$this->load->view('includes/footer-login');
+					
+			}
+			else{
+				
+				$this->session->set_userdata('error','seems like email is not registered !! enter valid email address');
+				$this->session->set_userdata('login_status','failed');
+				$this->load->view('includes/header-login');
+				$this->load->view('forgotpassword');
+				$this->load->view('includes/footer-login');
 			}
 
 		}else {
-			$this->session->set_userdata('login_status','failed');
-			$this->load->view('includes/header-login');
-				$this->load->view('login');
+				$this->session->set_userdata('login_status','failed');
+				$this->load->view('includes/header-login');
+				$this->load->view('forgotpassword');
 				$this->load->view('includes/footer-login');
 		}
-		
-	}
-		else
-
 	}
 	
 	function logout()
