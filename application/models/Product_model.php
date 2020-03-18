@@ -77,4 +77,17 @@
 		$this->db->order_by('product.data_created','desc');
 		return $this->db->get()->result_arrary();
     }
+
+    //get all product images function
+    function get_product_images(){
+ 
+    	$this->db->select('*');
+		$this->db->from('product');
+		$this->db->join('product_image', 'product.product_id = product_image.product_id', 'inner');
+		$this->db->join('image', 'product_image.image_id = image.image_id', 'inner');  
+		$this->db->where('product.status','active');
+		$this->db->order_by('product.data_created','desc');
+		return $this->db->get()->result_arrary();
+    }
+
   }
