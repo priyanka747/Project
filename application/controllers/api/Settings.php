@@ -19,10 +19,10 @@ class Settings extends REST_Controller {
         //returns all rows if the id parameter doesn't exist,
         //otherwise single row will be returned
         if($id==0){
-            $settings= $this->Setting_model->get_setting();
+            $settings= $this->setting_model->get_setting();
         }
         else{
-            $settings = $this->Setting_model->get_setting_by_settings_id($id);
+            $settings = $this->setting_model->get_setting_by_settings_id($id);
         }
         //check if the user data exists
         if(!empty($settings)){
