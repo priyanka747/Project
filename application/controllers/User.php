@@ -1,13 +1,19 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-class User extends CI_Controller {
-
-	public function index()
+class User extends CI_Controller 
+{
+	function __Construct()
 	{
-		$this->load->view('includes/header-view');
-		$this->load->view('includes/nav');
-		$this->load->view('view-users');
-		$this->load->view('includes/footer-view');
+		parent:: __construct();
+		$this->load->model('user_model');
 	}
+	
+	function index()
+	{
+		if($this->session->userdata('user'))	redirect(base_url());
+		
+                $data['page'] = 'login';
+                $this->load->view('includes/header-login');
+				$this->load->view('forgotpassword');
+				$this->load->view('includes/footer-login');
+	}	
 }

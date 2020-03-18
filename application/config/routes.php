@@ -53,6 +53,9 @@ $route['default_controller'] = 'home';
 $route['view-products'] = 'welcome/viewProducts';
 $route['authenticate'] = 'Signin/verify_admin';
 $route['signin'] = 'signin';
+$route['forget-password'] = 'user';
+$route['forget-password-verify'] = 'signin/check_email';
+
 
 /*=========================API ROUTES================================*/
 

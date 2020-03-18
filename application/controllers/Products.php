@@ -81,51 +81,7 @@ class Products extends CI_Controller
 		}	 
 	}
 	/* change password */
-	function forget_password()
-	{	$this->form_validation->set_rules('lemail','email','required|valid_email');
-		
-		if ($this->form_validation->run() == TRUE) {
-			
-			$email = $this->security->xss_clean($this->input->post('lemail'));
-		
-			$res= $this->user_model->check_email($email);
-			// print_r($res);
-			if($res)
-			{
-				$que=$this->db->query("select email, password from users where email='email'");
-				$row=$que->row();
-				$user_email=$row->email;
-				if((!strcmp($email, $super_email))){
-					$pass=$row->pass;
-					$to="jeelg46@gmail.com";
-					$subject= "password";
-					$txt = "Your password is $password";
-					$headers = "From : rraajj.llaadd@gmail.com" . "\r\n" . "cc: thakker747@gmail.com";
-					mail($to,$subject,$txt,$headers);
-				}
-				else{
-					$data['error']="Invalid Email ID..!";
-				}
-				
-					
-			}
-			else{
-				
-				// $this->session->set_userdata('error','Invalid credentials!.');
-				// $this->session->set_userdata('login_status','failed');
-				// $this->load->view('includes/header-login');
-				// $this->load->view('login');
-				// $this->load->view('includes/footer-login');
-			}
-
-		}else {
-			// $this->session->set_userdata('login_status','failed');
-			// $this->load->view('includes/header-login');
-			// 	$this->load->view('login');
-			// 	$this->load->view('includes/footer-login');
-		}
-		
-	}
+	
 	/*Avoid email duplication while registration*/
 	function check_email()
 	{
