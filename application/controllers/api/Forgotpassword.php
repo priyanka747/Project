@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php';
 
 
-class Changepassword extends REST_Controller {
+class Forgotpassword extends REST_Controller {
 
     public function __construct() { 
         parent::__construct();
@@ -17,36 +17,36 @@ class Changepassword extends REST_Controller {
     }
     public function index_post() {
 
-        $this->form_validation->set_rules('password','Password','trim|required');
-        $this->form_validation->set_rules('passconf','confirm Password ', 'trim|required|matches[password]');
-        
-        if ($this->form_validation->run() == TRUE) {
-			
-            $pass = sha1($this->security->xss_clean($this->input->post('password')));
-            $data=array('password'=>$pass);
-            $res= $this->user_model->update_user($data);
+        $this->form_validation->set_rules('email','Email','required|valid_email');
 
+        if ($this->form_validation->run() == TRUE) {
+
+            $email = $this->security->xss_clean($this->input->post('email'));
+
+            $res= $this->user_model->check_email($email);
+            // print_r($res);
             if($res)
             {
+                $this->emailhelper->forget_email($email);
                 $res=array(
                     'status' => '1',
-                    'message' => 'password changed successfully.'
-                );
+                    'message' => 'password link is sent to the email address'
+                    );
+                $this->response($res);
             }
             else{
                 $res=array(
-                    'status' => '0',    
-                    'message' => 'error while changing password.'
+                'status' => '0',
+                'message' => 'Invalid email address do not match to the database'
                 );
                 $this->response($res);
             }
         }else{
             $res=array(
                 'status' => '0',
-                'message' => 'error while changing password.'
+                'message' => 'Invalid email address do not match to the database'
             );
             $this->response($res);
         }
     }
-  
 }
