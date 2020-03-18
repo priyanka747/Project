@@ -19,7 +19,8 @@
         
                         <div class="form-group">  
 
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" class="form-control" placeholder="Email" required >
+                            
                         </div>
 
                         <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Verify</button>
