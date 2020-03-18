@@ -11,7 +11,7 @@
               <div class="col-xl-12">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="box-title">List Of All Products </h4>
+                    <h4 class="box-title">List Of All Orders </h4>
                   </div>
                   <div class="card-body--">
                     <div class="table-stats order-table ov-h">
@@ -19,14 +19,13 @@
                         <thead>
                           <tr>
                             <th>Id</th>
-                            <th>Name</th>
-				            <th>Description</th>
-				            <th>Price</th>
-				            <th>Category</th>
-				            <th>Re-order level</th>
-				            <th>Discount</th>
-				            <th>Status</th>
-				            <th>Stock</th>
+                            <th>Client Name</th>
+				            <th>Product Quantity</th>
+				            <th>Product Name</th>
+				            <th>Date</th>
+				            <th>Payment Type</th>
+				            <th>Shipping status</th>
+				            <th>Order Status</th>
 				            <th>Action</th>
 				            
 						  </tr>
@@ -34,40 +33,40 @@
                         <tbody>  
 							<tr>
                               <td>01</td>
+                              <td>ggn</td>
+			              	<td>10</td>
                               <td>shirt</td>
-			              	<td>American eagle black shirt</td>
-                              <td>12.36$</td>
-			              	<td>men Cloths</td>
-			              	 <td>10</td>
-                              <td>5</td>
-			              	<td>active</td>
-                              <td>20</td>
+			              	<td>27-10-1998</td>
+			              	 <td>Card</td>
+                              <td>Not shipped</td>
+			              	<td>pending</td>
+                              
 			              	<td><button class="view btn-info">View</button><button class="edit btn-info">edit</button><button class="delete btn-danger">delete</button></td>
                               
                             </tr>
 <tr>
-                              <td>01</td>
+                              <td>02</td>
+                              <td>deep</td>
+			              	<td>4</td>
                               <td>shirt</td>
-			              	<td>American eagle black shirt</td>
-                              <td>12.36$</td>
-			              	<td>men Cloths</td>
-			              	 <td>10</td>
-                              <td>5</td>
-			              	<td>active</td>
-                              <td>20</td>
+			              	<td>27-11-1999</td>
+			              	 <td>Card</td>
+                              <td>Not Shipped</td>
+			              	<td>Pending</td>
+                              
 			              	<td><button class="view btn-info">View</button><button class="edit btn-info">edit</button><button class="delete btn-danger">delete</button></td>
                               
                             </tr>		
 <tr>
-                              <td>01</td>
-                              <td>shirt</td>
-			              	<td>American eagle black shirt</td>
-                              <td>12.36$</td>
-			              	<td>men Cloths</td>
-			              	 <td>10</td>
-                              <td>5</td>
-			              	<td>active</td>
-                              <td>20</td>
+                              <td>03</td>
+                              <td>bngr</td>
+			              	<td>1</td>
+                              <td>jeans</td>
+			              	<td>06-10-1998</td>
+			              	 <td>Card</td>
+                              <td>Not Shipped</td>
+			              	<td>Pending</td>
+                             
 			              	<td><button class="view btn-info">View</button><button class="edit btn-info">edit</button><button class="delete btn-danger">delete</button></td>
                               
                             </tr>									
