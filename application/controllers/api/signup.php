@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php';
 
 
-class login extends REST_Controller {
+class Signup extends REST_Controller {
 
     public function __construct() { 
         parent::__construct();
@@ -19,13 +19,16 @@ class login extends REST_Controller {
         //returns login authentication result if login succesful then send user detail
 		//otherwise single row will be returned
 		
-	 $this->form_validation->set_rules('name', 'First Name', 'required|alpha');
-	 $this->form_validation->set_rules('name', 'Last Name', 'required|alpha');
+	 $this->form_validation->set_rules('fname', 'First Name', 'required|alpha');
+	 $this->form_validation->set_rules('lname', 'Last Name', 'required|alpha');
 	 $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|xss_clean');
 	 $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]|max_length[16]');
-	 $this->form_validation->set_rules('contact_no', 'Contact Number', 'required');
-	 $this->form_validation->set_rules('reg[dob]', 'Date of birth', 'regex_match[(0[1-9]|1[0-9]|2[0-9]|3(0|1))-(0[1-9]|1[0-2])-\d{4}]');		
+	 $this->form_validation->set_rules('contact_no', 'Contact Number', 'required|numeric');
+	 $this->form_validation->set_rules('dob', 'Date of birth', 'regex_match[(0[1-9]|1[0-9]|2[0-9]|3(0|1))-(0[1-9]|1[0-2])-\d{4}]');		
 	 $this->form_validation->set_rules('gender', 'Gender', 'required');
+		$data=array(
+			
+		);
 
 	 if ($this->form_validation->run() == TRUE) {
 
@@ -49,5 +52,7 @@ class login extends REST_Controller {
         }
 			 
 	 }
-    }
+	}
+}
+}?>
   

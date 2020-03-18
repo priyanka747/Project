@@ -111,9 +111,9 @@ class Signin extends CI_Controller
 				if($this->emailhelper->forget_email($email,$newtPass)){
 
 				}
-				// $this->load->view('includes/header-login');
-				// $this->load->view('login');
-				// $this->load->view('includes/footer-login');
+				$this->load->view('includes/header-login');
+				$this->load->view('login');
+				$this->load->view('includes/footer-login');
 					
 			}
 			else{				
