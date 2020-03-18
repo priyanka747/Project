@@ -5,6 +5,7 @@ class Signin extends CI_Controller
 	{
 		parent:: __construct();
 		$this->load->model('user_model');
+		
 	}
 	
 	function index()
@@ -79,66 +80,49 @@ class Signin extends CI_Controller
 		}	 
 	}
 	function forget_password()
-	{	$this->form_validation->set_rules('lemail','email','required|valid_email');
-		
-		if ($this->form_validation->run() == TRUE) {
-			
+	{	
+		$this->form_validation->set_rules('lemail','email','required|valid_email');
+		if ($this->form_validation->run() == TRUE) {			
 			$email = $this->security->xss_clean($this->input->post('lemail'));
-		
 			$res= $this->user_model->check_email($email);
 			// print_r($res);
 			if($res)
-			{
-				$que=$this->db->query("select email, password from users where email='email'");
-				$row=$que->row();
-				$user_email=$row->email;
-				if((!strcmp($email, $super_email))){
-					$pass=$row->pass;
-					$to="jeelg46@gmail.com";
-					$subject= "password";
-					$txt = "Your password is $password";
-					$headers = "From : rraajj.llaadd@gmail.com" . "\r\n" . "cc: thakker747@gmail.com";
-					mail($to,$subject,$txt,$headers);
-				}
-				else{
-					$data['error']="Invalid Email ID..!";
-				}
+			{			
+				
+				// $this->emailhelper->forget_email($email);
 			}
 			else{
-			}
 
+			}
 		}else {
 			
 		}
-		
 	}
 	/*Avoid email duplication while registration*/
 	function check_email()
 	{
-		$this->form_validation->set_rules('femail','email','required|valid_email');
-		
-		
+		$this->form_validation->set_rules('femail','email','xss_clean|required|valid_email');
 		if ($this->form_validation->run() == TRUE) {
-			
 			$email = $this->security->xss_clean($this->input->post('femail'));
-			if($this->user_model->check_email($email)>0)
-			{
+			if($this->user_model->check_email($email)>0){
 				$this->session->set_userdata('success','email with temporary password sent to '.$email.' successfully');
 				$this->session->set_userdata('login_status','failed');
-				$this->load->view('includes/header-login');
-				$this->load->view('login');
-				$this->load->view('includes/footer-login');
+				$newtPass=sha1(random_string('alnum',8));
+				if($this->emailhelper->forget_email($email,$newtPass)){
+
+				}
+				// $this->load->view('includes/header-login');
+				// $this->load->view('login');
+				// $this->load->view('includes/footer-login');
 					
 			}
-			else{
-				
+			else{				
 				$this->session->set_userdata('error','seems like email is not registered !! enter valid email address');
 				$this->session->set_userdata('login_status','failed');
 				$this->load->view('includes/header-login');
 				$this->load->view('forgotpassword');
 				$this->load->view('includes/footer-login');
 			}
-
 		}else {
 				$this->session->set_userdata('login_status','failed');
 				$this->load->view('includes/header-login');

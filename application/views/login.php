@@ -21,7 +21,7 @@
                     <div class="alert alert-danger"><?php echo $this->session->userdata('error'); $this->session->unset_userdata('error'); ?></div>
                 <?php }
                 if($this->session->userdata('success')){?>
-                    <div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('error'); ?></div>
+                    <div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
                 <?php }?>
                 
                     <form action="<?php echo base_url();?>index.php/authenticate" method="post"> 
