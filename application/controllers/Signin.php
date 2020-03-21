@@ -5,6 +5,7 @@ class Signin extends CI_Controller
 	{
 		parent:: __construct();
 		$this->load->model('user_model');
+		$this->load->model('email_model');
 		
 	}
 	
@@ -19,6 +20,7 @@ class Signin extends CI_Controller
 	}	
 	function verify_admin()
 	{	
+		// if(isset($_POST['lemail'])&& isset($_POST['lpassword'])){
 		$this->form_validation->set_rules('lemail','email','required|valid_email');
 		$this->form_validation->set_rules('lpassword','password','required|min_length[8]');
 		
@@ -54,6 +56,8 @@ class Signin extends CI_Controller
 				$this->load->view('login');
 				$this->load->view('includes/footer-login');
 		}
+	
+
 		
 	}
 	function change_password(){
@@ -101,23 +105,26 @@ class Signin extends CI_Controller
 	/*Avoid email duplication while registration*/
 	function check_email()
 	{
-		$this->form_validation->set_rules('femail','email','xss_clean|required|valid_email');
+		$this->form_validation->set_rules('femail','email','required|valid_email');
 		if ($this->form_validation->run() == TRUE) {
 			$email = $this->security->xss_clean($this->input->post('femail'));
 			if($this->user_model->check_email($email)>0){
-				$this->session->set_userdata('success','email with temporary password sent to '.$email.' successfully');
+				$this->session->set_flashdata('success','Email with temporary password sent to '.$email.' successfully');
 				$this->session->set_userdata('login_status','failed');
 				$newtPass=sha1(random_string('alnum',8));
-				if($this->emailhelper->forget_email($email,$newtPass)){
-
-				}
-				$this->load->view('includes/header-login');
-				$this->load->view('login');
-				$this->load->view('includes/footer-login');
+				echo $newtPass;
+				$res=$this->email_model->forget_email($email,$newtPass);
+				echo $res;
+				// if($res){
+					$this->email->print_debugger();	
+				// }
+				// $this->load->view('includes/header-login');
+				// $this->load->view('login');
+				// $this->load->view('includes/footer-login');
 					
 			}
 			else{				
-				$this->session->set_userdata('error','seems like email is not registered !! enter valid email address');
+				$this->session->set_flashdata('error','Seems like email is not registered !! enter valid email address');
 				$this->session->set_userdata('login_status','failed');
 				$this->load->view('includes/header-login');
 				$this->load->view('forgotpassword');

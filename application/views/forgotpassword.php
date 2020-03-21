@@ -14,10 +14,10 @@
                     echo validation_errors('<div class="alert alert-danger">','</div>');
                 // }
                 if($this->session->userdata('error')){?>
-                    <div class="alert alert-danger"><?php echo $this->session->userdata('error'); $this->session->unset_userdata('error'); ?></div>
+                    <div class="alert alert-danger"><?php echo $this->session->flashdata('error'); //$this->session->unset_flashdata('error'); ?></div>
                 <?php }
                 if($this->session->userdata('success')){?>
-                    <div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('error'); ?></div>
+                    <div class="alert alert-success"><?php echo $this->session->flashdata('success');// $this->session->unset_flashdata('success'); ?></div>
                 <?php }?>
                 
 
@@ -33,7 +33,15 @@
                         </div>
 
                         <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Verify</button>
-                      
+                        <div class="checkbox">
+                            <!-- <label>
+                                <input type="checkbox"> Remember Me
+                            </label> -->
+                            <label class="pull-right">
+                                <a href="<?php echo base_url();?>index.php">try sign in?</a>
+                            </label>
+                            
+                        </div>
                     </form>
                 </div>
             </div>

@@ -27,7 +27,7 @@ class Forgotpassword extends REST_Controller {
             // print_r($res);
             if($res)
             {
-                $this->emailhelper->forget_email($email);
+                $this->email_model->forget_email($email);
                 $res=array(
                     'status' => '1',
                     'message' => 'password link is sent to the email address'

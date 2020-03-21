@@ -1,12 +1,14 @@
 <?php
-class Emailhelper extends CI_Model 
+class Email_model extends CI_Model 
 {
 	function __Construct()
 	{
 		parent:: __construct();
 		$config = array();
 		$config['protocol'] = 'smtp';
-		$config['smtp_port'] = 25;
+		$config['smtp_port'] = 587;
+		$config['host'] = 'smtp.hostinger.com';
+		$config['password'] = 'Admin@123';
 		$this->email->initialize($config);
 		$this->email->set_newline("\r\n");
 	}
@@ -19,14 +21,15 @@ class Emailhelper extends CI_Model
 
 		$to=$email;
 		$subject= "new temporary password";
-		$txt = "Your new temporary password is $newtPass";
-		$headers = "From : info.techspeck@gmail.com";			
-		$this->email->from('info.techspeck@gmail.com', 'priyanka thakker');
+		$txt = "Your new temporary password is $newtPass";		
+		$this->email->from('mail@stylestamp.dipenoverseas.com', 'Style Stamp');
 		$this->email->to($email);
 		$this->email->subject($subject);
 		$this->email->message($txt);
-		$this->email->send();			
+		return $this->email->send();	
+		
 		
 		
 	}	
 }
+?>
