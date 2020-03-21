@@ -43,7 +43,7 @@ class Signin extends CI_Controller
 			}
 			else{
 				
-				$this->session->set_userdata('error','Invalid credentials!.');
+				$this->session->set_flashdata('error','Invalid credentials!.');
 				$this->session->set_userdata('login_status','failed');
 				$this->load->view('includes/header-login');
 				$this->load->view('login');
@@ -108,19 +108,14 @@ class Signin extends CI_Controller
 		$this->form_validation->set_rules('femail','email','required|valid_email');
 		if ($this->form_validation->run() == TRUE) {
 			$email = $this->security->xss_clean($this->input->post('femail'));
-			if($this->user_model->check_email($email)>0){
+			if($this->user_model->check_admin_email($email)>0){
 				$this->session->set_flashdata('success','Email with temporary password sent to '.$email.' successfully');
 				$this->session->set_userdata('login_status','failed');
-				$newtPass=sha1(random_string('alnum',8));
-				echo $newtPass;
-				$res=$this->email_model->forget_email($email,$newtPass);
-				echo $res;
-				// if($res){
-					$this->email->print_debugger();	
-				// }
-				// $this->load->view('includes/header-login');
-				// $this->load->view('login');
-				// $this->load->view('includes/footer-login');
+				$pass=random_string('alnum',8);
+				$res=$this->email_model->forget_email($email,$pass);
+				$this->load->view('includes/header-login');
+				$this->load->view('login');
+				$this->load->view('includes/footer-login');
 					
 			}
 			else{				

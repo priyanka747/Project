@@ -13,10 +13,10 @@
                 // if( validation_errors()){
                     echo validation_errors('<div class="alert alert-danger">','</div>');
                 // }
-                if($this->session->userdata('error')){?>
+                if($this->session->flashdata('error')){?>
                     <div class="alert alert-danger"><?php echo $this->session->flashdata('error'); //$this->session->unset_flashdata('error'); ?></div>
                 <?php }
-                if($this->session->userdata('success')){?>
+                if($this->session->flashdata('success')){?>
                     <div class="alert alert-success"><?php echo $this->session->flashdata('success');// $this->session->unset_flashdata('success'); ?></div>
                 <?php }?>
                 

@@ -16,7 +16,7 @@ class Home extends CI_Controller
 				$this->load->view('includes/footer-login');			
 		}else{
 			$user=json_decode(json_encode($this->session->userdata('user')),true);
-			print_r($user);
+			// print_r($user);
 			if($user[0]['user_type']=='admin'){
 					$data['page'] = 'Dashboard';
 					$this->load->view('includes/header');

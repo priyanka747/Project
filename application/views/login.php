@@ -17,11 +17,11 @@
                 // if( validation_errors()){
                     echo validation_errors('<div class="alert alert-danger">','</div>');
                 // }
-                if($this->session->userdata('error')){?>
-                    <div class="alert alert-danger"><?php echo $this->session->userdata('error'); //$this->session->unset_userdata('error'); ?></div>
+                if($this->session->flashdata('error')){?>
+                    <div class="alert alert-danger"><?php echo $this->session->flashdata('error'); //$this->session->unset_userdata('error'); ?></div>
                 <?php }
-                if($this->session->userdata('success')){?>
-                    <div class="alert alert-success"><?php echo $this->session->userdata('success'); //$this->session->unset_userdata('success'); ?></div>
+                if($this->session->flashdata('success')){?>
+                    <div class="alert alert-success"><?php echo $this->session->flashdata('success'); //$this->session->unset_userdata('success'); ?></div>
                 <?php }?>
                 
                     <form action="<?php echo base_url();?>index.php/authenticate" method="post"> 
