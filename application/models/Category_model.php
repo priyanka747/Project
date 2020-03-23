@@ -25,7 +25,7 @@ Class Category_model extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('category');
-		$this->db->order_by('data_created','desc');
+		$this->db->order_by('date_created','desc');
 		return $this->db->get()->result_array();
 	}
 
