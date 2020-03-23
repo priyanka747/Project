@@ -71,49 +71,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | the query builder class.
 */
 $active_group = 'default';
+
 $query_builder = TRUE;
 
-$db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'fashion_data',
-	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
-	'pconnect' => FALSE,
-	'db_debug' => (ENVIRONMENT !== 'production'),
-	'cache_on' => FALSE,
-	'cachedir' => '',
-	'char_set' => 'utf8',
-	'dbcollat' => 'utf8_general_ci',
-	'swap_pre' => '',
-	'encrypt' => FALSE,
-	'compress' => FALSE,
-	'stricton' => FALSE,
-	'failover' => array(),
-	'save_queries' => TRUE
-);
-$db['default']['failover'] = array(
-	array(
-			'hostname' => 'localhost',
-			'username' => 'root',
-			'password' => '',
-			'database' => 'fashion_data',
-			'dbdriver' => 'mysqli',
-			'dbprefix' => '',
-			'pconnect' => TRUE,
-			'db_debug' => TRUE,
-			'cache_on' => FALSE,
-			'cachedir' => '',
-			'char_set' => 'utf8',
-			'dbcollat' => 'utf8_general_ci',
-			'swap_pre' => '',
-			'encrypt' => FALSE,
-			'compress' => FALSE,
-			'stricton' => FALSE
-	),
-	array(
+switch (ENVIRONMENT)
+{
+	case 'development':
+				$db['default'] = array(
 			'hostname' => 'localhost',
 			'username' => 'u742049101_root',
 			'password' => 'Admin@123',
@@ -130,5 +94,91 @@ $db['default']['failover'] = array(
 			'encrypt' => FALSE,
 			'compress' => FALSE,
 			'stricton' => FALSE
-	)
-);
+		);
+		
+	break;
+	case 'production':
+					$db['default'] = array(
+		'dsn'	=> '',
+		'hostname' => 'localhost',
+		'username' => 'root',
+		'password' => '',
+		'database' => 'fashion_data',
+		'dbdriver' => 'mysqli',
+		'dbprefix' => '',
+		'pconnect' => FALSE,
+		'db_debug' => (ENVIRONMENT !== 'production'),
+		'cache_on' => FALSE,
+		'cachedir' => '',
+		'char_set' => 'utf8',
+		'dbcollat' => 'utf8_general_ci',
+		'swap_pre' => '',
+		'encrypt' => FALSE,
+		'compress' => FALSE,
+		'stricton' => FALSE,
+		'failover' => array(),
+		'save_queries' => TRUE
+		);
+	break;
+	default:
+	break;
+}
+// $db['default'] = array(
+// 	'dsn'	=> '',
+// 	'hostname' => 'localhost',
+// 	'username' => 'root',
+// 	'password' => '',
+// 	'database' => 'fashion_data',
+// 	'dbdriver' => 'mysqli',
+// 	'dbprefix' => '',
+// 	'pconnect' => FALSE,
+// 	'db_debug' => (ENVIRONMENT !== 'production'),
+// 	'cache_on' => FALSE,
+// 	'cachedir' => '',
+// 	'char_set' => 'utf8',
+// 	'dbcollat' => 'utf8_general_ci',
+// 	'swap_pre' => '',
+// 	'encrypt' => FALSE,
+// 	'compress' => FALSE,
+// 	'stricton' => FALSE,
+// 	'failover' => array(),
+// 	'save_queries' => TRUE
+// );
+// $db['default']['failover'] = array(
+// 	array(
+// 			'hostname' => 'localhost',
+// 			'username' => 'root',
+// 			'password' => '',
+// 			'database' => 'fashion_data',
+// 			'dbdriver' => 'mysqli',
+// 			'dbprefix' => '',
+// 			'pconnect' => TRUE,
+// 			'db_debug' => TRUE,
+// 			'cache_on' => FALSE,
+// 			'cachedir' => '',
+// 			'char_set' => 'utf8',
+// 			'dbcollat' => 'utf8_general_ci',
+// 			'swap_pre' => '',
+// 			'encrypt' => FALSE,
+// 			'compress' => FALSE,
+// 			'stricton' => FALSE
+// 	),
+// 	array(
+// 			'hostname' => 'localhost',
+// 			'username' => 'u742049101_root',
+// 			'password' => 'Admin@123',
+// 			'database' => 'u742049101_fashion_data',
+// 			'dbdriver' => 'mysqli',
+// 			'dbprefix' => '',
+// 			'pconnect' => TRUE,
+// 			'db_debug' => TRUE,
+// 			'cache_on' => FALSE,
+// 			'cachedir' => '',
+// 			'char_set' => 'utf8',
+// 			'dbcollat' => 'utf8_general_ci',
+// 			'swap_pre' => '',
+// 			'encrypt' => FALSE,
+// 			'compress' => FALSE,
+// 			'stricton' => FALSE
+// 	)
+// );
