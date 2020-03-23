@@ -67,6 +67,18 @@
 	// }
 		
 		define("ENVIRONMENT", isset($_SERVER['CI_ENV_FD'])?$_SERVER['CI_ENV_FD']:"development");
+		switch (ENVIRONMENT)
+		{
+			case 'development':
+			define("BASEURL", "http://stylestamp.dipenoverseas.com/");
+			break;
+			case 'production':
+			define("BASEURL", "http://localhost/project/");
+			break;
+			default:
+			define("BASEURL", "http://localhost/project/");
+		}
+
 
 /*
  *---------------------------------------------------------------
@@ -81,12 +93,10 @@ switch (ENVIRONMENT)
 	case 'development':
 		error_reporting(-1);
 		ini_set('display_errors', 1);
-		define("BASEURL", "http://stylestamp.dipenoverseas.com/");
 	break;
 
 	case 'testing':
 	case 'production':
-	define("BASEURL", "http://localhost/project/");
 		ini_set('display_errors', 0);
 		if (version_compare(PHP_VERSION, '5.3', '>='))
 		{

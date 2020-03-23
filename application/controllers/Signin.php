@@ -5,6 +5,7 @@ class Signin extends CI_Controller
 	{
 		parent:: __construct();
 		$this->load->model('user_model');
+		$this->load->library('email');
 		$this->load->model('email_model');
 		
 	}
@@ -109,17 +110,45 @@ class Signin extends CI_Controller
 		if ($this->form_validation->run() == TRUE) {
 			$email = $this->security->xss_clean($this->input->post('femail'));
 			if($this->user_model->check_admin_email($email)>0){
-				$this->session->set_flashdata('success','Email with temporary password sent to '.$email.' successfully');
-				$this->session->set_userdata('login_status','failed');
+				
 				$pass=random_string('alnum',8);
-				$res=$this->email_model->forget_email($email,$pass);
-				$this->load->view('includes/header-login');
-				$this->load->view('login');
-				$this->load->view('includes/footer-login');
-					
+				$config['protocol']    = 'smtp';
+				$config['smtp_host']    = 'localhost';
+				$config['smtp_port']    = '587';
+				$config['smtp_timeout'] = '7';
+				$config['smtp_user']    = 'mail@stylestamp.dipenoverseas.com';
+				$config['smtp_pass']    = 'Admin@123';
+				$config['charset']    = 'utf-8';
+				$config['newline']    = "\r\n";
+				$config['priority']    = "1";
+				$config['mailtype'] = 'text'; // or html
+				$config['validation'] = TRUE; // bool whether to validate email or not      
+
+				$this->email->initialize($config);
+				$to=$email;
+				$subject= "new temporary password";
+				$txt = "Your new temporary password is ".$pass;	
+				$this->email->from('mail@stylestamp.dipenoverseas.com', 'Style Stamp');
+				$this->email->to($to);
+				// echo $to;
+				$this->email->subject($subject);
+				$this->email->message($txt);
+				if($this->email->send()){
+					$res=$this->email_model->forget_email($email,$pass);
+					$this->session->set_userdata('success','Email with temporary password sent to '.$email.' successfully');
+					$this->load->view('includes/header-login');
+					$this->load->view('login');
+					$this->load->view('includes/footer-login');
+				}else{
+					$this->session->set_userdata('error','problem while sending email');
+					$this->session->set_userdata('login_status','failed');
+					$this->load->view('includes/header-login');
+					$this->load->view('login');
+					$this->load->view('includes/footer-login');
+				}					
 			}
 			else{				
-				$this->session->set_flashdata('error','Seems like email is not registered !! enter valid email address');
+				$this->session->set_userdata('error','Seems like email is not registered !! enter valid email address');
 				$this->session->set_userdata('login_status','failed');
 				$this->load->view('includes/header-login');
 				$this->load->view('forgotpassword');
