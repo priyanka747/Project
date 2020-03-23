@@ -112,8 +112,8 @@ class Signin extends CI_Controller
 			if($this->user_model->check_admin_email($email)>0){
 				
 				$pass=random_string('alnum',8);
-				$config['protocol']    = 'smtp';
-				$config['smtp_host']    = 'localhost';
+				$config['protocol']    = 'sendmail';
+				$config['smtp_host']    = 'smtp.hostinger.com';
 				$config['smtp_port']    = '587';
 				$config['smtp_timeout'] = '7';
 				$config['smtp_user']    = 'mail@stylestamp.dipenoverseas.com';
