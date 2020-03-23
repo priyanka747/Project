@@ -11,6 +11,7 @@
     <meta name="description" content="StyleStamp Admin portal">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    
     <link rel="apple-touch-icon" href="<?php echo base_url();?>images/logo.png">
     <link rel="shortcut icon" href="<?php echo base_url();?>images/logo.png">
 

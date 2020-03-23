@@ -55,6 +55,8 @@ $route['authenticate'] = 'Signin/verify_admin';
 $route['signin'] = 'signin';
 $route['forget-password'] = 'user';
 $route['forget-password-verify'] = 'signin/check_email';
+$route['viewcategories'] = 'categorycontroller';
+$route['addcategory'] = 'categorycontroller/add';
 
 
 /*=========================API ROUTES================================*/

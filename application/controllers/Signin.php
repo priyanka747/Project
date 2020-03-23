@@ -140,6 +140,7 @@ class Signin extends CI_Controller
 					$this->load->view('login');
 					$this->load->view('includes/footer-login');
 				}else{
+					echo $this->email->print_debugger();
 					$this->session->set_userdata('error','problem while sending email');
 					$this->session->set_userdata('login_status','failed');
 					$this->load->view('includes/header-login');

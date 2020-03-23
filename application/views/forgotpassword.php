@@ -22,7 +22,7 @@
                 
 
 
-                    <form method="post" action="<?php echo base_url()?>index.php/forget-password-verify"> 
+                    <form method="post" action="<?php echo base_url()?>forget-password-verify"> 
 					    <div class="form-group">
                             <label>Forgot Password</label> 
                         </div>
@@ -38,7 +38,7 @@
                                 <input type="checkbox"> Remember Me
                             </label> -->
                             <label class="pull-right">
-                                <a href="<?php echo base_url();?>index.php">try sign in?</a>
+                                <a href="<?php echo base_url();?>">try sign in?</a>
                             </label>
                             
                         </div>
