@@ -49,24 +49,37 @@ class CategoryController extends CI_Controller
     }
     }
     function add(){
-        $fname = $this->security->xss_clean($this->input->post('cate_nmae'));
-		$lname = $this->security->xss_clean($this->input->post('cate_nmae'));
-		$email = $this->security->xss_clean($this->input->post('r_email'));
-		$password = sha1($this->security->xss_clean($this->input->post('r_pass')));
-        $data = array(
-        'firstname'=>$fname,
-        'lastname'=>$lname,
-        'email'=>$email,
-        'password'=>$password,
-        'date_created'=>date('Y-m-d H:i:s')
-    );
-		$res= $this->user_model->register($data);
-		if($res)
-		{
-            $this->session->set_userdata('login_status','register_success');
-            $this->session->set_userdata('login_status','register_success');
-			redirect(base_url('index.php/login'));
-		}
+        $name = $this->security->xss_clean($this->input->post('cate_name'));
+        $desc = $this->security->xss_clean($this->input->post('cate_desc'));
+        $this->form_validation->set_rules('cate_name','category name','required');
+        if ($this->form_validation->run() == TRUE) {
+            $data = array(
+            'category_name'=>$name,
+            'description'=>$desc,
+            'date_created'=>date('Y-m-d H:i:s'),
+            'created_by'=>$this->session->userdata('user')[0]['user_id'],
+            'modified_by'=>$this->session->userdata('user')[0]['user_id']);
+            //  print_r($data);
+            $res=$this->category_model->add_category($data);
+            
+            if($res)
+            {
+                $this->session->set_userdata('success','Email with temporary password sent to '.$email.' successfully');
+                redirect(base_url('viewcategories'));
+            }
+            else{
+
+                $this->session->set_userdata('error','Seems like email is not registered !! enter valid email address');
+                redirect(base_url('viewcategories'));
+            }				
+        }else {
+            $this->session->set_userdata('login_status','failed');
+            $data['categories']=$this->category_model->get_all_categories();
+            $this->load->view('includes/header');
+            $this->load->view('includes/nav',$data);
+            $this->load->view('addcategory',$data);
+            $this->load->view('includes/footer');
+         }
     }
 }
 ?>

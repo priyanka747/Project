@@ -1,21 +1,40 @@
-      <!-- Content -->
-      <div class="content">
-        <!-- Animated -->
-        <div class="animated fadeIn">
 
-          <div class="clearfix"></div>
-          <!-- Orders -->
-          <div class="orders">
-            <div class="row">
-              <div class="col-xl-12">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="box-title">Displaying List Of All Categories </h4>
-                  </div>
-                  
-                  <div class="card-body--">
-                    <div class="table-stats order-table ov-h">
-                      <table class="table ">
+        <div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                <div class="row m-0">
+                    <div class="col-sm-4">
+                        <div class="page-header float-left">
+                            <div class="page-title">
+                                <h1>Dashboard</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="page-header float-right">
+                            <div class="page-title">
+                                <ol class="breadcrumb text-right">
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li class="active" ><a href="<?php echo base_url()?>viewcategories">category</a></li>
+                                    <li class="active">view category</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Categories</strong>
+                            </div>
+                            <div class="card-body">
+                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
                           <tr>
                             <th class="serial">Category ID</th>
@@ -50,17 +69,16 @@
                                         ?>
                          
 
-                        </tbody>
-                      </table>
-                    </div> <!-- /.table-stats -->
-                  </div>
-                </div> <!-- /.card -->
-              </div>  <!-- /.col-lg-8 -->
+                         </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
 
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /.content -->
-      <div class="clearfix"></div>
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+
+        <div class="clearfix"></div>

@@ -149,6 +149,7 @@ class Signin extends CI_Controller
 				}					
 			}
 			else{				
+				
 				$this->session->set_userdata('error','Seems like email is not registered !! enter valid email address');
 				$this->session->set_userdata('login_status','failed');
 				$this->load->view('includes/header-login');

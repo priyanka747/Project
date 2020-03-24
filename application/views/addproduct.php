@@ -1,14 +1,47 @@
+<div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                <div class="row m-0">
+                    <div class="col-sm-4">
+                        <div class="page-header float-left">
+                            <div class="page-title">
+                                <h1>Dashboard</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="page-header float-right">
+                            <div class="page-title">
+                                <ol class="breadcrumb text-right">
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li><a href="#">category</a></li>
+                                    <li class="active">add new category</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="content">
+            <div class="animated fadeIn">
 
-<div class="container" style="width:500px; text-align:center;">
-  
-	  	<form action="addaproduct" method="post" class="panel panel-primary form-horizontal">
-	  		<div class="panel-heading">
-	  			<h3 class="panel-title">Adding a new product</h3>
-	  		</div>
-	  		<div class="panel-body">
-		  		<fieldset>                    
-		  			<legend>Product Information</legend> 
-					 <div class="form-group">
+
+                <div class="row">
+				<div class="col-lg-2">
+				</div>
+                    <div class="col-lg-8">
+                        <div class="card">
+                           
+                            <div class="card-body">
+                                <!-- Credit Card -->
+                                <div id="pay-invoice">
+                                    <div class="card-body">
+                                        <div class="card-title">
+                                            <h3 class="text-center">Add Category</h3>
+                                        </div>
+										<form action="#" method="post" novalidate="novalidate">
+                                           
+										   <div class="form-group">
 						<label for="name" class="col-sm-12 control-label">Select Product Image</label>
 							<div class="col-sm-12">
 							  <label class="control-label small" for="file_img">From File</label>  <input type="file" name="file_archive">
@@ -86,14 +119,15 @@
 							   </label>
 					    </div>
 				    </div> <!-- form-group // -->  
-				</fieldset>           
-					<div class="form-group">
-						<div class="col-sm-offset-4 col-sm-12">
-						  <button type="submit" class="btn btn-primary">ADD</button>
-						</div>
-				    </div> <!-- form-group // -->				
-				 <hr>
+					<div>
+                                                <button id="btn btn-info" type="submit" class="btn btn-lg btn-info btn-block"> Submit
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
 
-			</div>
-		</form>
-    </div>
+                            </div>
+                        </div> <!-- .card -->
+
+                    </div><!--/.col-->
