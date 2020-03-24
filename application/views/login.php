@@ -7,7 +7,7 @@
         <div class="container">
             <div class="login-content">
                 <div class="login-logo">
-                    <a href="login">
+                    <a href="signin">
                         <img class="align-content" height=200 width=300 src="<?php echo base_url();?>images/fulllogo.png" alt="style stamp the final stamp to your fashion">
                     </a>
                 </div>
@@ -20,8 +20,11 @@
                 if($this->session->userdata('error')){?>
                     <div class="alert alert-danger"><?php echo $this->session->userdata('error'); $this->session->unset_userdata('error'); ?></div>
                 <?php }
-                ?>
-                    <form action="<?php echo base_url();?>index.php/authenticate" method="post"> 
+                if($this->session->userdata('success')){?>
+                    <div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
+                <?php }?>
+                
+                    <form action="<?php echo base_url();?>authenticate" method="post"> 
 					    <div class="form-group">
                             <label>Login</label> 
                         </div>

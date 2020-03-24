@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php';
 
 
-class Order extends REST_Controller {
+class Createorder extends REST_Controller {
 
     public function __construct() { 
         parent::__construct();
@@ -16,33 +16,8 @@ class Order extends REST_Controller {
         $this->load->model('Order_model');
     }
 
-    // GET
 
-    public function index_get($id=0) {
-        //returns all rows if the id parameter doesn't exist,
-        //otherwise single row will be returned
-        if($id==0){
-            $orders= $this->Order_model->get_all_orders();
-        }
-        else{
-            $orders = $this->Order_model->get_order_by_order_id($id);
-        }
-        //check if the user data exists
-        if(!empty($orders)){
-            //set the response and exit
-         
-             $this->response($orders);
-        }else{
-            //set the response and exit
-            $res=array(
-                'status' => FALSE,
-                'message' => 'No orders were found.'
-            );
-            $this->response($res);
-        }
-    }
-
-    // POST
+    // POST - Create Order
 
     public function index_post(){
     
@@ -173,119 +148,5 @@ class Order extends REST_Controller {
             ), REST_Controller::HTTP_NOT_FOUND);
           }
         }
-  
-        /*$data = json_decode(file_get_contents("php://input"));
-  
-        $name = isset($data->name) ? $data->name : "";
-        $email = isset($data->email) ? $data->email : "";
-        $mobile = isset($data->mobile) ? $data->mobile : "";
-        $course = isset($data->course) ? $data->course : "";*/
-      }
-
-      // DELETE
-      // path : <project_url>/index.php/order
-
-      public function index_delete($order_id){
-        // delete data method
-        //$data = json_decode(file_get_contents("php://input"));
-        //$order_id = $this->security->xss_clean($data->order_id);
-  
-      if($this->Order_model->cancel_order($order_id)){
-        // retruns true
-        $this->response(array(
-          "status" => 1,
-          "message" => "Order has been deleted"
-        ), REST_Controller::HTTP_OK);
-      }else{
-        // return false
-        $this->response(array(
-          "status" => 0,
-          "message" => "Failed to delete order"
-        ), REST_Controller::HTTP_NOT_FOUND);
-      }
-    }
-
-    /*  // PUT: <project_url>/index.php/student
-    public function index_put(){
-      // updating data method
-      //echo "This is PUT Method";
-      //$data = json_decode(file_get_contents("php://input"));
-
-     if(isset($data->id) && isset($data->name) && isset($data->email) && isset($data->mobile) && isset($data->course)){
-  
-          $order_id = $data->order_id;
-          $order = array(
-            "order_id" => $data->name,
-            "email" => $data->email,
-            "mobile" => $data->mobile,
-            "course" => $data->course,
-
-            "order_id" => $data->name,
-            "email" => $data->email,
-            "mobile" => $data->mobile,
-            "course" => $data->course,
-
-            "order_id" => $data->name,
-            "email" => $data->email,
-            "mobile" => $data->mobile,
-            "course" => $data->course,
-            
-
-          );
-          $student_info = array(
-            "name" => $data->name,
-            "email" => $data->email,
-            "mobile" => $data->mobile,
-            "course" => $data->course
-          );
-  
-      $order_id = $data->order_id;
-      $user_id = $data->user_id;
-      $date = $data->date;
-      $shipped_status = $data->shipped_status;
-  
-      $order_status = $data->order_status
-      $payment_type = $data->payment_type
-      $promotion_id = $data->promotion_id;
-      $status = $data->status;
- 
-      $date_create = $data->date_create;
-      $date_modified = $data->date_modified;
-      $created_by = $data->created_by;
-      $modified_by = $data->modified_by;
-
-      $shipping_address_id = $data->shipping_address_id;
-      $shipping_date = $data->shipping_date;
-      $mail_address = $data->mail_address;
-      $total = $data->total;
-  
-      //  ----------------
-  
-      $product_id = $data->product_id;
-      $quantity = $data->quantity;
-
-
-  
-          if($this->student_model->update_student_information($student_id, $student_info)){
-  
-              $this->response(array(
-                "status" => 1,
-                "message" => "Student data updated successfully"
-              ), REST_Controller::HTTP_OK);
-          }else{
-  
-            $this->response(array(
-              "status" => 0,
-              "messsage" => "Failed to update student data"
-            ), REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
-          }
-        }else{
-  
-          $this->response(array(
-            "status" => 0,
-            "message" => "All fields are needed"
-          ), REST_Controller::HTTP_NOT_FOUND);
-        }
-    }  */
-  
+      }  
 }    

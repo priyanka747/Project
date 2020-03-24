@@ -8,8 +8,8 @@
 					<li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Manage Categories</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-table"></i><a href="">View Categories </a></li>
-                            <li><i class="menu-icon fa fa-table"></i><a href="">Add Category</a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>viewcategories">View Categories </a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addcategory">Add Category</a></li>
                         </ul>
 					</li>
                     <li class="menu-item-has-children dropdown">
