@@ -27,10 +27,7 @@ class Users extends REST_Controller {
         //check if the user data exists
         if(!empty($users)){
             //set the response and exit
-            //  $this->response($users);
-            echo json_encode($users);
-            // $this->output->set_content_type('application/json', 'UTF-8')
-            // ->set_output(json_encode($users)); 
+             $this->response($users);
         }else{
             //set the response and exit
             $res=array(
