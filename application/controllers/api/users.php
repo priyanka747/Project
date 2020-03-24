@@ -27,7 +27,6 @@ class Users extends REST_Controller {
         //check if the user data exists
         if(!empty($users)){
             //set the response and exit
-         
              $this->response($users);
         }else{
             //set the response and exit

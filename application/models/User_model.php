@@ -35,6 +35,11 @@ class User_model extends CI_Model
 		return $this->db->from('users')->where('email',$email)->get()->num_rows();
 		
 	}
+	function check_admin_email($email)
+	{
+		return $this->db->from('users')->where('email',$email)->where('user_type','admin')->get()->num_rows();
+		
+	}
 	function get_user($id)
 	{
 		$this->db->select('*');

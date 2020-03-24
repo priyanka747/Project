@@ -1,90 +1,94 @@
-			
-			<!-- Content -->
-      <div class="content">
-        <!-- Animated -->
-        <div class="animated fadeIn">
 
-          <div class="clearfix"></div>
-          <!-- Orders -->
-          <div class="orders">
-            <div class="row">
-              <div class="col-xl-12">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="box-title">List Of All Products </h4>
-                  </div>
-                  <div class="card-body--">
-                    <div class="table-stats order-table ov-h">
-                      <table class="table ">
+        <div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                <div class="row m-0">
+                    <div class="col-sm-4">
+                        <div class="page-header float-left">
+                            <div class="page-title">
+                                <h1>Dashboard</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="page-header float-right">
+                            <div class="page-title">
+                                <ol class="breadcrumb text-right">
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li class="active" ><a href="<?php echo base_url()?>viewproducts">product</a></li>
+                                    <li class="active">view product</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Products</strong>
+                            </div>
+                            <div class="card-body">
+                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
                           <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-				            <th>Description</th>
-				            <th>Price</th>
-				            <th>Category</th>
-				            <th>Re-order level</th>
-				            <th>Discount</th>
-				            <th>Status</th>
-				            <th>Stock</th>
-				            <th>Action</th>
-				            
-						  </tr>
+													<th class="serial">Product ID</th>
+                          <th>Product Name</th>
+				           				<th>Description</th>
+				            			<th>Price</th>
+				            			<th>Category</th>
+				            			<th>Re-order level</th>
+				           				<th>Discount</th>
+				            			<th>Status</th>
+				           				<th>Stock</th>
+				            			<th>Action</th>
+						 						  </tr>
                         </thead>
-                        <tbody>  
-							<tr>
-                              <td>01</td>
-                              <td>shirt</td>
-			              	<td>American eagle black shirt</td>
-                              <td>12.36$</td>
-			              	<td>men Cloths</td>
-			              	 <td>10</td>
-                              <td>5</td>
-			              	<td>active</td>
-                              <td>20</td>
-			              	<td><button class="view btn-info">View</button><button class="edit btn-info">edit</button><button class="delete btn-danger">delete</button></td>
-                              
-                            </tr>
-<tr>
-                              <td>01</td>
-                              <td>shirt</td>
-			              	<td>American eagle black shirt</td>
-                              <td>12.36$</td>
-			              	<td>men Cloths</td>
-			              	 <td>10</td>
-                              <td>5</td>
-			              	<td>active</td>
-                              <td>20</td>
-			              	<td><button class="view btn-info">View</button><button class="edit btn-info">edit</button><button class="delete btn-danger">delete</button></td>
-                              
-                            </tr>		
-<tr>
-                              <td>01</td>
-                              <td>shirt</td>
-			              	<td>American eagle black shirt</td>
-                              <td>12.36$</td>
-			              	<td>men Cloths</td>
-			              	 <td>10</td>
-                              <td>5</td>
-			              	<td>active</td>
-                              <td>20</td>
-			              	<td><button class="view btn-info">View</button><button class="edit btn-info">edit</button><button class="delete btn-danger">delete</button></td>
-                              
-                            </tr>									
-                          
-
+											
+												<tbody>
+                        <?php 
+                             			$row_cnt=count($products);
+                             			if($row_cnt>0){
+                             			for($i=0;$i<$row_cnt;$i++){?>
+                            			<tr>
+                                	<td>  <?php echo $products[$i]['product_id']; ?></td>
+                                	<td> <?php echo $products[$i]['product_name']; ?> </td>
+                                	<td> <?php echo $products[$i]['description']; ?> </td>
+																	<td> <div><a type="a" href="<?php echo base_url();?>product/edit/<?php echo $products[$i]['product_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>product/delete/<?php echo $products[$i]['product_id']; ?>"" class="btn btn-outline-danger">Delete</a></div></td>
+                           				</tr>
+                                  <?php
+                                   }
+                                   }
+                                	else
+                                   {
+                                  ?>
+                                	<tr>
+									   							<td colspan="5" class="text-center">No data at the moment</td>
+                                  </tr>
+                                  <?php
+                                  	}
+                                    ?>
                         </tbody>
-                      </table>
-                    </div> <!-- /.table-stats -->
-                  </div>
-                </div> <!-- /.card -->
-              </div>  <!-- /.col-lg-8 -->
+															
+
+												</table>
+                            </div>
+                        </div>
+                    </div>
 
 
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /.content -->
-      <div class="clearfix"></div>
-			
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+
+        <div class="clearfix"></div>
+
+
+                      
+                 

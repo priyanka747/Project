@@ -7,7 +7,7 @@
         <div class="container">
             <div class="login-content">
                 <div class="login-logo">
-                    <a href="login">
+                    <a href="signin">
                         <img class="align-content" height=200 width=300 src="<?php echo base_url();?>images/fulllogo.png" alt="style stamp the final stamp to your fashion">
                     </a>
                 </div>
@@ -21,10 +21,10 @@
                     <div class="alert alert-danger"><?php echo $this->session->userdata('error'); $this->session->unset_userdata('error'); ?></div>
                 <?php }
                 if($this->session->userdata('success')){?>
-                    <div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('error'); ?></div>
+                    <div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
                 <?php }?>
                 
-                    <form action="<?php echo base_url();?>index.php/authenticate" method="post"> 
+                    <form action="<?php echo base_url();?>authenticate" method="post"> 
 					    <div class="form-group">
                             <label>Login</label> 
                         </div>
@@ -42,7 +42,7 @@
                                 <input type="checkbox"> Remember Me
                             </label> -->
                             <label class="pull-right">
-                                <a href="<?php echo base_url();?>index.php/forget-password">Forgot Password?</a>
+                                <a href="<?php echo base_url();?>forget-password">Forgot Password?</a>
                             </label>
                             
                         </div>

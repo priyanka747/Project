@@ -54,17 +54,31 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 	// define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
-	$server_ip = getHostByName(getHostName());
-	if (preg_match("(^10\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])|^127\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])|^172\.16\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])|^192\.168\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])$)", $server_ip)) {
-		// echo $server_ip;
-		define("ENVIRONMENT", "development");
-		define("BASEURL", "http://localhost/project/");
-	} else {
+	// $server_ip = getHostByName(getHostName());
+	// if (preg_match("(^10\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])|^127\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])|^172\.16\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])|^192\.168\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])$)", $server_ip)) {
+	// 	// echo $server_ip;
+	// 	define("ENVIRONMENT", "development");
+	// 	define("BASEURL", "http://localhost/project/");
+	// } else {
 	
-		define("ENVIRONMENT", "production");
-		define("BASEURL", "http://stylestamp.dipenoverseas.com/");
+	// 	define("ENVIRONMENT", "production");
+	// 	define("BASEURL", "http://stylestamp.dipenoverseas.com/");
    
-	}
+	// }
+		
+		define("ENVIRONMENT", isset($_SERVER['CI_ENV_FD'])?$_SERVER['CI_ENV_FD']:"development");
+		switch (ENVIRONMENT)
+		{
+			case 'development':
+			define("BASEURL", "http://stylestamp.dipenoverseas.com/");
+			break;
+			case 'production':
+			define("BASEURL", "http://localhost/project/");
+			break;
+			default:
+			define("BASEURL", "http://localhost/project/");
+		}
+
 
 /*
  *---------------------------------------------------------------
