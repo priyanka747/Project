@@ -23,36 +23,44 @@ class login extends REST_Controller {
         if ($this->form_validation->run() == TRUE) {
             
             $email = $this->security->xss_clean($this->input->post('email'));
-            $password = $this->security->xss_clean($this->input->post('password'));
+            $password = sha1($this->security->xss_clean($this->input->post('password')));
         
-            $res= $this->user_model->verify_login($email,$password);
-            if($res)
+            $data= $this->user_model->verify_login($email,$password);
+            
+            if($data)
             {
                 $res=array(
-                    'status' => TRUE,
+                    'status' => 1,
                     'login_status' => 'success',
-                    'message' => 'loggedin successfully'
+                    'message' => 'loggedin successfully',
+                    'user'=>$data[0]
                     );
-                    $this->response($res);
-                // $this->response($res);
+                    // echo $res;
+                    // $this->response($res);
+                $this->response($res);
             }
             else{
                 $res=array(
-                'status' => FALSE,
+                'status' => 0,
                 'login_status' => 'failed',
-                'message' => 'Invalid credentials!.'
+                'message' => 'Invalid credentials!.',
+                'user'=>""
                 );
+                // echo $res;
                 $this->response($res);
             }
 
         }else {
 
             $res=array(
-                'status' => FALSE,
+                'status' => 2,
                 'login_status' => 'failed',
-                'message' => 'Login Unsuccessful.'
+                'message' => 'Login Unsuccessful.',
+                'user'=>""
             );
+          
             $this->response($res);
         }
     }
 }
+?>

@@ -17,6 +17,8 @@ $route['forget-password-verify'] = 'signin/check_email';
 $route['viewcategories'] = 'categorycontroller';
 $route['addcategory'] = 'categorycontroller/addcategory';
 $route['add-new-category'] = 'categorycontroller/add';
+$route['category/edit/(:any)'] = 'categorycontroller/edit/$1';
+$route['category/delete/(:any)'] = 'categorycontroller/delete/$1';
 
 
 /*=========================API ROUTES================================*/

@@ -3,7 +3,7 @@
             <div class="footer-inner bg-white">
                 <div class="row">
                     <div class="col-sm-6">
-                        Copyright &copy; 2018 style stamp
+                        Copyright &copy; 2018 stylestamp
                     </div>
                     <div class="col-sm-6 text-right">
                         Designed by <a href="<?php echo base_url();?>">stylestamp</a>

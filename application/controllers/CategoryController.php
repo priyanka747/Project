@@ -51,7 +51,7 @@ class CategoryController extends CI_Controller
     function add(){
         $name = $this->security->xss_clean($this->input->post('cate_name'));
         $desc = $this->security->xss_clean($this->input->post('cate_desc'));
-        $this->form_validation->set_rules('cate_name','category name','required');
+        $this->form_validation->set_rules('cate_name','category_name','required');
         if ($this->form_validation->run() == TRUE) {
             $data = array(
             'category_name'=>$name,
@@ -64,22 +64,52 @@ class CategoryController extends CI_Controller
             
             if($res)
             {
-                $this->session->set_userdata('success','Email with temporary password sent to '.$email.' successfully');
-                redirect(base_url('viewcategories'));
+                $this->session->set_userdata('success','category added successfully <a href="'. base_url().'viewcategories" >view</a>');
+                redirect(base_url('addcategory'));
             }
             else{
 
-                $this->session->set_userdata('error','Seems like email is not registered !! enter valid email address');
+                $this->session->set_userdata('error','trouble while adding new category');
                 redirect(base_url('viewcategories'));
             }				
         }else {
-            $this->session->set_userdata('login_status','failed');
             $data['categories']=$this->category_model->get_all_categories();
             $this->load->view('includes/header');
             $this->load->view('includes/nav',$data);
             $this->load->view('addcategory',$data);
             $this->load->view('includes/footer');
          }
+    }
+    function edit($id){
+        $data['category']=$this->category_model->get_category($id);
+        $this->load->view('includes/header');
+        $this->load->view('includes/nav',$data);
+        $this->load->view('addcategory',$data);
+        $this->load->view('includes/footer');
+    }
+
+    function delete($id){
+        if($this->category_model->is_parent($id)>0){
+            if($this->category_model->update_category($data)){
+               if( $this->category_model->delete_category($id))
+               {
+                $this->session->set_userdata('success','trouble while adding new category');
+                redirect(base_url('viewcategories'),'refresh');
+                
+               }else{
+                $this->session->set_userdata('error','trouble while adding new category');
+                $this->load->view('includes/header');
+                $this->load->view('includes/nav',$data);
+                $this->load->view('viewcategory',$data);
+                $this->load->view('includes/footer');
+               }
+            }
+            $this->session->set_userdata('error','trouble while adding new category');
+        $this->load->view('includes/header');
+        $this->load->view('includes/nav',$data);
+        $this->load->view('viewcategory',$data);
+        $this->load->view('includes/footer');
+        }
     }
 }
 ?>

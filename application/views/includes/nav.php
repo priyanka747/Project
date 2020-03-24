@@ -15,15 +15,26 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Manage sub Categories</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-table"></i><a href="">View sub Categories </a></li>
-                            <li><i class="menu-icon fa fa-table"></i><a href="">Add sub Category</a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>viewsubcategories">View sub Categories </a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addsubcategory">Add sub Category</a></li>
                         </ul>
 					</li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Manage products</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-table"></i><a href="">View Products </a></li>
-                            <li><i class="menu-icon fa fa-table"></i><a href="">Add Product</a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>viewproducts">View Products </a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addproduct">Add Product</a></li>
+                        </ul>
+					</li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Manage Site Settings</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>viewproducts">Company Settings</a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addproduct">Banners</a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addproduct">Social Media</a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addproduct">Privacy Policy</a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addproduct"></a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addproduct">Banners</a></li>
                         </ul>
 					</li>
 					<li >
@@ -132,17 +143,18 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="<?php echo base_url("");?>images/admin.jpg" alt="User Avatar">
+                            <!-- <img class="user-avatar rounded-circle" src="<?php echo base_url("");?>images/admin.jpg" alt="User Avatar"> -->
+                            Hello,<?php echo $this->session->userdata('user')[0]['firstName'];?>
                         </a>
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
+                            <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a> -->
 
                             <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="<?php echo base_url();?>signin/logout"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
