@@ -5,7 +5,8 @@
 			</div>
 			<div class="col-sm">
 			
-			<h3  style="text-align: center;">Add New Category</h3>
+			<h3  style="text-align: center;">Add Category</h3>
+			<br/>
 			<br/>
 			<form action="" method="post" enctype="multipart/form-data">
 						<div class="form-group">
@@ -27,3 +28,10 @@
 			<div class="col-sm">
 			</div>
 			</div>
+			
+			
+			
+			
+			
+			
+			
