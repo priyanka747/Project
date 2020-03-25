@@ -60,6 +60,15 @@ class User_model extends CI_Model
         $this->db->where('id', $id);
 		return $this->db->update('users');
 	}
+	function get_customer_profile($id, $data)
+	{
+		$this->db->select('users.user_id, users.first_name, users.last_name, users.contact, users.D_O_B, users.status, users.gender');
+		$this->db->from('users');
+		$this->db->where($data);
+		$this->db->order_by('created_date','desc');
+		return $this->db->get()->result_array();
+	}
+
 	function filter_result($data)
 	{   
 		$this->db->select('*');
