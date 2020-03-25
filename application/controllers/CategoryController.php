@@ -1,5 +1,5 @@
 <?php
-class CategoryController extends CI_Controller 
+class Categorycontroller extends CI_Controller 
 {
 	public function __Construct()
 	{	error_reporting(-1);

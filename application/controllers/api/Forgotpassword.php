@@ -37,14 +37,14 @@ class Forgotpassword extends REST_Controller {
             else{
                 $res=array(
                 'status' => '0',
-                'message' => 'Invalid email address do not match to the database'
+                'message' => 'Invalid email address seems like does not registered'
                 );
                 $this->response($res);
             }
         }else{
             $res=array(
                 'status' => '0',
-                'message' => 'Invalid email address do not match to the database'
+                'message' => 'Invalid email address'
             );
             $this->response($res);
         }

@@ -13,8 +13,8 @@
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
                                     <li><a href="#">Dashboard</a></li>
-                                    <li><a href="#">category</a></li>
-                                    <li class="active">add new category</li>
+                                    <li><a href="#">Sub-category</a></li>
+                                    <li class="active">add new Sub-category</li>
                                 </ol>
                             </div>
                         </div>
@@ -37,8 +37,20 @@
                                 <div id="pay-invoice">
                                     <div class="card-body">
                                         <div class="card-title">
-                                            <h3 class="text-center">Add Category</h3>
+                                            <h3 class="text-center">Add SubCategory</h3>
                                         </div>
+                                        <!-- <hr> -->
+										<?php 
+										// if( validation_errors()){
+											echo validation_errors('<div class="alert alert-danger">','</div>');
+										// }
+										if($this->session->userdata('error')){?>
+											<div class="alert alert-danger"><?php echo $this->session->userdata('error'); $this->session->unset_userdata('error'); ?></div>
+										<?php }
+										print_r($categories);
+										if($this->session->userdata('success')){?>
+											<div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
+										<?php }?>
 										<form action="#" method="post" novalidate="novalidate">
                                            
 										   <div class="form-group">
@@ -124,10 +136,18 @@
                                                 </button>
                                             </div>
                                         </form>
-                                    </div>
+                                   
+				</div>
                                 </div>
 
                             </div>
                         </div> <!-- .card -->
 
-                    </div><!--/.col-->
+					</div><!--/.col-->
+					</div>
+
+
+</div><!-- .animated -->
+</div><!-- .content -->
+
+<div class="clearfix"></div>

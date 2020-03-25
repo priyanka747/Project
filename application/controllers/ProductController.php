@@ -1,6 +1,6 @@
 <?php
  
-class ProductController extends CI_Controller
+class Productcontroller extends CI_Controller
 {
 	public function __Construct()
 	{
@@ -9,7 +9,7 @@ class ProductController extends CI_Controller
 		$this->load->model('product_model');
 	}
 
-	funtion index()
+	function index()
 	{
 		if(!$this->session->userdata('user')){
 			$data['page'] = 'login';
@@ -26,7 +26,7 @@ class ProductController extends CI_Controller
 				$data['categories']=$this->product_model->get_all_products();
 				$this->load->view('includes/header-view');
 				$this->load->view('includes/nav',$data);
-				$this->load->view('viewproducts',$data);
+				$this->load->view('viewproduct',$data);
 				$this->load->view('includes/footer-view');
 			}
 		}
@@ -54,8 +54,7 @@ class ProductController extends CI_Controller
 		}
 	}
 
-	funtion add()
-	{
+	function add(){
 		$name = $this->security->xss_clean($this->input->post('prod_name'));
 		$desc = $this->security->xss_clean($this->input->post('prod_desc'));
 		$this->form_validation->set_rules('prod_name','product_name','required');
@@ -79,7 +78,7 @@ class ProductController extends CI_Controller
 					$this->session->set_userdata('error','trouble while adding new products');
 					redirect(base_url('viewproducts'));
 				}
-				else{
+			}else{
 					$data['categories']=$this->product_model->get_all_products();
 				$this->load->view('includes/header');
 				$this->load->view('includes/nav',$data);
@@ -88,31 +87,35 @@ class ProductController extends CI_Controller
 			}
 		}	
 	}		
-		
-
-		function delete($id){
-			if($this->product_model->is_parent($id)>0){
-				if($this->product_model->update_product($data)){
-					if($this->product_model->delete_product($id)){
-						$this->session->set_userdata('success','trouble while adding new product.!');
-						redirect(base_url('viewproduct'),'refresh');
-					}
-					else{
-						$this->session->set_userdata('error','trouble while adding new product');
-						$this->load->view('include/header');
-						$this->load->view('include/nav',$data);
-						$this->load->view('viewproduct',$data);
-						$this->load->view('include/footer');
-					}
+	function delete($id){
+		if($this->product_model->is_parent($id)>0){
+			if($this->product_model->update_product($data)){
+				if($this->product_model->delete_product($id)){
+					$this->session->set_userdata('success','trouble while adding new product.!');
+					redirect(base_url('viewproduct'),'refresh');
+				}
+				else{
 					$this->session->set_userdata('error','trouble while adding new product');
 					$this->load->view('include/header');
-						$this->load->view('include/nav',$data);
-						$this->load->view('viewproduct',$data);
-						$this->load->view('include/footer');
-					
+					$this->load->view('include/nav',$data);
+					$this->load->view('viewproduct',$data);
+					$this->load->view('include/footer');
 				}
+			}else{
+				$this->session->set_userdata('error','trouble while adding new product');
+				$this->load->view('include/header');
+					$this->load->view('include/nav',$data);
+					$this->load->view('viewproduct',$data);
+					$this->load->view('include/footer');
+				
 			}
+		}else{
+
+		}	
 
 		
 }
+
+		
+
 ?>

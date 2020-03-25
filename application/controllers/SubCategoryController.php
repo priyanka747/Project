@@ -1,5 +1,5 @@
 <?php
-class SubCategoryController extends CI_Controller 
+class Subcategorycontroller extends CI_Controller 
 {
 	public function __Construct()
 	{	error_reporting(-1);
@@ -20,15 +20,15 @@ class SubCategoryController extends CI_Controller
 			// print_r($user);
 			if($user[0]['user_type']=='admin'){
                     $data['page'] = 'Dashboard';
-                    $data['categories']=$this->category_model->get_all_sub_categories();
+                    $data['subcategories']=$this->category_model->get_all_sub_categories();
                     $this->load->view('includes/header-view');
 					$this->load->view('includes/nav',$data);
-					$this->load->view('viewcategory',$data);
+					$this->load->view('viewsubcategory',$data);
 					$this->load->view('includes/footer-view');
 			}
 		}
     }
-    function addsubcategory(){
+    function addSubSategory(){
         if(!$this->session->userdata('user')){
 			
             $data['page'] = 'login';
@@ -40,7 +40,7 @@ class SubCategoryController extends CI_Controller
         // print_r($user);
         if($user[0]['user_type']=='admin'){
                 $data['page'] = 'Dashboard';
-                $data['subcategories']=$this->category_model->get_all_sub_categories();
+                $data['categories']=$this->category_model->get_categories();
                 $this->load->view('includes/header');
                 $this->load->view('includes/nav',$data);
                 $this->load->view('addsubcategory',$data);
@@ -51,37 +51,42 @@ class SubCategoryController extends CI_Controller
     function add(){
         $name = $this->security->xss_clean($this->input->post('cate_name'));
         $desc = $this->security->xss_clean($this->input->post('cate_desc'));
-        $this->form_validation->set_rules('cate_name','category_name','required');
+        $pid=$this->security->xss_clean($this->input->post('parent_cate'));
+        $this->form_validation->set_rules('cate_name','category name','required');
+        $this->form_validation->set_rules('parent_cate','parent category','required');
         if ($this->form_validation->run() == TRUE) {
             $data = array(
             'category_name'=>$name,
             'description'=>$desc,
             'date_created'=>date('Y-m-d H:i:s'),
+            'parent_category'=>$pid,
             'created_by'=>$this->session->userdata('user')[0]['user_id'],
             'modified_by'=>$this->session->userdata('user')[0]['user_id']);
             //  print_r($data);
-            $res=$this->category_model->add_subcategory($data);
+            $res=$this->category_model->add_category($data);
             
             if($res)
             {
                 $this->session->set_userdata('success','sub-category added successfully <a href="'. base_url().'viewsubcategories" >view</a>');
                 redirect(base_url('addsubcategory'));
+        
             }
             else{
 
                 $this->session->set_userdata('error','trouble while adding new sub-category');
+              
                 redirect(base_url('viewsubcategories'));
             }				
         }else {
-            $data['subcategories']=$this->category_model->get_all_sub_categories();
-            $this->load->view('includes/header');
-            $this->load->view('includes/nav',$data);
-            $this->load->view('addcategory',$data);
-            $this->load->view('includes/footer');
+            $data['categories']=$this->category_model->get_categories();
+                $this->load->view('includes/header');
+                $this->load->view('includes/nav',$data);
+                $this->load->view('addsubcategory',$data);
+                $this->load->view('includes/footer');
          }
     }
     function edit($id){
-        $data['subcategory']=$this->category_model->get_sub_category($id);
+        $data['categories']=$this->category_model->get_categories();
         $this->load->view('includes/header');
         $this->load->view('includes/nav',$data);
         $this->load->view('addcategory',$data);

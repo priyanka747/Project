@@ -52,10 +52,11 @@
                                         if($row_cnt>0){
                                         for($i=0;$i<$row_cnt;$i++){?>
                                         <tr>
-                                            <td>  <?php echo $subcategories[$i]['subcategory_id']; ?></td>
-                                            <td> <?php echo $subcategories[$i]['subcategory_name']; ?> </td>
+                                            <td>  <?php echo $subcategories[$i]['category_id']; ?></td>
+                                            <td> <?php echo $subcategories[$i]['category_name']; ?> </td>
                                             <td> <?php echo $subcategories[$i]['description']; ?> </td>
-											<td> <div><a type="a" href="<?php echo base_url();?>subcategory/edit/<?php echo $subcategories[$i]['subcategory_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>subcategory/delete/<?php echo $subcategories[$i]['subcategory_id']; ?>"" class="btn btn-outline-danger">Delete</a></div></td>
+                                            <td> <?php echo $subcategories[$i]['parent_category']; ?> </td>
+											<td> <div><a type="a" href="<?php echo base_url();?>subcategory/edit/<?php echo $subcategories[$i]['category_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>subcategory/delete/<?php echo $subcategories[$i]['category_id']; ?>"" class="btn btn-outline-danger">Delete</a></div></td>
                                         </tr>
                                         <?php
                                         }

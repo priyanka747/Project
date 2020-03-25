@@ -6,7 +6,9 @@
   	  }
 
   	  function get_all_products() {
-  	  	return $this->db->select('*')->from ('product')->where ('status !=','delete')->order_by('date_created','desc')->get()->result_array(); 
+		$data=$this->db->select('*')->from ('product')->where ('status !=','delete')->order_by('date_created','desc')->get()->result_array(); 
+		
+  	  	return $data;
   	  }
   	   function get_products() {
   	  	return $this->db->select('*')->from ('product')->where ('status ','active')->order_by('date_created','desc')->get()->result_array(); 

@@ -144,7 +144,7 @@
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <!-- <img class="user-avatar rounded-circle" src="<?php echo base_url("");?>images/admin.jpg" alt="User Avatar"> -->
-                            Hello,<?php echo $this->session->userdata('user')[0]['firstName'];?>
+                            Hello,<?php echo $this->session->userdata('user')[0]['first_name'];?>
                         </a>
 
                         <div class="user-menu dropdown-menu">
