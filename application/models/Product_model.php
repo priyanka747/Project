@@ -6,9 +6,7 @@
   	  }
 
   	  function get_all_products() {
-		$data=$this->db->select('*')->from ('product')->where ('status !=','delete')->order_by('date_created','desc')->get()->result_array(); 
-		
-  	  	return $data;
+  	  	return $this->db->select('*')->from ('product')->join('product_image', 'product.product_id = product_image.product_id', 'inner')->join('image', 'product_image.image_id = image.image_id', 'inner')->where ('status !=','delete')->order_by('date_created','desc')->get()->result_array(); 
   	  }
   	   function get_products() {
   	  	return $this->db->select('*')->from ('product')->where ('status ','active')->order_by('date_created','desc')->get()->result_array(); 
@@ -81,7 +79,7 @@
     }
 
     //get all product images function
-    function get_product_images(){
+    function get_product_images($product_id){
  
     	$this->db->select('*');
 		$this->db->from('product');

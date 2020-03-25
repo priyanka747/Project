@@ -34,9 +34,8 @@ class Order_model extends CI_Model
 		$this->db->select('*');
 		$this->db->from('orders');
 		$this->db->join('order_info', 'orders.order_id = order_info.order_id', 'inner');
-		$this->db->where('orders.order_id',$order_id); 
-		$this->db->where('orders.user_id',$user_id);
-		$this->db->where('orders.status','active');
+		$array = array('orders.order_id' => $order_id, 'orders.user_id' => $user_id, 'orders.status' => $active);
+		$this->db->where($array); 
 		$this->db->order_by('orders.date_create','desc');
 		return $this->db->get()->result_array();
 	}
