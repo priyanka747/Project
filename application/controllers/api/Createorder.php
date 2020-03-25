@@ -17,6 +17,43 @@ class Createorder extends REST_Controller {
     }
 
 
+
+
+    // GET - get orders by order_id and user_id
+
+/*    //public function index_get() {
+    public function index_get($id=0, $order_id=0) {
+        //returns all rows if the id parameter doesn't exist,
+        //otherwise single row will be returned
+
+        //$id = 1;
+        //$order_id = 0;
+        //$id =  $this->uri->segment(3);
+        //$order_id =  $this->uri->segment(4);
+
+        if($order_id==0){
+            $orders = $this->Order_model->get_orders_by_user_id($id);
+        }
+        else{
+            $orders = $this->Order_model->get_order_by_user_id_order_id($id, $order_id);
+        }
+        //check if the user data exists
+        if(!empty($orders)){
+            //set the response and exit
+         
+             $this->response($orders);
+        }else{
+            //set the response and exit
+            $res=array(
+                'status' => FALSE,
+                'message' => 'No orders were found.'
+            );
+            $this->response($res);
+        }
+    }*/
+
+
+
     // POST - Create Order
 
     public function index_post(){
