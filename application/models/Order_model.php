@@ -27,6 +27,21 @@ class Order_model extends CI_Model
 		$this->db->order_by('orders.date_create','DESC');
 		return $this->db->get()->result_array();
 	}
+
+	//get orders by user_id and order_id
+	function get_order_by_user_id_order_id($user_id, $order_id)
+	{
+		$this->db->select('*');
+		$this->db->from('orders');
+		$this->db->join('order_info', 'orders.order_id = order_info.order_id', 'inner');
+		$array = array('orders.order_id' => $order_id, 'orders.user_id' => $user_id, 'orders.status' => $active);
+		$this->db->where($array); 
+		$this->db->order_by('orders.date_create','desc');
+		return $this->db->get()->result_array();
+	}
+
+
+
 	//get orders by user_id
 	function get_orders_by_user_id($user_id)
 	{
@@ -35,8 +50,8 @@ class Order_model extends CI_Model
 		$this->db->join('order_info', 'orders.order_id = order_info.order_id', 'inner'); 
 		$this->db->where('orders.user_id',$user_id);
 		$this->db->where('orders.status','active');
-		$this->db->order_by('orders.data_create','desc');
-		return $this->db->get()->result_arrary();
+		$this->db->order_by('orders.date_create','desc');
+		return $this->db->get()->result_array();
 	}
 
 	//get orders by status function
@@ -46,7 +61,7 @@ class Order_model extends CI_Model
 		$this->db->from('orders');
 		$this->db->join('order_info', 'orders.order_id = order_info.order_id', 'inner'); 
 		$this->db->where('orders.status', $status);
-		$this->db->order_by('orders.data_create','desc');
+		$this->db->order_by('orders.date_create','desc');
 		return $this->db->get()->result_array();
 	}
 

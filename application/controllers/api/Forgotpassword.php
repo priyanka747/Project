@@ -27,7 +27,7 @@ class Forgotpassword extends REST_Controller {
             // print_r($res);
             if($res)
             {
-                $this->emailhelper->forget_email($email);
+                $this->email_model->forget_email($email);
                 $res=array(
                     'status' => '1',
                     'message' => 'password link is sent to the email address'
@@ -37,14 +37,14 @@ class Forgotpassword extends REST_Controller {
             else{
                 $res=array(
                 'status' => '0',
-                'message' => 'Invalid email address do not match to the database'
+                'message' => 'Invalid email address seems like does not registered'
                 );
                 $this->response($res);
             }
         }else{
             $res=array(
                 'status' => '0',
-                'message' => 'Invalid email address do not match to the database'
+                'message' => 'Invalid email address'
             );
             $this->response($res);
         }

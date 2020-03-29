@@ -17,12 +17,12 @@
                     <div class="alert alert-danger"><?php echo $this->session->userdata('error'); $this->session->unset_userdata('error'); ?></div>
                 <?php }
                 if($this->session->userdata('success')){?>
-                    <div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('error'); ?></div>
+                    <div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
                 <?php }?>
                 
 
 
-                    <form method="post" action="<?php echo base_url()?>index.php/forget-password-verify"> 
+                    <form method="post" action="<?php echo base_url()?>forget-password-verify"> 
 					    <div class="form-group">
                             <label>Forgot Password</label> 
                         </div>
@@ -33,7 +33,15 @@
                         </div>
 
                         <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Verify</button>
-                      
+                        <div class="checkbox">
+                            <!-- <label>
+                                <input type="checkbox"> Remember Me
+                            </label> -->
+                            <label class="pull-right">
+                                <a href="<?php echo base_url();?>">try sign in?</a>
+                            </label>
+                            
+                        </div>
                     </form>
                 </div>
             </div>

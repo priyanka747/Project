@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php';
 
 
-class Users extends REST_Controller {
+class Getcustomerprofile extends REST_Controller {
 
     public function __construct() { 
         parent::__construct();
@@ -16,14 +16,10 @@ class Users extends REST_Controller {
         $this->load->model('user_model');
     }
     public function index_get($id=0) {
-        //returns all rows if the id parameter doesn't exist,
-        //otherwise single row will be returned
-        if($id==0){
-            $users= $this->user_model->get_users();
-        }
-        else{
-            $users = $this->user_model->get_user($id);
-        }
+        
+        $array = array('users.user_type' => 'customer', 'users.user_id' => $id);
+        $users = $this->user_model->get_customer_profile($id, $array);
+        
         //check if the user data exists
         if(!empty($users)){
             //set the response and exit
@@ -32,7 +28,7 @@ class Users extends REST_Controller {
             //set the response and exit
             $res=array(
                 'status' => FALSE,
-                'message' => 'No user were found.'
+                'message' => 'No user was found.'
             );
             $this->response($res);
         }

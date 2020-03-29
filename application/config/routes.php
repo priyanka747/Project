@@ -3,48 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
-| URI ROUTING
-| -------------------------------------------------------------------------
-| This file lets you re-map URI requests to specific controller functions.
-|
-| Typically there is a one-to-one relationship between a URL string
-| and its corresponding controller class/method. The segments in a
-| URL normally follow this pattern:
-|
-|	example.com/class/method/id/
-|
-| In some instances, however, you may want to remap this relationship
-| so that a different class/function is called than the one
-| corresponding to the URL.
-|
-| Please see the user guide for complete details:
-|
-|	https://codeigniter.com/user_guide/general/routing.html
-|
-| -------------------------------------------------------------------------
 | RESERVED ROUTES
-| -------------------------------------------------------------------------
-|
-| There are three reserved routes:
-|
-|	$route['default_controller'] = 'welcome';
-|
-| This route indicates which controller class should be loaded if the
-| URI contains no data. In the above example, the "welcome" class
-| would be loaded.
-|
-|	$route['404_override'] = 'errors/page_missing';
-|
-| This route will tell the Router which controller/method to use if those
-| provided in the URL cannot be matched to a valid route.
-|
-|	$route['translate_uri_dashes'] = FALSE;
-|
-| This is not exactly a route, but allows you to automatically route
-| controller and method names that contain dashes. '-' isn't a valid
-| class or method name character, so it requires translation.
-| When you set this option to TRUE, it will replace ALL dashes in the
-| controller and method URI segments.
 |
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
@@ -55,9 +14,48 @@ $route['authenticate'] = 'Signin/verify_admin';
 $route['signin'] = 'signin';
 $route['forget-password'] = 'user';
 $route['forget-password-verify'] = 'signin/check_email';
+//category
+$route['viewcategories'] = 'categorycontroller';
+$route['addcategory'] = 'categorycontroller/addcategory';
+$route['add-new-category'] = 'categorycontroller/add';
+$route['category/edit/(:any)'] = 'categorycontroller/edit/$1';
+$route['category/delete/(:any)'] = 'categorycontroller/delete/$1';
+//sub category
+$route['viewsubcategories'] = 'subcategorycontroller';
+$route['addsubcategory'] = 'subcategorycontroller/addSubSategory';
+$route['add-new-subcategory'] = 'subcategorycontroller/add';
+$route['subcategory/edit/(:any)'] = 'subcategorycontroller/edit/$1';
+$route['subcategory/delete/(:any)'] = 'subcategorycontroller/delete/$1';
+//product
+$route['viewproducts'] = 'productcontroller';
+$route['addproduct'] = 'productcontroller/addproduct';
+$route['add-new-product'] = 'productcontroller/add';
+$route['product/edit/(:any)'] = 'productcontroller/edit/$1';
+$route['product/delete/(:any)'] = 'productcontroller/delete/$1';
 
 
 /*=========================API ROUTES================================*/
+
+//----------------------------------------------------------------
+
+//http://localhost/Project/api/Getorderbyuser
+//$route['createorder']['GET'] = 'createorder/index_get';//initial call to getorderbyuser index
+
+//http://localhost/Project/api/Getorderbyuser/2
+/** overrides the above **/
+//$route['createorder/(:num)']['GET'] = 'createorder/index_get/$1';//Changing defaults index
+
+//http://localhost/Project/api/Getorderbyuser/2/2
+/** overrides the above **/
+//$route['createorder/(:num)/(:any)']['GET'] = 'createorder/order/$1/$2';//Changing type,limit,offset
+
+//All routes that are similar, like above that follow the previous, override the preceding one. 
+
+
+/*//http://localhost/Project/api/Getorderbyuser/create
+
+//overrides $route['players/(:any)']
+$route['getorderbyuser/create'] = 'getorderbyuser/index_post';*/
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

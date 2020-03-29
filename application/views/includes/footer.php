@@ -3,7 +3,7 @@
             <div class="footer-inner bg-white">
                 <div class="row">
                     <div class="col-sm-6">
-                        Copyright &copy; 2018 Ela Admin
+                        Copyright &copy; 2018 stylestamp
                     </div>
                     <div class="col-sm-6 text-right">
                         Designed by <a href="">stylestamp</a>
@@ -39,7 +39,7 @@
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
     <script src="<?php echo base_url("");?>assets/js/init/fullcalendar-init.js"></script>
-
+    <script src="<?php echo base_url("");?>assets/js/widgets.js"></script>
     <!--Local Stuff-->
     <script>
         jQuery(document).ready(function($) {
