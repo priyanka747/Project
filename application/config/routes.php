@@ -32,6 +32,14 @@ $route['addproduct'] = 'productcontroller/addproduct';
 $route['add-new-product'] = 'productcontroller/add';
 $route['product/edit/(:any)'] = 'productcontroller/edit/$1';
 $route['product/delete/(:any)'] = 'productcontroller/delete/$1';
+//profile
+$route['profile'] = 'psrofilecontroller';
+$route['change-password'] = 'productcontroller/addproduct';
+$route['add-new-product'] = 'productcontroller/add';
+$route['product/edit/(:any)'] = 'productcontroller/edit/$1';
+$route['product/delete/(:any)'] = 'productcontroller/delete/$1';
+
+
 
 
 /*=========================API ROUTES================================*/

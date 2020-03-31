@@ -48,19 +48,13 @@ Class Category_model extends CI_Model
 
 	function get_all_sub_categories()
 	{
-		$this->db->select('*');
-		$this->db->from('category');
-		$this->db->where('parent_category !=' , '');
-		$this->db->order_by('date_created','desc');
-		return $this->db->get()->result_array();
+		$sql="select c1.category_id,c1.category_name,c1.description,(select c2.category_name from category c2 where c1.parent_category=c2.category_id) as 'parent_category' from category c1 where c1.parent_category is not null";
+		return $this->db->query($sql)->result_array();
 	}
 	function get_all_sub_categories_by_parent($parent_id)
 	{
-		$this->db->select('*');
-		$this->db->from('category');
-		$this->db->where('parent_category',$parent_id);
-		$this->db->order_by('date_created','desc');
-		return $this->db->get()->result_array();
+		$sql="select c1.category_id,c1.category_name,c1.description,(select c2.category_name from category c2 where c1.parent_category=c2.category_id) as 'parent_category' from category c1 where c1.parent_category is not null and c1.parent_category=".$parent_id;
+		return $this->db->query($sql)->result_array();
 	}
 }
 ?>

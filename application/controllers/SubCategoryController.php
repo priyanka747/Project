@@ -96,7 +96,7 @@ class Subcategorycontroller extends CI_Controller
     function delete($id){
         if($this->category_model->is_parent($id)>0){
             if($this->category_model->update_subcategory($data)){
-               if( $this->category_model->delete_subcategory($id))
+               if( $this->product_model->delete_product_by_category($id))
                {
                 $this->session->set_userdata('success','trouble while adding new sub-category');
                 redirect(base_url('viewsubcategories'),'refresh');
@@ -105,14 +105,14 @@ class Subcategorycontroller extends CI_Controller
                 $this->session->set_userdata('error','trouble while adding new sub-category');
                 $this->load->view('includes/header');
                 $this->load->view('includes/nav',$data);
-                $this->load->view('viewcategory',$data);
+                $this->load->view('viewsubcategory',$data);
                 $this->load->view('includes/footer');
                }
             }
             $this->session->set_userdata('error','trouble while adding new sub-category');
         $this->load->view('includes/header');
         $this->load->view('includes/nav',$data);
-        $this->load->view('viewcategory',$data);
+        $this->load->view('viewsubcategory',$data);
         $this->load->view('includes/footer');
         }
     }

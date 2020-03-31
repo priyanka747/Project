@@ -15,7 +15,7 @@ class Getcustomerprofile extends REST_Controller {
         //load user model
         $this->load->model('user_model');
     }
-    public function index_get($id=0) {
+    public function index_get($id) {
         
         $array = array('users.user_type' => 'customer', 'users.user_id' => $id);
         $users = $this->user_model->get_customer_profile($id, $array);

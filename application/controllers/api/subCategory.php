@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php';
 
 
-class subCategory extends REST_Controller {
+class Subcategory extends REST_Controller {
 
     public function __construct() { 
         parent::__construct();
@@ -15,15 +15,15 @@ class subCategory extends REST_Controller {
         //load user model
         $this->load->model('category_model');
     }
-    public function index_get($id=0) {
+    public function index_get() {
         //returns all rows if the id parameter doesn't exist,
         //otherwise single row will be returned
-        if($id==0){
+        // if($id==0){
             $subCategories= $this->category_model->get_all_sub_categories();
-        }
-        else{
-            $subCategories = $this->category_model->get_category($id);
-        }
+        // }
+        // else{
+        //     $subCategories = $this->category_model->get_category($id);
+        // }
         //check if the user data exists
         if(!empty($subCategories)){
             //set the response and exit

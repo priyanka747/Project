@@ -29,16 +29,14 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Manage Site Settings</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>viewproducts">Company Settings</a></li>
-                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addproduct">Banners</a></li>
-                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addproduct">Social Media</a></li>
-                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addproduct">Privacy Policy</a></li>
-                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addproduct"></a></li>
-                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addproduct">Banners</a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>companysettings">Company Settings</a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>banner">Banners</a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>socialmedia">Social Media</a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>privacypolicy">Privacy Policy</a></li>
                         </ul>
 					</li>
 					<li >
-                        <a href=""><i class="menu-icon fa fa-laptop"></i>View Orders </a>
+                        <a href="<?php echo base_url("");?>vieworders"><i class="menu-icon fa fa-laptop"></i>View Orders </a>
 					</li>
                     
                    
@@ -67,7 +65,7 @@
             </div>
             <div class="top-right">
                 <div class="header-menu">
-                    <div class="header-left">
+                    <!-- <div class="header-left">
                         <button class="search-trigger"><i class="fa fa-search"></i></button>
                         <div class="form-inline">
                             <form class="search-form">
@@ -139,7 +137,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -148,7 +146,7 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                            <a class="nav-link" href="<?php echo base_url("");?>profile"><i class="fa fa- user"></i>My Profile</a>
 
                             <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a> -->
 

@@ -14,8 +14,8 @@
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
                                     <li><a href="#">Dashboard</a></li>
-                                    <li class="active" ><a href="<?php echo base_url()?>viewproducts">product</a></li>
-                                    <li class="active">view product</li>
+                                    <li class="active" ><a href="<?php echo base_url()?>viewcategories">category</a></li>
+                                    <li class="active">view category</li>
                                 </ol>
                             </div>
                         </div>
@@ -31,14 +31,14 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Products</strong>
+                                <strong class="card-title">Categories</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
                           <tr>
-													<th class="serial">Product ID</th>
-                          <th>Product Name</th>
+                           <th class="serial">Product ID</th>
+                                        <th>Product Name</th>
 				           				<th>Description</th>
 				            			<th>Price</th>
 				            			<th>Category</th>
@@ -47,10 +47,10 @@
 				            			<th>Status</th>
 				           				<th>Stock</th>
 				            			<th>Action</th>
-						 						  </tr>
+                          </tr>
                         </thead>
-											
-												<tbody>
+
+                        <tbody>
                         <?php 
                              			$row_cnt=count($products);
                              			if($row_cnt>0){
@@ -68,15 +68,14 @@
                                    {
                                   ?>
                                 	<tr>
-									   							<td colspan="5" class="text-center">No data at the moment</td>
+									   							<td colspan="10" class="text-center">No data at the moment</td>
                                   </tr>
                                   <?php
                                   	}
                                     ?>
-                        </tbody>
-															
 
-												</table>
+                         </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -88,7 +87,3 @@
 
 
         <div class="clearfix"></div>
-
-
-                      
-                 
