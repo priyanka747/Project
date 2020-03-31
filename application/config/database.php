@@ -76,7 +76,7 @@ $query_builder = TRUE;
 
 switch (ENVIRONMENT)
 {
-	case 'development':
+	case 'production':
 				$db['default'] = array(
 			'hostname' => 'localhost',
 			'username' => 'u742049101_root',
@@ -97,7 +97,7 @@ switch (ENVIRONMENT)
 		);
 		
 	break;
-	case 'production':
+	case 'development':
 					$db['default'] = array(
 		'dsn'	=> '',
 		'hostname' => 'localhost',
