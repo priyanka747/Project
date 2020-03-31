@@ -105,11 +105,40 @@ class Welcome extends CI_Controller {
 		$this->load->view('viewproduct');
 		$this->load->view('includes/footer');
 	}
-	public function addProduct()
+
+	public function viewSelectedProduct()
 	{
 		$this->load->view('includes/header');
 		$this->load->view('includes/nav');
-		$this->load->view('addproduct');
+		$this->load->view('viewselectedproduct');
+		$this->load->view('includes/footer');
+	}     
+		public function viewSelectedUser()
+	{
+		$this->load->view('includes/header');
+		$this->load->view('includes/nav');
+		$this->load->view('viewselecteduser');
+		$this->load->view('includes/footer');
+	} 
+			public function changePrivacyPolicy()
+	{
+		$this->load->view('includes/header');
+		$this->load->view('includes/nav');
+		$this->load->view('changeprivacypolicy');
+		$this->load->view('includes/footer');
+	} 
+				public function changeSocialMediaLinks()
+	{
+		$this->load->view('includes/header');
+		$this->load->view('includes/nav');
+		$this->load->view('changesocialmedialinks');
+		$this->load->view('includes/footer');
+	} 
+					public function changeContactDetails()
+	{
+		$this->load->view('includes/header');
+		$this->load->view('includes/nav');
+		$this->load->view('changecontactdetails');
 		$this->load->view('includes/footer');
 	}
 	public function comments()
