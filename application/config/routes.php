@@ -9,8 +9,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'home';
-$route['view-products'] = 'welcome/viewProducts';
-$route['authenticate'] = 'Signin/verify_admin';
+$route['view-products'] = 'welcome/viewproducts';
+$route['authenticate'] = 'signin/verify_admin';
 $route['signin'] = 'signin';
 $route['forget-password'] = 'user';
 $route['forget-password-verify'] = 'signin/check_email';

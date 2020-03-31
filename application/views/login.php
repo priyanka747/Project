@@ -24,7 +24,7 @@
                     <div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
                 <?php }?>
                 
-                    <form action="<?php echo site_url('login/verify')?>" method="post"> 
+                    <form action="<?php echo site_url('authenticate')?>" method="post"> 
 					    <div class="form-group">
                             <label>Login</label> 
                         </div>
