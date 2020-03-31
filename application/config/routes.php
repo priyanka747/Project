@@ -33,7 +33,16 @@ $route['add-new-product'] = 'productcontroller/add';
 $route['product/edit/(:any)'] = 'productcontroller/edit/$1';
 $route['product/delete/(:any)'] = 'productcontroller/delete/$1';
 //profile
-$route['profile'] = 'psrofilecontroller';
+$route['profile'] = 'profilecontroller';
+$route['change-password'] = 'productcontroller/addproduct';
+$route['add-new-product'] = 'productcontroller/add';
+$route['product/edit/(:any)'] = 'productcontroller/edit/$1';
+$route['product/delete/(:any)'] = 'productcontroller/delete/$1';
+//settings
+$route['companysettings'] = 'settingscontroller';
+$route['banner'] = 'settingscontroller/banner';
+$route['socialmedia'] = 'settingscontroller/socialmedia';
+$route['privacypolicy'] = 'settingscontroller/privacypolicy';
 $route['change-password'] = 'productcontroller/addproduct';
 $route['add-new-product'] = 'productcontroller/add';
 $route['product/edit/(:any)'] = 'productcontroller/edit/$1';

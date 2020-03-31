@@ -42,12 +42,12 @@ class Productcontroller extends CI_Controller
 		else{
 			$user=json_decode(json_encode($this->session->userdata('user')),true);
 
-			if(user[0]['user_type']=='admin'){
+			if($user[0]['user_type']=='admin'){
 				$data['page'] = 'dashboard';
 				$data['categories']=$this->product_model->get_all_products();
 				$this->load->view('includes/header');
 				$this->load->view('includes/nav',$data);
-				$this->load->view('addproducts',$data);
+				$this->load->view('addproduct',$data);
 				$this->load->view('includes/footer');
 
 			}
