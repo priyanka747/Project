@@ -69,10 +69,10 @@
 		define("ENVIRONMENT", isset($_SERVER['CI_ENV_FD'])?$_SERVER['CI_ENV_FD']:"development");
 		switch (ENVIRONMENT)
 		{
-			case 'development':
+			case 'production':
 			define("BASEURL", "http://stylestamp.dipenoverseas.com/");
 			break;
-			case 'production':
+			case 'development':
 			define("BASEURL", "http://localhost/project/");
 			break;
 			default:
