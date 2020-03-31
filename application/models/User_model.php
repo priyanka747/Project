@@ -7,6 +7,13 @@ class User_model extends CI_Model
         //load user model
         // $this->load->model('user_model');
     }
+	function validate()
+	{
+		$arr['email'] = $this->input->post('lemail');
+		$arr['password'] = sha1($this->input->post('lpassword'));
+		$arr['user_type'] = 'admin';
+		return $this->db->get_where('Users',$arr)->row();
+	}
 	function verify_login($email,$password)
 	{
 		return $res= $this->db->select('*')->from('users')->where('email',$email)->where('password',$password)->where('user_type','customer')->get()->result_array();
