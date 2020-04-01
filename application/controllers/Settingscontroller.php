@@ -7,11 +7,10 @@
      {
          error_reporting(-1);
          parent:: __Construct();
-        //  $this->load->model('product_model');
+         $this->load->model('setting_model');
      }
  
-     function index()
-     {
+     function index(){
          if(!$this->session->userdata('user')){
              $data['page'] = 'login';
              $this->load->view('include/header-login');
@@ -57,6 +56,7 @@
      function socialmedia(){
         if(!$this->session->userdata('user')){
             $data['page'] = 'login';
+           
             $this->load->view('include/header-login');
             $this->load->view('login');
             $this->load->view('includes/footer-login');
@@ -67,7 +67,9 @@
 
             if($user[0]['user_type']=='admin'){
                 $data['page'] = 'dashboard';
-               //  $data['categories']=$this->product_model->get_all_products();
+                $data['fl']=$this->setting_model->get_setting_by_settings_name('fb');
+            $data['ll']=$this->setting_model->get_setting_by_settings_name('li');
+            $data['tl']=$this->setting_model->get_setting_by_settings_name('tweeter');
                 $this->load->view('includes/header');
                 $this->load->view('includes/nav',$data);
                 $this->load->view('changesocialmedialinks',$data);
@@ -97,9 +99,8 @@
         }
      }
  
-     function add(){
-         $name = $this->security->xss_clean($this->input->post('prod_name'));
-         $desc = $this->security->xss_clean($this->input->post('prod_desc'));
+     function update_privacy_policy(){
+         $name = $this->security->xss_clean($this->input->post('pp'));
          $this->form_validation->set_rules('prod_name','product_name','required');
  
          if($this->form_validation->run()== TRUE){
@@ -128,37 +129,58 @@
                  $this->load->view('addproducts',$data);
                  $this->load->view('includes/footer');	
              }
-         }	
-     }		
-     function delete($id){
-         if($this->product_model->is_parent($id)>0){
-             if($this->product_model->update_product($data)){
-                 if($this->product_model->delete_product($id)){
-                     $this->session->set_userdata('success','trouble while adding new product.!');
-                     redirect(base_url('viewproduct'),'refresh');
-                 }
-                 else{
-                     $this->session->set_userdata('error','trouble while adding new product');
-                     $this->load->view('include/header');
-                     $this->load->view('include/nav',$data);
-                     $this->load->view('viewproduct',$data);
-                     $this->load->view('include/footer');
-                 }
-             }else{
-                 $this->session->set_userdata('error','trouble while adding new product');
-                 $this->load->view('include/header');
-                     $this->load->view('include/nav',$data);
-                     $this->load->view('viewproduct',$data);
-                     $this->load->view('include/footer');
-                 
-             }
-         }else{
- 
-         }	
- 
-         
- }
- 
+     }
+     function update_social_media(){
+        $fb = $this->security->xss_clean($this->input->post('fl'));
+        $li = $this->security->xss_clean($this->input->post('ll'));
+        $tweeter = $this->security->xss_clean($this->input->post('tl'));
+        $this->form_validation->set_rules('fl','facebook link','regex_match[/(?:http:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/]');//http(s)?:\/\/(www\.)?(facebook|fb)\.com\/[A-z0-9_\-\.]+\/?
+        $this->form_validation->set_rules('ll','linkedin link','regex_match[(http(s)?:\/\/([\w]+\.)?linkedin\.com\/in\/[A-z0-9_-]+\/?)]');
+        $this->form_validation->set_rules('tl','tweeter link','regex_match[(http(s)?:\/\/(.*\.)?twitter\.com\/[A-z0-9_]+\/?)]');
+
+        if($this->form_validation->run()== TRUE){
+                    $data=array(
+                        array(
+                            'settings_name'=>'fb',
+                            'settings_value'=>$fb,
+                            'modified_by'=>$this->session->userdata('user')[0]['user_id']
+                        ),
+                        array(
+                            'settings_name'=>'li',
+                            'settings_value'=>$li,
+                            'modified_by'=>$this->session->userdata('user')[0]['user_id']
+                        ),
+                        array(
+                            'settings_name'=>'tweeter',
+                            'settings_value'=>$tweeter,
+                            'modified_by'=>$this->session->userdata('user')[0]['user_id']
+                        )
+                    );
+                $res=$this->setting_model->update_settings($data);
+
+                if($res)
+                {
+                    $this->session->set_userdata('success','settings updated successfully.! ');
+                    redirect(base_url('socialmedia'));
+                }
+                else{
+                    $this->session->set_userdata('error','trouble while updating links');
+                    redirect(base_url('socialmedia'));
+                }
+            }else{
+               $data['page'] = 'settings';
+               $data['fl']=$this->setting_model->get_setting_by_settings_name('fb');
+           $data['ll']=$this->setting_model->get_setting_by_settings_name('li');
+           $data['tl']=$this->setting_model->get_setting_by_settings_name('tweeter');
+                $this->load->view('includes/header');
+                $this->load->view('includes/nav',$data);
+                $this->load->view('changesocialmedialinks',$data);
+                $this->load->view('includes/footer');	
+            }
+    }
+    
+    }
+  
          
  
  ?>

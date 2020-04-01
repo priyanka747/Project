@@ -11,8 +11,8 @@ class Setting_model extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('settings');
-		$this->db->where('settings.status','ative');
-		$this->db->order_by('settings.entry_date','desc');
+		$this->db->where('status','active');
+		$this->db->order_by('entry_date','desc');
 		return $this->db->get()->result_array();
 	}
 
@@ -83,11 +83,9 @@ class Setting_model extends CI_Model
 	}
 
 	//update settings function
-	function update_settings($settings_data,$settings_id)
+	function update_settings($data)
 	{
-		$this->db->where('settings_id',$settings_id);
-		$result1 = $this->db->update('settings',$settings_data);
-		return $result1;
+		return $this->db->update_batch('settings', $data, 'settings_name');
 	}
 
 	//filter function

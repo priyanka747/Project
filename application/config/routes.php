@@ -43,10 +43,13 @@ $route['companysettings'] = 'settingscontroller';
 $route['banner'] = 'settingscontroller/banner';
 $route['socialmedia'] = 'settingscontroller/socialmedia';
 $route['privacypolicy'] = 'settingscontroller/privacypolicy';
-$route['change-password'] = 'productcontroller/addproduct';
-$route['add-new-product'] = 'productcontroller/add';
-$route['product/edit/(:any)'] = 'productcontroller/edit/$1';
-$route['product/delete/(:any)'] = 'productcontroller/delete/$1';
+$route['update-companysettings'] = 'settingscontroller/addproduct';
+$route['update-banner'] = 'settingscontroller/add';
+$route['update-socialmedia'] = 'settingscontroller/update_social_media';
+$route['update-privacypolicy'] = 'settingscontroller/update_privacy_policy';
+//settings
+$route['vieworders'] = 'Ordercontroller';
+
 
 
 

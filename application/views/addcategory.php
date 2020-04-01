@@ -74,12 +74,7 @@
 
                     </div><!--/.col-->
 			
-<<<<<<< HEAD
-			<h3  style="text-align: center;">Add Category</h3>
-			<br/>
-=======
 			<!-- <h3  style="text-align: center;">Add New Category</h3>
->>>>>>> 03d99a45b175149a7cd92b3f883820a38ef0841a
 			<br/>
 			<form action="" method="post" enctype="multipart/form-data">
 						<div class="form-group">
@@ -100,16 +95,6 @@
 			</div>
 			<div class="col-sm">
 			</div>
-<<<<<<< HEAD
-			</div>
-			
-			
-			
-			
-			
-			
-			
-=======
 			</div> -->
 			</div>
 
@@ -118,4 +103,3 @@
 </div><!-- .content -->
 
 <div class="clearfix"></div>
->>>>>>> 03d99a45b175149a7cd92b3f883820a38ef0841a
