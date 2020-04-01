@@ -109,51 +109,34 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td class="serial">1.</td>
-                                                    <td> #5469 </td>
-                                                    <td>  <span class="client name">Louis Stanley</span> </td>
-                                                    <td>  <span class="date">2020-03-19 14:20:02</span> </td>
-                                                    <td><span class="order status"> <span class="badge badge-pending">pennding</span></span> </td>
-                                                    <td>
-                                                        <span class="badge badge-pending">not shipped</span>
-                                                    </td>
-                                                </tr>
-                                               
-                                                <tr>
-                                                    <td class="serial">1.</td>
-                                                    <td> #5469 </td>
-                                                    <td>  <span class="client name">Louis Stanley</span> </td>
-                                                    <td>  <span class="date">2020-03-19 14:20:02</span> </td>
-                                                    <td><span class="order status"> <span class="badge badge-pending">pennding</span></span> </td>
-                                                    <td>
-                                                        <span class="badge badge-pennding">not shipped</span>
-                                                    </td>
-                                                </tr>
-                                               
-                                                <tr>
-                                                    <td class="serial">1.</td>
-                                                    <td> #5469 </td>
-                                                    <td>  <span class="client name">Louis Stanley</span> </td>
-                                                    <td>  <span class="date">2020-03-19 14:20:02</span> </td>
-                                                    <td><span class="order status"> <span class="badge badge-pending">pennding</span></span> </td>
-                                                    <td>
-                                                        <span class="badge badge-pending">not shipped</span>
-                                                    </td>
-                                                </tr>
-                                               
-                                                <tr>
-                                                    <td class="serial">1.</td>
-                                                    <td> #5469 </td>
-                                                    <td>  <span class="client name">Louis Stanley</span> </td>
-                                                    <td>  <span class="date">2020-03-19 14:20:02</span> </td>
-                                                    <td><span class="order status"> <span class="badge badge-pending">pennding</span></span> </td>
-                                                    <td>
-                                                        <span class="badge badge-pending">not shipped</span>
-                                                    </td>
-                                                </tr>
-                                               
-                                               
+                                            <?php
+                                            $row_cnt=count($orders);
+                                            if($row_cnt>5){
+                                                $row_cnt=5;
+                                            }
+                                        if($row_cnt>0){
+                                        for($i=0;$i<$row_cnt;$i++){?>
+                                        <tr>
+                                            <td>  <?php echo $orders[$i]['order_id']; ?></td>
+                                            <td> <?php echo $orders[$i]['client_name']; ?> </td>
+                                            <td> <?php echo $orders[$i]['date']; ?> </td>
+                                            <td> <?php echo $orders[$i]['payment_type']; ?> </td>
+                                            <td> <span class="badge badge-dark"><?php echo $orders[$i]['shipped_status']; ?> </span></td>
+                                            <td>  <span class="badge badge-dark"><?php echo $orders[$i]['order_status']; ?></span> </td>
+											<!-- <td> <div><a type="a" href="<?php echo base_url();?>subcategory/edit/<?php echo $orders[$i]['order_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>subcategory/delete/<?php echo $orders[$i]['order_id']; ?>"" class="btn btn-outline-danger">Delete</a></div></td> -->
+                                        </tr>
+                                        <?php
+                                        }
+                                        }
+                                        else
+                                        {
+                                        ?>
+                                       <tr>
+									   <td colspan="7" class="text-center">No data at the moment</td>
+                                       </tr>
+                                       <?php
+                                        }
+                                        ?>                       
                                             </tbody>
                                         </table>
                                     </div> <!-- /.table-stats -->
