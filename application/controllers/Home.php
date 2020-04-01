@@ -5,6 +5,8 @@ class Home extends CI_Controller
 	{	error_reporting(-1);
 		parent:: __construct();
 		$this->load->model('order_model');
+		$this->load->model('product_model');
+		$this->load->model('user_model');
 	}
 	
 	function index()
@@ -21,6 +23,10 @@ class Home extends CI_Controller
 			if($user[0]['user_type']=='admin'){
 					$data['page'] = 'Dashboard';
 					$data['orders']=$this->order_model->get_vieworders();
+					$data['revenue']=$this->order_model->get_total();
+					$data['productcnt']=count($this->product_model->get_products());
+					$data['usercnt']=count($this->user_model->get_users());
+					$data['orderscnt']=count($this->order_model->get_all_completed_orders());
 					$this->load->view('includes/header');
 					$this->load->view('includes/nav');
 					$this->load->view('index',$data);

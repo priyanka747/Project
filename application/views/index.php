@@ -11,7 +11,7 @@
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
                                         <span class="currency float-left mr-1">$</span>
-                                        <span class="count">23569</span>
+                                        <span class="count"><?php echo $revenue; ?></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Revenue</p>
                                 </div><!-- /.card-left -->
@@ -30,10 +30,10 @@
                             <div class="card-body">
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
-                                        <span class="count float-left">85</span>
-                                        <span>%</span>
+                                        <span class="count "><?php echo $productcnt; ?></span>
+                                        <!-- <span>%</span> -->
                                     </h3>
-                                    <p class="text-light mt-1 m-0">Dummy text here</p>
+                                    <p class="text-light mt-1 m-0">Products</p>
                                 </div><!-- /.card-left -->
 
                                 <div class="card-right float-right text-right">
@@ -51,7 +51,7 @@
                             <div class="card-body">
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
-                                        <span class="count">6569</span>
+                                        <span class="count"><?php echo $usercnt; ?></span>
                                     </h3>
                                     <p class="text-light mt-1 m-0">Total clients</p>
                                 </div><!-- /.card-left -->
@@ -71,9 +71,9 @@
                             <div class="card-body">
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="mb-0 fw-r">
-                                        <span class="count">1490</span>
+                                        <span class="count"><?php echo $orderscnt; ?></span>
                                     </h3>
-                                    <p class="text-light mt-1 m-0">New users</p>
+                                    <p class="text-light mt-1 m-0">orders</p>
                                 </div><!-- /.card-left -->
 
                                 <div class="card-right float-right text-right">
@@ -148,7 +148,7 @@
                 </div>
                 <!-- /.orders -->
                 <div class="row">
-                    <div class="col-lg-6">
+                    <!-- <div class="col-lg-6">
                     <div class="card">
                                 <div class="card-body">
                                     <h4 class="box-title">Sales by category(Top 5) </h4>
@@ -195,9 +195,10 @@
                                             </tbody>
                                         </table>
                                     </div> <!-- /.table-stats -->
-                                </div>
-                            </div> <!-- /.card -->
-                    </div>
+                                <!-- </div> -->
+                            <!-- </div>  -->
+                            <!-- /.card -->
+                   <!-- </div>
 
                     <div class="col-lg-6">
                     <div class="card">
@@ -243,9 +244,10 @@
                                             </tbody>
                                         </table>
                                     </div> <!-- /.table-stats -->
-                                </div>
-                            </div> <!-- /.card -->
-                    </div>
+                                <!-- </div> -->
+                            <!-- </div> -->
+                             <!-- /.card -->
+                    <!-- </div> -->
                 </div>
             </div>
             <!-- .animated -->
