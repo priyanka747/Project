@@ -86,10 +86,16 @@ class Subcategorycontroller extends CI_Controller
          }
     }
     function edit($id){
+        $cate_id = $this->uri->segment(3, 0);
+        if($cate_id==0){
+            $this->session->set_userdata('error','seems like trying to update wrong category');
+                redirect(base_url('viewsubcategories'),'refresh');
+        }
         $data['categories']=$this->category_model->get_categories();
+        $data['subcategory']=$this->category_model->get_category($id);
         $this->load->view('includes/header');
         $this->load->view('includes/nav',$data);
-        $this->load->view('addcategory',$data);
+        $this->load->view('addsubcategory',$data);
         $this->load->view('includes/footer');
     }
     function update($id){
@@ -100,25 +106,29 @@ class Subcategorycontroller extends CI_Controller
         }
         $name = $this->security->xss_clean($this->input->post('cate_name'));
         $desc = $this->security->xss_clean($this->input->post('cate_desc'));
+        $pid=$this->security->xss_clean($this->input->post('parent_cate'));
         $this->form_validation->set_rules('cate_name','category name','required');
+        // $this->form_validation->set_rules('parent_cate','parent category','required');
         
         $data = array(
-        'category_name'=>$name,
-        'description'=>$desc,
-        'modified_by'=>$this->session->userdata('user')[0]['user_id']);
+            'category_name'=>$name,
+            'description'=>$desc,
+            'parent_category'=>$pid,
+            'modified_by'=>$this->session->userdata('user')[0]['user_id']
+        );
         if($this->form_validation->run()== TRUE){
-                 
+                //  print_r($data);
                 $res=$this->category_model->update_category($data,$id);
                 if($res){
-                    $this->session->set_userdata('success','category updated successfully');
-                    redirect(base_url('viewcategories'),'refresh');
+                    $this->session->set_userdata('success','subcategory updated successfully');
+                    redirect(base_url('viewsubcategories'),'refresh');
                     
                 }else{
-                    $this->session->set_userdata('error','trouble while updating  category');
+                    $this->session->set_userdata('error','trouble while updating  subcategory');
                     $data['category']=$this->category_model->get_category($id);
                     $this->load->view('includes/header');
                     $this->load->view('includes/nav',$data);
-                    $this->load->view('addcategory',$data);
+                    $this->load->view('addsubcategory',$data);
                     $this->load->view('includes/footer');
                 }
         }
@@ -126,7 +136,7 @@ class Subcategorycontroller extends CI_Controller
             $data['category']=$this->category_model->get_category($id);
             $this->load->view('includes/header');
             $this->load->view('includes/nav',$data);
-            $this->load->view('addcategory',$data);
+            $this->load->view('addsubcategory',$data);
             $this->load->view('includes/footer');
         }
     }

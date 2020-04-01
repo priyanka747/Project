@@ -23,7 +23,7 @@ class Productcontroller extends CI_Controller
 
 			if($user[0]['user_type']=='admin'){
 				$data['page'] = 'dashboard';
-				$data['categories']=$this->product_model->get_all_products();
+				$data['products']=$this->product_model->get_all_products();
 				$this->load->view('includes/header-view');
 				$this->load->view('includes/nav',$data);
 				$this->load->view('viewproduct',$data);
@@ -88,29 +88,12 @@ class Productcontroller extends CI_Controller
 		}	
 	}		
 	function delete($id){
-		if($this->product_model->is_parent($id)>0){
-			if($this->product_model->update_product($data)){
-				if($this->product_model->delete_product($id)){
-					$this->session->set_userdata('success','trouble while adding new product.!');
-					redirect(base_url('viewproduct'),'refresh');
-				}
-				else{
-					$this->session->set_userdata('error','trouble while adding new product');
-					$this->load->view('include/header');
-					$this->load->view('include/nav',$data);
-					$this->load->view('viewproduct',$data);
-					$this->load->view('include/footer');
-				}
-			}else{
-				$this->session->set_userdata('error','trouble while adding new product');
-				$this->load->view('include/header');
-					$this->load->view('include/nav',$data);
-					$this->load->view('viewproduct',$data);
-					$this->load->view('include/footer');
-				
-			}
+		if($this->product_model->delete($id)){
+			$this->session->set_userdata('success','product deleted successfully.! ');
+					redirect(dase_url('viewproducts'));
 		}else{
-
+			$this->session->set_userdata('error','trouble while deleting products');
+					redirect(base_url('viewproducts'));
 		}	
 
 		

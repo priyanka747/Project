@@ -51,7 +51,7 @@
 										if($this->session->userdata('success')){?>
 											<div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
 										<?php }?>
-			<form action="<?php if(empty($category)){echo base_url('add-new-subcategory');}else{ echo base_url().'update-subcategory/'.$category[0]['category_id'];}?>" method="post" enctype="multipart/form-data">
+			<form action="<?php if(empty($subcategory)){echo base_url('add-new-subcategory');}else{ echo base_url().'update-subcategory/'.$subcategory[0]['category_id'];}?>" method="post" enctype="multipart/form-data">
 						<div class="form-group">
                             <label class="control-label" for="textarea2">Sub Category Name</label>
                             <input class="form-control" name="cate_name" id="categoryname" type="text" required  value="<?php if(!empty($subcategory)){echo $subcategory[0]['category_name'];}else{ echo"";}?>"/>
