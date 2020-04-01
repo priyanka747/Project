@@ -50,18 +50,32 @@
 						  </tr>
                         </thead>
                         <tbody>  
-							<tr>
-                              <td>01</td>
-                              <td>shirt</td>
-			              	<td>27-10-1998</td>
-			              	 <td>Card</td>
-                              <td><span class="badge badge-dark"> Not Shipped </span></td>
-			              	<td><span class="badge badge-danger"> pending </span></td>
-                              
-			              	<td><button class="view btn-info">View</button> <button class="edit btn-info">edit</button> <button class="delete btn-danger">delete</button> </td>
-                              
-                            </tr>
-
+										 
+                        <?php 
+                                        $row_cnt=count($orders);
+                                        if($row_cnt>0){
+                                        for($i=0;$i<$row_cnt;$i++){?>
+                                        <tr>
+                                            <td>  <?php echo $orders[$i]['order_id']; ?></td>
+                                            <td> <?php echo $orders[$i]['client_name']; ?> </td>
+                                            <td> <?php echo $orders[$i]['date']; ?> </td>
+                                            <td> <?php echo $orders[$i]['payment_type']; ?> </td>
+                                            <td> <span class="badge badge-dark"><?php echo $orders[$i]['shipped_status']; ?> </span></td>
+                                            <td>  <span class="badge badge-dark"><?php echo $orders[$i]['order_status']; ?></span> </td>
+											<td> <div><a type="a" href="<?php echo base_url();?>subcategory/edit/<?php echo $orders[$i]['order_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>subcategory/delete/<?php echo $orders[$i]['order_id']; ?>"" class="btn btn-outline-danger">Delete</a></div></td>
+                                        </tr>
+                                        <?php
+                                        }
+                                        }
+                                        else
+                                        {
+                                        ?>
+                                       <tr>
+									   <td colspan="7" class="text-center">No data at the moment</td>
+                                       </tr>
+                                       <?php
+                                        }
+                                        ?>
                             </tbody>
                                 </table>
                             </div>

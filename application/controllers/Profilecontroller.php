@@ -7,7 +7,7 @@ class Profilecontroller extends CI_Controller
 	{
 		error_reporting(-1);
 		parent:: __Construct();
-		// $this->load->model('product_model');
+		 $this->load->model('user_model');
 	}
 
 	function index()
@@ -24,95 +24,62 @@ class Profilecontroller extends CI_Controller
 
 			if($user[0]['user_type']=='admin'){
 				$data['page'] = 'dashboard';
-				// $data['categories']=$this->product_model->get_all_products();
+				$data['user']=$this->user_model->get_user($user[0]['user_id']);
 				$this->load->view('includes/header');
 				$this->load->view('includes/nav',$data);
 				$this->load->view('updateadmininformation',$data);
 				$this->load->view('includes/footer');
 			}
 		}
-	}
+	}	
+	function edit(){
 
-	// function addproduct(){
-	// 	if(!$this->session->userdata('user')){
-	// 		$data['page'] = 'login';
-	// 		$this->load->view('includes/header-login');
-	// 		$this->load->view('login');
-	// 		$this->load->view('includes/footer-login');
-	// 	}
-	// 	else{
-	// 		$user=json_decode(json_encode($this->session->userdata('user')),true);
+		$this->form_validation->set_rules('fname','First Name','required|alpha');
+		$this->form_validation->set_rules('lname','Last Name','required|alpha');
+		$this->form_validation->set_rules('email','email','required|valid_email');
+		$this->form_validation->set_rules('pass','password','required|min_length[8]');
+	
+		if($this->form_validation->run()== TRUE){
+			$fnm=$_POST['fname'];
+			$lnm=$_POST['lname'];
+			$email=$_POST['email'];
+			$pass=sha1($_POST['pass']);
 
-	// 		if(user[0]['user_type']=='admin'){
-	// 			$data['page'] = 'dashboard';
-	// 			$data['categories']=$this->product_model->get_all_products();
-	// 			$this->load->view('includes/header');
-	// 			$this->load->view('includes/nav',$data);
-	// 			$this->load->view('addproducts',$data);
-	// 			$this->load->view('includes/footer');
+			if($pass==$this->session->userdata('user')[0]['password']){
+					$data=array(
+					'first_name'=>$fnm,
+					'last_name'=>$lnm,
+					'email'=>$email
+				);
+				print_r($data);
+			
+				$res=$this->user_model->update_user($data,$this->session->userdata('user')[0]['user_id']);
 
-	// 		}
-	// 	}
-	// }
-
-	// function add(){
-	// 	$name = $this->security->xss_clean($this->input->post('prod_name'));
-	// 	$desc = $this->security->xss_clean($this->input->post('prod_desc'));
-	// 	$this->form_validation->set_rules('prod_name','product_name','required');
-
-	// 	if($this->form_validation->run()== TRUE){
-	// 			$data == array(
-	// 			'product_name'=>$name,
-	// 			'description'=>$desc,
-	// 			'date_created'=>date('Y-m-d H:i:s'),
-	// 			'created_by'=>$this->session->userdate('user')[0]['user_id'],
-	// 			'modified_by'=>$this->session->userdate('user')[0]['user_id']);
-
-	// 			$res=$this->product_model->add_product($data);
-
-	// 			if($res)
-	// 			{
-	// 				$this->session->set_userdata('success','product added successfully.! <a href="'.base_url().'viewproducts" >view</a>');
-	// 				redirect(dase_url('addproduct'));
-	// 			}
-	// 			else{
-	// 				$this->session->set_userdata('error','trouble while adding new products');
-	// 				redirect(base_url('viewproducts'));
-	// 			}
-	// 		}else{
-	// 				$data['categories']=$this->product_model->get_all_products();
-	// 			$this->load->view('includes/header');
-	// 			$this->load->view('includes/nav',$data);
-	// 			$this->load->view('addproducts',$data);
-	// 			$this->load->view('includes/footer');	
-	// 		}
-	// 	}	
-	// }		
-	// function delete($id){
-	// 	if($this->product_model->is_parent($id)>0){
-	// 		if($this->product_model->update_product($data)){
-	// 			if($this->product_model->delete_product($id)){
-	// 				$this->session->set_userdata('success','trouble while adding new product.!');
-	// 				redirect(base_url('viewproduct'),'refresh');
-	// 			}
-	// 			else{
-	// 				$this->session->set_userdata('error','trouble while adding new product');
-	// 				$this->load->view('include/header');
-	// 				$this->load->view('include/nav',$data);
-	// 				$this->load->view('viewproduct',$data);
-	// 				$this->load->view('include/footer');
-	// 			}
-	// 		}else{
-	// 			$this->session->set_userdata('error','trouble while adding new product');
-	// 			$this->load->view('include/header');
-	// 				$this->load->view('include/nav',$data);
-	// 				$this->load->view('viewproduct',$data);
-	// 				$this->load->view('include/footer');
-				
-	// 		}
-	// 	}else{
-
-	// 	}	
+				 if($res)
+				{
+					$user=$this->user_model->get_user($this->session->userdata('user')[0]['user_id']);
+					$this->session->set_userdata('user',$user);
+					$this->session->set_userdata('success','inforation updated successfully.!');
+					redirect(base_url('profilecontroller'));
+				}
+				else{
+					$this->session->set_userdata('error','trouble while updating information');
+					redirect(base_url('profilecontroller'));
+				}
+			}else{
+				$this->session->set_userdata('error','wrong password');
+				echo $this->session->userdata('user')[0]['password']." ".sha1($pass);
+					// redirect(base_url('profilecontroller'));
+			}
+			}else{
+				$data['user']=$this->user_model->get_user($this->session->userdata('user')[0]['user_id']);
+				$this->load->view('includes/header');
+				$this->load->view('includes/nav',$data);
+				$this->load->view('updateadmininformation',$data);
+				$this->load->view('includes/footer');	
+			}
+		
+	}	
 
 		
 }

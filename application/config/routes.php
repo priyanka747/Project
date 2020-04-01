@@ -34,8 +34,8 @@ $route['product/edit/(:any)'] = 'productcontroller/edit/$1';
 $route['product/delete/(:any)'] = 'productcontroller/delete/$1';
 //profile
 $route['profile'] = 'profilecontroller';
-$route['change-password'] = 'productcontroller/addproduct';
-$route['add-new-product'] = 'productcontroller/add';
+$route['change-password'] = 'profilecontroller/update_password';
+$route['update-profile'] = 'profilecontroller/edit';
 $route['product/edit/(:any)'] = 'productcontroller/edit/$1';
 $route['product/delete/(:any)'] = 'productcontroller/delete/$1';
 //settings
