@@ -92,7 +92,44 @@ class Subcategorycontroller extends CI_Controller
         $this->load->view('addcategory',$data);
         $this->load->view('includes/footer');
     }
-
+    function update($id){
+        $cate_id = $this->uri->segment(2, 0);
+        if($cate_id==0){
+            $this->session->set_userdata('success','trouble while updating category');
+                // redirect(base_url('viewcategories'),'refresh');  
+        }
+        $name = $this->security->xss_clean($this->input->post('cate_name'));
+        $desc = $this->security->xss_clean($this->input->post('cate_desc'));
+        $this->form_validation->set_rules('cate_name','category name','required');
+        
+        $data = array(
+        'category_name'=>$name,
+        'description'=>$desc,
+        'modified_by'=>$this->session->userdata('user')[0]['user_id']);
+        if($this->form_validation->run()== TRUE){
+                 
+                $res=$this->category_model->update_category($data,$id);
+                if($res){
+                    $this->session->set_userdata('success','category updated successfully');
+                    redirect(base_url('viewcategories'),'refresh');
+                    
+                }else{
+                    $this->session->set_userdata('error','trouble while updating  category');
+                    $data['category']=$this->category_model->get_category($id);
+                    $this->load->view('includes/header');
+                    $this->load->view('includes/nav',$data);
+                    $this->load->view('addcategory',$data);
+                    $this->load->view('includes/footer');
+                }
+        }
+        else{
+            $data['category']=$this->category_model->get_category($id);
+            $this->load->view('includes/header');
+            $this->load->view('includes/nav',$data);
+            $this->load->view('addcategory',$data);
+            $this->load->view('includes/footer');
+        }
+    }
     function delete($id){
         if($this->category_model->is_parent($id)>0){
             if($this->category_model->update_subcategory($data)){

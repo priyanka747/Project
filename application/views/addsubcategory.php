@@ -51,15 +51,15 @@
 										if($this->session->userdata('success')){?>
 											<div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
 										<?php }?>
-			<form action="<?php echo base_url();?>add-new-subcategory" method="post" enctype="multipart/form-data">
+			<form action="<?php if(empty($category)){echo base_url('add-new-subcategory');}else{ echo base_url().'update-subcategory/'.$category[0]['category_id'];}?>" method="post" enctype="multipart/form-data">
 						<div class="form-group">
                             <label class="control-label" for="textarea2">Sub Category Name</label>
-                            <input class="form-control" name="cate_name" id="categoryname" type="text" required />
+                            <input class="form-control" name="cate_name" id="categoryname" type="text" required  value="<?php if(!empty($subcategory)){echo $subcategory[0]['category_name'];}else{ echo"";}?>"/>
                         </div>
    
 						<div class="form-group">
                             <label class="control-label" for="textarea2">Sub Category Description</label>
-                            <textarea class="form-control" name="cate_desc" id="categorydescription" rows="4" required ></textarea>
+                            <textarea class="form-control" name="cate_desc" id="categorydescription" rows="4" required ><?php if(!empty($subcategory)){echo $subcategory[0]['description'];}else{ echo"";}?></textarea>
                         </div>
 						
 						<div class="form-group">
@@ -67,9 +67,16 @@
 							<select class="custom-select" name="parent_cate">
 								<option selected>Choose parent category</option>
 								<?php
+                                $parent_id= $subcategory[0]['parent_category'];
+                                
 								for($i=0;$i<count($categories);$i++){
+                                    if($categories[$i]['category_id']==$parent_id){
+                                        $selected="selected";
+                                    }else{
+                                        $selected="";
+                                    }
 									?>
-									<option value=<?php echo $categories[$i]['category_id'];?>><?php echo $categories[$i]['category_name'];?></option>
+									<option value="<?php echo $categories[$i]['category_id'];?>" <?php echo $selected;?>><?php echo $categories[$i]['category_name'];?></option>
 									<?php
 								}
 								?>

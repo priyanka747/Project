@@ -50,20 +50,19 @@
 										if($this->session->userdata('success')){?>
 											<div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
 										<?php }?>
-                                        <form action="<?php echo base_url();?>add-new-category" method="post" >
+                                        <form action="<?php if(empty($category)){echo base_url('add-new-category');}else{ echo base_url().'update-category/'.$category[0]['category_id'];}?>" method="post" >
                                            
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Category Name</label>
-                                                <input id="cc-payment" name="cate_name" type="text" class="form-control" placeholder="Name Of The Category">
+                                                <input id="cc-payment" name="cate_name" type="text" class="form-control" placeholder="Name Of The Category" value="<?php if(!empty($category)){echo $category[0]['category_name'];}else{ echo"";}?>">
                                             </div>
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">Category Description</label>
-                                                <input id="cc-name" name="cate_desc" type="text"  placeholder="Description Of The Category" class="form-control" >
+                                                <input id="cc-name" name="cate_desc" type="text"  placeholder="Description Of The Category" class="form-control" value="<?php if(!empty($category)){echo $category[0]['description'];}else{ echo"";}?>" >
                                             </div>
                                             
                                             <div>
-                                                <button id="btn btn-info" type="submit" class="btn btn-lg btn-info btn-block"> Submit
-                                                </button>
+                                                <button id="btn btn-info" type="submit" class="btn btn-lg btn-info btn-block"> <?php if(!empty($category)){echo "Update";}else{ echo "Submit";} ?> </button>
                                             </div>
                                         </form>
                                     </div>
