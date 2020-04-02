@@ -15,6 +15,10 @@
 			$data=$this->db->select('*')->from ('product')->where ('status ','active')->order_by('date_created','desc')->get()->result_array();
 			$product_cnt=count($data);
 			echo $product_cnt;
+			for($i=0;$i<$product_cnt;$i++)
+			{
+				$data['images']=
+			}
 			return $data[0];
 
 		}
