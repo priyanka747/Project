@@ -10,7 +10,14 @@
   	  }
   	   function get_products() {
   	  	return $this->db->select('*')->from ('product')->where ('status ','active')->order_by('date_created','desc')->get()->result_array(); 
-  	  }
+		}
+		function get_product_image(){
+			$data=$this->db->select('*')->from ('product')->where ('status ','active')->order_by('date_created','desc')->get()->result_array();
+			$product_cnt=count($data);
+			echo $product_cnt;
+			return $data[0];
+
+		}
   	  function create_product($data,$images)
 	{
 		$product_image='';

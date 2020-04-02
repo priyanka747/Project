@@ -5,7 +5,25 @@ class Order_model extends CI_Model
 	//orders join order_info
 	//----------------------------------------------------------------------------------
 
-
+	function get_total()
+	{
+		$this->db->select_sum('total');
+    $this->db->from('orders');
+    $this->db->where('order_status','completed');
+    return $this->db->get()->row()->total;
+	}
+	function get_vieworders()
+	{
+		$sql="SELECT o.order_id,(SELECT CONCAT(u.first_name,' ' , u.last_name) from users u where u.user_id=o.user_id) As client_name,o.date,o.payment_type,o.shipped_status,o.order_status FROM `orders` o INNER JOIN `order_info` ON `o`.`order_id` = `order_info`.`order_id` WHERE `o`.`status` != 'delete' ORDER BY `o`.`date_create` DESC";
+		return $this->db->query($sql)->result_array();
+	}
+	function get_all_completed_orders()
+	{
+		$this->db->select('*');
+    $this->db->from('orders');
+    $this->db->where('order_status','completed');
+    return $this->db->get()->result_array();
+	}
 	//get all active orders
 	function get_orders()
 	{

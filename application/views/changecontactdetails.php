@@ -1,62 +1,106 @@
-    <style> 
-      input {
+<style>
+    body{
+      background-color: #eee;
+	  }
+	  input{
       border-top-style: hidden;
       border-right-style: hidden;
-      border-left-style: hidden;
-      border-bottom-style:groove; 
-      background-color: #eee; 
+      border-left-style: hidden;  
+	  border-bottom-style:groove ;
+      <!--  border-bottom-style:hidden ; -->      
       }
- 
      .no-outline:focus {
       outline: none;
       } 
-	  .center-elements{
-	 text-align:center; }
-	  
-    </style> 
-	
-<link href="https://icons8.com"> 
-
-<body>
-    <div class="sufee-login d-flex align-content-center flex-wrap">
-        <div class="container">
-            <div class="login-content"> 
-                <div class="login-logo">           
-                    <a href="login">
-                        <img class="align-content" height=150 width=200  src="<?php echo base_url();?>images/fulllogo.png" alt="style stamp the final stamp to your fashion">
-                    </a>
-                </div>     
-                <div class="contact-form">
-                   <form action="<?php echo base_url();?>changecontactdetails.php/authenticate" method="post"> 
-					    <div class="form-group">      
-                            <h2 class="center-elements">Company Contact Details</h2>
-                        </div>
-                        <div class="form-group">       
-						        <h4 class="center-elements">Contact Numbers</h4>       
-                                    <div class="center-elements"> 
-                                        <img src="https://img.icons8.com/metro/26/000000/phone.png"/>
-										<input type="phone"  class="no-outline" id="productcategory" name="productcategory" value="+1 514-550-0001" ><br>
-								        <img src="https://img.icons8.com/metro/26/000000/phone.png"/>
-                                        <input type="text" id="productname" name="productname" value="+1 514-550-0002" >  <br>
-								        <img src="https://img.icons8.com/metro/26/000000/phone.png"/>
-                                        <input type="text" id="productprice" name="productprice" value="+1 514-550-0003" >        
-							        </div> 
-							    <h4 class="center-elements";>E-mails</h4>      
-									<div class="center-elements"> 
-										<img src="https://img.icons8.com/material/24/000000/send-mass-email.png"/>         
-										<input type="email" id="productcategory" name="productcategory" value="abc13@gmail.com " ><br>
-											
-										<img src="https://img.icons8.com/material/24/000000/send-mass-email.png"/>         
-										<input type="email" id="productname" name="productname" value="xyz17@gmail.com " >  
-									</div> 
-								
-						</div>	
-							<div class="center-elements">
-                               <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Edit</button>      
+</style> 
+ <div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                <div class="row m-0">
+                    <div class="col-sm-4">
+                        <div class="page-header float-left">
+                            <div class="page-title">
+                                <h1>Dashboard</h1>
                             </div>
-                    </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="page-header float-right">
+                            <div class="page-title">
+                                <ol class="breadcrumb text-right">
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li><a href="#">Settings</a></li>
+                                    <li class="active">Contact Details</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div> 
+            </div>
         </div>
-    </div> 
-</body>
+		<div class="content">
+            <div class="animated fadeIn">
+
+
+                <div class="row">
+				<div class="col-lg-2">
+				</div>
+                    <div class="col-lg-8">
+                        <div class="card">
+                           
+                            <div class="card-body">
+                                <!-- Credit Card -->
+                                <div id="contact-details">
+                                    <div class="card-body">
+                                        <div class="card-title">
+                                            <h3 class="text-center">Company's Contact Details</h3>
+                                        </div>
+                                        <!-- <hr> -->
+										<?php 
+										// if( validation_errors()){
+											echo validation_errors('<div class="alert alert-danger">','</div>');
+										// }
+										if($this->session->userdata('error')){?>
+											<div class="alert alert-danger"><?php echo $this->session->userdata('error'); $this->session->unset_userdata('error'); ?></div>
+										<?php }
+										if($this->session->userdata('success')){?>
+											<div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
+										<?php }?>
+                                        <form action="<?php echo base_url();?>change-contact-details" method="post" >
+                                           
+                                            <h4 class="text-center">Contact Numbers</h4>       
+												<div class="text-center"> 
+													<img style="height:25px; width:25px;"src="https://img.icons8.com/metro/26/000000/phone.png"/>
+													<input type="phone"  class="no-outline" id="phone1" name="phone1" value="+1 514-550-0001" ><br>
+													<img src="https://img.icons8.com/metro/26/000000/phone.png"/>
+													<input type="text" id="phone" name="phone2" value="+1 514-550-0002" >  <br>
+													<img src="https://img.icons8.com/metro/26/000000/phone.png"/>
+													<input type="text" id="phone3" name="phone3" value="+1 514-550-0003" >        
+												</div> 
+							                <h4 class="text-center";>E-mails</h4>      
+												<div class="text-center"> 
+													<img src="https://img.icons8.com/material/24/000000/send-mass-email.png"/>         
+													<input type="email" id="email1" name="email1" value="abc13@gmail.com " ><br>     	
+													<img src="https://img.icons8.com/material/24/000000/send-mass-email.png"/>         
+													<input type="email" id="email2" name="email2" value="xyz17@gmail.com " >  
+												</div> 
+											
+						</div>	
+                                            <div>
+                                                <button id="btn btn-info" type="submit" class="btn btn-lg btn-info btn-block"> Submit
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div> <!-- .card -->
+
+                    </div><!--/.col-->
+
+								</div>
+
+
+</div><!-- .animated -->
+</div><!-- .content -->
+<div class="clearfix"></div>

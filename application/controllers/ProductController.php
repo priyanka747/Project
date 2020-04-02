@@ -31,6 +31,10 @@ class Productcontroller extends CI_Controller
 			}
 		}
 	}
+	function testproduct(){
+		print_r($this->product_model->get_product_image());
+		echo $this->db->last_query();
+	}
 
 	function addproduct(){
 		if(!$this->session->userdata('user')){

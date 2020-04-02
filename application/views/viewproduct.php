@@ -1,5 +1,4 @@
-
-        <div class="breadcrumbs">
+  <div class="breadcrumbs">
             <div class="breadcrumbs-inner">
                 <div class="row m-0">
                     <div class="col-sm-4">
@@ -47,8 +46,8 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
                           <tr>
-                           <th class="serial">Product ID</th>
-                                        <th>Product Name</th>
+													<th class="serial">Product ID</th>
+                          <th>Product Name</th>
 				           				<th>Description</th>
 				            			<th>Price</th>
 				            			<th>Category</th>
@@ -57,10 +56,10 @@
 				            			<th>Status</th>
 				           				<th>Stock</th>
 				            			<th>Action</th>
-                          </tr>
+						 						  </tr>
                         </thead>
-
-                        <tbody>
+											
+												<tbody>
                         <?php 
                         print_r($products);
                              			$row_cnt=count($products);
@@ -79,14 +78,15 @@
                                    {
                                   ?>
                                 	<tr>
-									   							<td colspan="10" class="text-center">No data at the moment</td>
+									   							<td colspan="5" class="text-center">No data at the moment</td>
                                   </tr>
                                   <?php
                                   	}
                                     ?>
+                        </tbody>
+															
 
-                         </tbody>
-                                </table>
+												</table>
                             </div>
                         </div>
                     </div>
@@ -98,3 +98,7 @@
 
 
         <div class="clearfix"></div>
+
+
+                      
+                 

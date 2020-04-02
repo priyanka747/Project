@@ -68,8 +68,8 @@ class Profilecontroller extends CI_Controller
 				}
 			}else{
 				$this->session->set_userdata('error','wrong password');
-				echo $this->session->userdata('user')[0]['password']." ".sha1($pass);
-					// redirect(base_url('profilecontroller'));
+				// echo $this->session->userdata('user')[0]['password']." ".sha1($pass);
+					redirect(base_url('profilecontroller'));
 			}
 			}else{
 				$data['user']=$this->user_model->get_user($this->session->userdata('user')[0]['user_id']);
