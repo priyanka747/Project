@@ -34,16 +34,6 @@
                                 <strong class="card-title">Categories</strong>
                             </div>
                             <div class="card-body">
-                            <?php 
-										// if( validation_errors()){
-											echo validation_errors('<div class="alert alert-danger">','</div>');
-										// }
-										if($this->session->userdata('error')){?>
-											<div class="alert alert-danger"><?php echo $this->session->userdata('error'); $this->session->unset_userdata('error'); ?></div>
-										<?php }
-										if($this->session->userdata('success')){?>
-											<div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
-										<?php }?>
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
                           <tr>
@@ -66,7 +56,7 @@
                                             <td> <?php echo $subcategories[$i]['category_name']; ?> </td>
                                             <td> <?php echo $subcategories[$i]['description']; ?> </td>
                                             <td> <?php echo $subcategories[$i]['parent_category']; ?> </td>
-											<td> <div><a type="a" href="<?php echo base_url();?>subcategory/edit/<?php echo $subcategories[$i]['category_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>subcategory/delete/<?php echo $subcategories[$i]['category_id']; ?>" class="btn btn-outline-danger">Delete</a></div></td>
+											<td> <div><a type="a" href="<?php echo base_url();?>subcategory/edit/<?php echo $subcategories[$i]['category_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>subcategory/delete/<?php echo $subcategories[$i]['category_id']; ?>"" class="btn btn-outline-danger">Delete</a></div></td>
                                         </tr>
                                         <?php
                                         }
