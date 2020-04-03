@@ -17,6 +17,7 @@ Class Category_model extends CI_Model
 		$this->db->select('*');
 		$this->db->from('category');
 		$this->db->where('status','active');
+		$this->db->where('parent_category',null);
 		$this->db->order_by('date_created','desc');
 		return $this->db->get()->result_array();
 	}
