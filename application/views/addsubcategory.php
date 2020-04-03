@@ -59,13 +59,13 @@
    
 						<div class="form-group">
                             <label class="control-label" for="textarea2">Sub Category Description</label>
-                            <textarea class="form-control" name="cate_desc" id="categorydescription" rows="4" required ><?php if(!empty($subcategory)){echo $subcategory[0]['description'];}else{ echo"";}?></textarea>
+                            <textarea class="form-control" name="cate_desc" id="categorydescription" rows="4" ><?php if(!empty($subcategory)){echo $subcategory[0]['description'];}else{ echo"";}?></textarea>
                         </div>
 						
 						<div class="form-group">
                             <label class="control-label" for="textarea2">Parent Category Id</label>
-							<select class="custom-select" name="parent_cate">
-								<option selected>Choose parent category</option>
+							<select class="custom-select" name="parent_cate" required>
+								<option selected value="">Choose parent category</option>
 								<?php
                                 $parent_id= $subcategory[0]['parent_category'];
                                 
