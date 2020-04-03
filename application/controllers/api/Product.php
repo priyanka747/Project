@@ -19,16 +19,16 @@ class Product extends REST_Controller {
         //returns all rows if the id parameter doesn't exist,
         //otherwise single row will be returned
         if($id==0){
-            $users= $this->product_model->get_products();
+            $data['products']= $this->product_model->get_product_image();
         }
         else{
-            $users = $this->product_model->get_product($id);
+            $data['product'] = $this->product_model->get_product($id);
         }
         //check if the user data exists
-        if(!empty($users)){
+        if(!empty($data)){
             //set the response and exit
          
-             $this->response($users);
+             $this->response($data);
         }else{
             //set the response and exit
             $res=array(

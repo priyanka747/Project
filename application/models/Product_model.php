@@ -17,9 +17,9 @@
 			echo $product_cnt;
 			for($i=0;$i<$product_cnt;$i++)
 			{
-				$data['images']=
+				$data[$i]['images']=$this->get_images_by_product($data[$i]['product_id']);
 			}
-			return $data[0];
+			return $data;
 
 		}
   	  function create_product($data,$images)
@@ -61,7 +61,7 @@
 		return $result1&&$result2;
 	}
 
-	function modify_product($data, $product_id)
+	function modify_product($data,$images, $product_id)
 	{
 		$this->db->where('product_id', $product_id);
 		return $this->db->update('product', $data);
@@ -86,19 +86,20 @@
 		$this->db->where('product.category_id',$category_id);
 		$this->db->where('product.status','active');
 		$this->db->order_by('product.data_created','desc');
-		return $this->db->get()->result_arrary();
+		return $this->db->get()->result_array();
     }
 
     //get all product images function
-    function get_product_images($product_id){
+    function get_images_by_product($product_id){
  
-    	$this->db->select('*');
+    	$this->db->select('image.url,image.alt_text');
 		$this->db->from('product');
 		$this->db->join('product_image', 'product.product_id = product_image.product_id', 'inner');
 		$this->db->join('image', 'product_image.image_id = image.image_id', 'inner');  
+		$this->db->where('product_image.product_id',$product_id);
 		$this->db->where('product.status','active');
-		$this->db->order_by('product.data_created','desc');
-		return $this->db->get()->result_arrary();
+		$this->db->order_by('product.date_created','desc');
+		return $this->db->get()->result_array();
     }
 
   }
