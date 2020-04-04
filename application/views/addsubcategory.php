@@ -67,14 +67,17 @@
 							<select class="custom-select" name="parent_cate" required>
 								<option selected value="">Choose parent category</option>
 								<?php
+                                if(!empty($subcategory)){
                                 $parent_id= $subcategory[0]['parent_category'];
-                                
+                                }
 								for($i=0;$i<count($categories);$i++){
-                                    if($categories[$i]['category_id']==$parent_id){
-                                        $selected="selected";
-                                    }else{
-                                        $selected="";
-                                    }
+                                 if(!empty($subcategory)){
+                                        if($categories[$i]['category_id']==$parent_id){
+                                            $selected="selected";
+                                        }else{
+                                            $selected="";
+                                        }
+                                }
 									?>
 									<option value="<?php echo $categories[$i]['category_id'];?>" <?php echo $selected;?>><?php echo $categories[$i]['category_name'];?></option>
 									<?php
