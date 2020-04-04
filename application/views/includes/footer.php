@@ -234,7 +234,19 @@
 		
 	
 	</script>
-	
+	 <script>
+    tinymce.init({
+      selector: 'textarea#pp',
+      plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
+    'bullist numlist outdent indent | link image | print preview media fullpage | ' +
+    'forecolor backcolor emoticons | help',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+      menubar:{}
+    });
+  </script>
    
 </body>
 </html>
