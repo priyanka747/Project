@@ -38,9 +38,20 @@
 									
                                         <div class="card-title">  
 										  <h3 class="text-center">Privacy Policy</h3>
+                                          <?php 
+										// if( validation_errors()){
+											echo validation_errors('<div class="alert alert-danger">','</div>');
+										// }
+										if($this->session->userdata('error')){?>
+											<div class="alert alert-danger"><?php echo $this->session->userdata('error'); $this->session->unset_userdata('error'); ?></div>
+										<?php }
+										if($this->session->userdata('success')){?>
+											<div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
+										<?php }?>
+                                          <form action="<?php echo base_url();?>update-privacypolicy" method="POST">
                                         </div> 
 				 	                        <div class="mainContent">		
-					                          <textarea id="pp" rows="25" cols="85" id="policy_description" name="policy_description" >Your privacy is important to us and we have prepared this Privacy Policy to explain to you how we collect, use information. This Privacy Policy does not govern our use of any information you provide to us when you call us, write to us, or communicate with us in any manner other than through the Services. </textarea>                                                        
+					                          <textarea id="pp" rows="25" cols="85" name="pp" > <?php if($pp){ echo $pp[0]['settings_value'];}?></textarea>                                                        
                                         </div>
                                             <div>
                                                 <button id="btn btn-info" type="submit" class="btn btn-lg btn-info btn-block"> Submit

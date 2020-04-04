@@ -42,6 +42,7 @@ $route['update-profile'] = 'profilecontroller/edit';
 $route['companysettings'] = 'settingscontroller';
 $route['banner'] = 'settingscontroller/banner';
 $route['socialmedia'] = 'settingscontroller/socialmedia';
+$route['contactdetails'] = 'settingscontroller/contactdetails';
 $route['privacypolicy'] = 'settingscontroller/privacypolicy';
 $route['update-companysettings'] = 'settingscontroller/addproduct';
 $route['update-banner'] = 'settingscontroller/add';

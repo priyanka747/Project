@@ -53,6 +53,27 @@
             }
         }
      }
+     function contactdetails(){
+        if(!$this->session->userdata('user')){
+            $data['page'] = 'login';
+            $this->load->view('include/header-login');
+            $this->load->view('login');
+            $this->load->view('includes/footer-login');
+        }
+        else{
+            $user=json_decode(json_encode($this->session->userdata('user')),true);
+            //print_r ($user);
+
+            if($user[0]['user_type']=='admin'){
+                $data['page'] = 'dashboard';
+               //  $data['categories']=$this->product_model->get_all_products();
+                $this->load->view('includes/header');
+                $this->load->view('includes/nav',$data);
+                $this->load->view('changecontactdetails',$data);
+                $this->load->view('includes/footer');
+            }
+        }
+     }
      function socialmedia(){
         if(!$this->session->userdata('user')){
             $data['page'] = 'login';
@@ -89,8 +110,8 @@
             //print_r ($user);
 
             if($user[0]['user_type']=='admin'){
-                $data['page'] = 'dashboard';
-               //  $data['categories']=$this->product_model->get_all_products();
+                $data['page'] = 'settings';
+                $data['pp']=$this->setting_model->get_setting_by_settings_name('privacy_policy');
                 $this->load->view('includes/header');
                 $this->load->view('includes/nav',$data);
                 $this->load->view('changeprivacypolicy',$data);
@@ -100,34 +121,35 @@
      }
  
      function update_privacy_policy(){
-         $name = $this->security->xss_clean($this->input->post('pp'));
-         $this->form_validation->set_rules('prod_name','product_name','required');
- 
+         $this->form_validation->set_rules('pp','privacy policy','required');
+         
          if($this->form_validation->run()== TRUE){
-                 $data == array(
-                 'product_name'=>$name,
-                 'description'=>$desc,
-                 'date_created'=>date('Y-m-d H:i:s'),
-                 'created_by'=>$this->session->userdate('user')[0]['user_id'],
-                 'modified_by'=>$this->session->userdate('user')[0]['user_id']);
- 
-                 $res=$this->product_model->add_product($data);
+            $pp = $this->security->xss_clean($this->input->post('pp'));
+                 $data = array(
+                     array(
+                    'settings_name'=>'privacy_policy',
+                    'settings_value'=>$pp,            
+                 'modified_by'=>$this->session->userdata('user')[0]['user_id'])
+                );
+                print_r($data);
+                 $res=$this->setting_model->update_settings($data);
  
                  if($res)
                  {
-                     $this->session->set_userdata('success','product added successfully.! <a href="'.base_url().'viewproducts" >view</a>');
-                     redirect(dase_url('addproduct'));
+                    $this->session->set_userdata('success','privacy policy updated successfully.! ');
+                    redirect(base_url('privacypolicy'));
                  }
                  else{
-                     $this->session->set_userdata('error','trouble while adding new products');
-                     redirect(base_url('viewproducts'));
+                     $this->session->set_userdata('error','trouble while updating privacy policy');
+                    redirect(base_url('privacypolicy'));
                  }
              }else{
-                     $data['categories']=$this->product_model->get_all_products();
-                 $this->load->view('includes/header');
-                 $this->load->view('includes/nav',$data);
-                 $this->load->view('addproducts',$data);
-                 $this->load->view('includes/footer');	
+                $data['page'] = 'settings';
+                $data['pp']=$this->setting_model->get_setting_by_settings_name('privacy_policy');
+                $this->load->view('includes/header');
+                $this->load->view('includes/nav',$data);
+                $this->load->view('changeprivacypolicy',$data);
+                $this->load->view('includes/footer');
              }
      }
      function update_social_media(){
