@@ -75,13 +75,13 @@
                         </div>
 							
 						<div class="row">
-						<a  class="btn btn-primary col col-md-2" href="<?php echo base_url(); ?>">Back to dashboard</a>
+						<a  class="btn btn-primary " href="<?php echo base_url(); ?>">Back to dashboard</a>
 					
-							<button type="submit" class="btn btn-primary col col-lg-4">Submit</button>
-							<button type="submit" class="btn btn-primary col col-lg-2 float-right">Change password</button>
+							<button type="submit" class="btn btn-primary ">Submit</button>
+							<button type="submit" class="btn btn-primary float-right">Change password</button>
                         </div>
 						
-						</div>
+						<!-- </div> -->
 							
                        
                 </form>  
