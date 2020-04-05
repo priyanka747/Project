@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php';
 
 
-class login extends REST_Controller {
+class Login extends REST_Controller {
 
     public function __construct() { 
         parent::__construct();
@@ -44,7 +44,7 @@ class login extends REST_Controller {
                 'status' => 0,
                 'login_status' => 'failed',
                 'message' => 'Invalid credentials!.',
-                'user'=>""
+                'user'=>null
                 );
                 // echo $res;
                 $this->response($res);
@@ -56,7 +56,7 @@ class login extends REST_Controller {
                 'status' => 2,
                 'login_status' => 'failed',
                 'message' => 'Login Unsuccessful.',
-                'user'=>""
+                'user'=>null
             );
           
             $this->response($res);
