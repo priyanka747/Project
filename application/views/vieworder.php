@@ -37,13 +37,15 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
                           <tr>
-                            <th>Id</th>
-                            <th>Client Name</th>
-				            <th>Date</th>
-				            <th>Payment Type</th>
-				            <th>Shipping status</th>
-				            <th>Order Status</th>
-				            <th>Action</th>
+                            <th width="5%">Order_Id</th>
+                            <th width="5%">Client Name</th>
+				            <th width="5%">Date</th>
+				            <th width="5%">Payment Type</th>
+				            <th width="10%">Shipping status</th>
+				            <th width="10%">Order Status</th>
+                            <th width="10%">No. Of Products</th>
+                            <th width="20%">Product Name (Quantity) </th>
+				            <th width="30%">Action</th>
 				            <!-- <th>Product Name</th>
 				            <th>Product Quantity</th> -->
 				            
@@ -56,12 +58,23 @@
                                         if($row_cnt>0){
                                         for($i=0;$i<$row_cnt;$i++){?>
                                         <tr>
+                                            <?php $product_cnt=count($orders[$i]['products']); ?>
                                             <td>  <?php echo $orders[$i]['order_id']; ?></td>
-                                            <td> <?php echo $orders[$i]['client_name']; ?> </td>
+                                            <td> <?php echo $orders[$i]['user'][0]['first_name'].' '.$orders[$i]['user'][0]['last_name']; ?> </td>
                                             <td> <?php echo $orders[$i]['date']; ?> </td>
                                             <td> <?php echo $orders[$i]['payment_type']; ?> </td>
                                             <td> <span class="badge badge-dark"><?php echo $orders[$i]['shipped_status']; ?> </span></td>
                                             <td>  <span class="badge badge-dark"><?php echo $orders[$i]['order_status']; ?></span> </td>
+                                            <td> <?php echo $product_cnt; ?> </td>
+                                            <td> 
+                                            <?php 
+                                            for($j=0;$j<$product_cnt;$j++)
+                                            {
+                                                echo $orders[$i]['products'][$j]['product_name'].' ('.$orders[$i]['products'][$j]['quantity'].')';
+                                                ?> <br><?php 
+                                            }
+                                            ?>
+                                            </td>
 											<td> <div><a type="a" href="<?php echo base_url();?>subcategory/edit/<?php echo $orders[$i]['order_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>subcategory/delete/<?php echo $orders[$i]['order_id']; ?>"" class="btn btn-outline-danger">Delete</a></div></td>
                                         </tr>
                                         <?php
