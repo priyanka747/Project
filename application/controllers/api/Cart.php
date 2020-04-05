@@ -18,58 +18,46 @@ class Cart extends REST_Controller {
 
     // GET
 
-    public function index_get($id=0) {
+    public function index_get($id) {
         //returns all rows if the id parameter doesn't exist,
         //otherwise single row will be returned
-        if($id==0){
-            $cart= $this->cart_model->get_all_cart();
-        }
-        else{
-            $cart = $this->cart_model->get_cart_by_cart_id($id);
-        }
+        
+            $data= $this->cart_model->get_cart_info($id);
+    
         //check if the user data exists
-        if(!empty($cart)){
-            //set the response and exit
-         
-             $this->response($cart);
+        if(!empty($data)){
+            //set the response and exit         
+            $this->response($data);
         }else{
             //set the response and exit
             $res=array(
                 'status' => FALSE,
                 'message' => 'No cart were found.'
             );
-            $this->response($res);
+           $this->response($res);
         }
     }
 
     // POST
 
-    public function index_post(){
+    public function index_post($userid=0){
     
         // collecting form data inputs
         //extra input fields will be sent as hidden
-        $cart_id = $this->security->xss_clean($this->input->post("cart_id"));
+        if($userid=0){
+        $user_id = $this->security->xss_clean($this->input->post("cart_id"));
         $user_id = $this->security->xss_clean($this->input->post("user_id"));
-        $status = $this->security->xss_clean($this->input->post("status"));
-		$date_created = $this->security->xss_clean($this->input->post("date_created"));
-		$date_modified = $this->security->xss_clean($this->input->post("date_modified"));
-  
-  
-  //  ----------------
-  
-      
-        //$shipped_status = $this->security->xss_clean($this->input->post("shipped_status")); 
-        // $date_created = $date_create;   
-  
-        // form validation for inputs
-		$this->form_validation->set_rules("cart_id", "Cart id", "required");
-		$this->form_validation->set_rules("user_id", "User id", "required");
-        $this->form_validation->set_rules("status", "Status", "required");
-        $this->form_validation->set_rules("date_created", "Date", "required");
-        $this->form_validation->set_rules("date_modified", "Modified Date", "required");
-  
-       
-       
+        $product_id=$this->security->xss_clean($this->input->post("product_id"));
+        $quantity=$this->security->xss_clean($this->input->post("quantity"));
+        $quantity=$this->security->xss_clean($this->input->post("color"));
+        $quantity=$this->security->xss_clean($this->input->post("size"));
+        }
+        else{
+          if($this->cart_model->check_cart_exist()>0){
+            get_cart()
+          }
+        }
+        // form validation for inputs  
     
         // checking form submittion have any error or not
         if($this->form_validation->run() === FALSE){
@@ -91,8 +79,6 @@ class Cart extends REST_Controller {
               "status" => $status,
 			  "date_created" => $date_created,
 			  "date_modified" => $date_modified
-  
-              
             );
 
             $cart_info = array(
@@ -126,23 +112,12 @@ class Cart extends REST_Controller {
             ), REST_Controller::HTTP_NOT_FOUND);
           }
         }
-  
-        /*$data = json_decode(file_get_contents("php://input"));
-  
-        $name = isset($data->name) ? $data->name : "";
-        $email = isset($data->email) ? $data->email : "";
-        $mobile = isset($data->mobile) ? $data->mobile : "";
-        $course = isset($data->course) ? $data->course : "";*/
       }
 
       // DELETE
       // path : <project_url>/index.php/order
 
       public function index_delete($cart_id){
-        // delete data method
-        //$data = json_decode(file_get_contents("php://input"));
-        //$cart_id = $this->security->xss_clean($data->cart_id);
-  
       if($this->cart_model->cancel_cart($cart_id)){
         // retruns true
         $this->response(array(
@@ -158,7 +133,7 @@ class Cart extends REST_Controller {
       }
     }
 
-    /*  // PUT: <project_url>/index.php/student
+   // PUT: <project_url>/index.php/student
     public function index_put(){
       // updating data method
       //echo "This is PUT Method";
@@ -197,14 +172,7 @@ class Cart extends REST_Controller {
 	  $status = $status->status;
       $date_created = $data_created->date;
       $date_modified = $date_modified->date;
-  
-     
-      //  ----------------
-  
-      
 
-
-  
           if($this->student_model->update_student_information($student_id, $student_info)){
   
               $this->response(array(
@@ -225,6 +193,6 @@ class Cart extends REST_Controller {
             "message" => "All fields are needed"
           ), REST_Controller::HTTP_NOT_FOUND);
         }
-    }  */
+    } 
   
 }    

@@ -22,7 +22,7 @@ class Product extends REST_Controller {
             $data['products']= $this->product_model->get_product_image();
         }
         else{
-            $data['product'] = $this->product_model->get_product($id);
+            $data['product'] = $this->product_model->get_products_image($id);
         }
         //check if the user data exists
         if(!empty($data)){

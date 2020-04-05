@@ -10,19 +10,35 @@ class Cart_model extends CI_Model
 	
 	function get_cart($user_id)
 	{
-		$this->db->select('*');
+		$this->db->select('cart_id,user_id');
 		$this->db->from('cart');
 		$this->db->where('user_id',$user_id);
-		$this->db->order_by('created_date','desc');
+		$this->db->order_by('date_created','desc');
 		return $this->db->get()->result_array();
 	}
-	function get_cart_info($cart_id,$user_id)
+	function get_cart_info($user_id)
 	{
-		$this->db->select('product_id,quantity');
-		$this->db->from('cart');
-		$this->db->where('user_id',$user_id);
+		$data=$this->get_cart($user_id);
+		if($data){
+		$data[0]['cart_info']=$this->get_cartinfo($data[0]['cart_id']);
+		}
+
+		return $data;
+	}
+	function get_cartinfo($cart_id)
+	{
+		$this->db->select('product_id,quantity,size,color');
+		$this->db->from('cart_info');
+		$this->db->where('cart_id',$cart_id);
 		$this->db->order_by('created_date','desc');
-		return $this->db->get()->result_array();
+		$data['cart info']=$this->db->get()->result_array();
+		$product_cnt=count($data['cart info']);
+			echo $product_cnt;
+			for($i=0;$i<$product_cnt;$i++)
+			{
+				 $data['cart info'][$i]['product']=$this->product_model->get_products_image($data['cart info'][$i]['product_id']);
+			}
+		return $data['cart info'];
 	}
 	
 	function add_cart($data)
