@@ -19,7 +19,18 @@
 			{
 				$data[$i]['images']=$this->get_images_by_product($data[$i]['product_id']);
 			}
+			for($i=0;$i<$product_cnt;$i++)
+			{
+				$data[$i]['specs']=$this->get_product_specs($data[$i]['product_info_id']);
+			}
 			return $data;
+
+		}
+		function get_product_specs($id){
+			$this->db->select('color,size,composition');
+			$this->db->from('product_specs');
+			$this->db->where('product_info_id',$id);
+    	  	return $this->db->get()->result_array();	
 
 		}
   	  function create_product($data,$images)

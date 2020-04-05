@@ -30,6 +30,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Manage Site Settings</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>companysettings">Company Settings</a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>contactdetails">Company Settings</a></li>
                             <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>banner">Banners</a></li>
                             <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>socialmedia">Social Media</a></li>
                             <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>privacypolicy">Privacy Policy</a></li>

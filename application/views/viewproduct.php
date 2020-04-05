@@ -50,10 +50,8 @@
                           <th>Product Name</th>
 				           				<th>Description</th>
 				            			<th>Price</th>
-				            			<th>Category</th>
-				            			<th>Re-order level</th>
 				           				<th>Discount</th>
-				            			<th>Status</th>
+				            			<th>Re-order level</th>
 				           				<th>Stock</th>
 				            			<th>Action</th>
 						 						  </tr>
@@ -61,14 +59,18 @@
 											
 												<tbody>
                         <?php 
-                        print_r($products);
+                        // print_r($products);
                              			$row_cnt=count($products);
                              			if($row_cnt>0){
                              			for($i=0;$i<$row_cnt;$i++){?>
                             			<tr>
                                 	<td>  <?php echo $products[$i]['product_id']; ?></td>
                                 	<td> <?php echo $products[$i]['product_name']; ?> </td>
-                                	<td> <?php echo $products[$i]['description']; ?> </td>
+                                	<td> <?php echo $products[$i]['decription']; ?> </td>
+                                	<td> <?php echo $products[$i]['price']; ?> </td>
+                                	<td> <?php echo $products[$i]['discount_percentage']; ?> </td>
+                                	<td> <?php echo $products[$i]['reorder_level']; ?> </td>
+                                	<td> <?php echo $products[$i]['stock']; ?> </td>
 																	<td> <div><a type="a" href="<?php echo base_url();?>product/edit/<?php echo $products[$i]['product_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>product/delete/<?php echo $products[$i]['product_id']; ?>"" class="btn btn-outline-danger">Delete</a></div></td>
                            				</tr>
                                   <?php
@@ -78,7 +80,7 @@
                                    {
                                   ?>
                                 	<tr>
-									   							<td colspan="5" class="text-center">No data at the moment</td>
+									   							<td colspan="10" class="text-center">No data at the moment</td>
                                   </tr>
                                   <?php
                                   	}

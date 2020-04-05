@@ -1,19 +1,4 @@
-<style>
-    body{
-      background-color: #eee;
-	  }
-	  input{
-      border-top-style: hidden;
-      border-right-style: hidden;
-      border-left-style: hidden;  
-	  border-bottom-style:groove ;
-      <!--  border-bottom-style:hidden ; -->      
-      }
-     .no-outline:focus {
-      outline: none;
-      } 
-</style> 
- <div class="breadcrumbs">
+<div class="breadcrumbs">
             <div class="breadcrumbs-inner">
                 <div class="row m-0">
                     <div class="col-sm-4">
@@ -28,8 +13,8 @@
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
                                     <li><a href="#">Dashboard</a></li>
-                                    <li><a href="#">Settings</a></li>
-                                    <li class="active">Contact Details</li>
+                                    <li><a href="#">settings</a></li>
+                                    <li class="active">Company settings</li>
                                 </ol>
                             </div>
                         </div>
@@ -49,10 +34,10 @@
                            
                             <div class="card-body">
                                 <!-- Credit Card -->
-                                <div id="contact-details">
+                                <div id="pay-invoice">
                                     <div class="card-body">
                                         <div class="card-title">
-                                            <h3 class="text-center">Company's Contact Details</h3>
+                                            <h3 class="text-center">Update Contact Details</h3>
                                         </div>
                                         <!-- <hr> -->
 										<?php 

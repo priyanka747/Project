@@ -73,7 +73,7 @@ class Ordercontroller extends CI_Controller
 				if($res)
 				{
 					$this->session->set_userdata('success','product added successfully.! <a href="'.base_url().'viewproducts" >view</a>');
-					redirect(dase_url('addproduct'));
+					redirect(base_url('addproduct'));
 				}
 				else{
 					$this->session->set_userdata('error','trouble while adding new products');

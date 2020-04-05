@@ -7,6 +7,7 @@ class Productcontroller extends CI_Controller
 		error_reporting(-1);
 		parent:: __Construct();
 		$this->load->model('product_model');
+		$this->load->model('category_model');
 	}
 
 	function index()
@@ -23,17 +24,13 @@ class Productcontroller extends CI_Controller
 
 			if($user[0]['user_type']=='admin'){
 				$data['page'] = 'dashboard';
-				$data['products']=$this->product_model->get_all_products();
+				$data['products']=$this->product_model->get_product_image();
 				$this->load->view('includes/header-view');
 				$this->load->view('includes/nav',$data);
 				$this->load->view('viewproduct',$data);
 				$this->load->view('includes/footer-view');
 			}
 		}
-	}
-	function testproduct(){
-		print_r($this->product_model->get_product_image());
-		echo $this->db->last_query();
 	}
 
 	function addproduct(){
@@ -48,7 +45,7 @@ class Productcontroller extends CI_Controller
 
 			if($user[0]['user_type']=='admin'){
 				$data['page'] = 'dashboard';
-				$data['categories']=$this->product_model->get_all_products();
+				$data['categories']=$this->category_model->get_all_sub_categories();
 				$this->load->view('includes/header');
 				$this->load->view('includes/nav',$data);
 				$this->load->view('addproduct',$data);
@@ -57,7 +54,19 @@ class Productcontroller extends CI_Controller
 			}
 		}
 	}
-
+	function edit($id){
+        $cate_id = $this->uri->segment(3, 0);
+        if($cate_id==0){
+            $this->session->set_userdata('error','seems like trying to update wrong category');
+                redirect(base_url('viewproducts'),'refresh');
+		}
+		$data['categories']=$this->category_model->get_all_sub_categories();
+        $data['product']=$this->product_model->get_product($id);
+        $this->load->view('includes/header');
+        $this->load->view('includes/nav',$data);
+        $this->load->view('addproduct',$data);
+        $this->load->view('includes/footer');
+    }
 	function add(){
 		$name = $this->security->xss_clean($this->input->post('prod_name'));
 		$desc = $this->security->xss_clean($this->input->post('prod_desc'));
@@ -76,7 +85,7 @@ class Productcontroller extends CI_Controller
 				if($res)
 				{
 					$this->session->set_userdata('success','product added successfully.! <a href="'.base_url().'viewproducts" >view</a>');
-					redirect(dase_url('addproduct'));
+					redirect(base_url('addproduct'));
 				}
 				else{
 					$this->session->set_userdata('error','trouble while adding new products');
@@ -94,7 +103,7 @@ class Productcontroller extends CI_Controller
 	function delete($id){
 		if($this->product_model->delete($id)){
 			$this->session->set_userdata('success','product deleted successfully.! ');
-					redirect(dase_url('viewproducts'));
+					redirect(base_url('viewproducts'));
 		}else{
 			$this->session->set_userdata('error','trouble while deleting products');
 					redirect(base_url('viewproducts'));

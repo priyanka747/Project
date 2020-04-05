@@ -1,12 +1,46 @@
-			<div class="container">
-			
-			<div class="row">
+<div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                <div class="row m-0">
+                    <div class="col-sm-4">
+                        <div class="page-header float-left">
+                            <div class="page-title">
+                                <h1>Dashboard</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="page-header float-right">
+                            <div class="page-title">
+                                <ol class="breadcrumb text-right">
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li><a href="#">settings</a></li>
+                                    <li class="active">Company settings</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="content">
+            <div class="animated fadeIn">
 
-			<div class="col-sm">
-			
-			<h3  style="text-align: center;">Admin Information </h3>
-			<br/>
-			<?php 
+
+                <div class="row">
+				<div class="col-lg-2">
+				</div>
+                    <div class="col-lg-8">
+                        <div class="card">
+                           
+                            <div class="card-body">
+                                <!-- Credit Card -->
+                                <div id="pay-invoice">
+                                    <div class="card-body">
+                                        <div class="card-title">
+                                            <h3 class="text-center">Update Company settings</h3>
+                                        </div>
+                                        <!-- <hr> -->
+										<?php 
 										// if( validation_errors()){
 											echo validation_errors('<div class="alert alert-danger">','</div>');
 										// }
@@ -41,18 +75,28 @@
                         </div>
 							
 						<div class="row">
-						<a  class="btn btn-primary col col-md-2" href="<?php echo base_url(); ?>">Back to dashboard</a>
+						<a  class="btn btn-primary " href="<?php echo base_url(); ?>">Back to dashboard</a>
 					
-							<button type="submit" class="btn btn-primary col col-lg-4">Submit</button>
-							<button type="submit" class="btn btn-primary col col-lg-2 float-right">Change password</button>
+							<button type="submit" class="btn btn-primary ">Submit</button>
+							<button type="submit" class="btn btn-primary float-right">Change password</button>
                         </div>
 						
-						</div>
+						<!-- </div> -->
 							
                        
                 </form>  
 			
-			</div>
-			<div class="col-sm">
-			</div>
-			</div>
+				</div>
+                                </div>
+
+                            </div>
+                        </div> <!-- .card -->
+
+					</div><!--/.col-->
+					</div>
+
+
+</div><!-- .animated -->
+</div><!-- .content -->
+
+<div class="clearfix"></div>
