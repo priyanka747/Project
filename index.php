@@ -73,10 +73,10 @@
 			define("BASEURL", "http://stylestamp.dipenoverseas.com/");
 			break;
 			case 'development':
-			define("BASEURL", "http://localhost/project/");
+			define("BASEURL", "http://localhost/Project/");
 			break;
 			default:
-			define("BASEURL", "http://localhost/project/");
+			define("BASEURL", "http://localhost/Project/");
 		}
 
 
