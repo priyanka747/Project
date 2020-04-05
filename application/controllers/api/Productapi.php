@@ -39,6 +39,15 @@ class Productapi extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	function getproductbyproductid()
+	{
+		$product_id =  $this->uri->segment(4);
+
+		$array = array('product.product_id' => $product_id);
+		$data = $this->Product_model->get_sorted_products($array);		
+		echo json_encode($data);
+	}
+
 	function insert()
 	{
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');

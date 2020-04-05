@@ -113,4 +113,15 @@
 		return $this->db->get()->result_array();
     }
 
+    //filter products function
+    function get_sorted_products($data)
+    {
+    	$this->db->select('*');
+    	$this->db->from('product');
+    	$this->db->where($data);
+    	$this->db->order_by('date_created', 'desc');
+    	  return $this->db->get()->result_array();
+
+    }
+
   }
