@@ -19,16 +19,16 @@ class Category extends REST_Controller {
         //returns all rows if the id parameter doesn't exist,
         //otherwise single row will be returned
         if($id==0){
-            $categories= $this->category_model->get_categories();
+            $data['categories']  = $this->category_model->get_categories();
         }
         else{
-            $categories = $this->category_model->get_category($id);
+            $data['categories'] = $this->category_model->get_category($id);
         }
         //check if the user data exists
-        if(!empty($categories)){
+        if(!empty($data['categories'])){
             //set the response and exit
          
-             $this->response($categories);
+             $this->response($data);
         }else{
             //set the response and exit
             $res=array(

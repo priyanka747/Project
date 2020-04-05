@@ -40,8 +40,9 @@
 						   
 							<th class="serial">sub-Category ID</th>
                             <th >Sub-Category Name</th>      
-                            <th>Parent Category Name</th>                
+                            <!-- <th>Parent Category Name</th>                 -->
                             <th>Description</th>                
+                            <!-- <th>Description</th>                 -->
                             <th>Action</th>
                           </tr>                              
                         </thead>
@@ -55,8 +56,8 @@
                                             <td>  <?php echo $subcategories[$i]['category_id']; ?></td>
                                             <td> <?php echo $subcategories[$i]['category_name']; ?> </td>
                                             <td> <?php echo $subcategories[$i]['description']; ?> </td>
-                                            <td> <?php echo $subcategories[$i]['parent_category']; ?> </td>
-											<td> <div><a type="a" href="<?php echo base_url();?>subcategory/edit/<?php echo $subcategories[$i]['category_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>subcategory/delete/<?php echo $subcategories[$i]['category_id']; ?>"" class="btn btn-outline-danger">Delete</a></div></td>
+                                            <!-- <td> <?php echo $subcategories[$i]['parent_category']; ?> </td> -->
+											<td> <div><a type="a" href="<?php echo base_url();?>subcategory/edit/<?php echo $subcategories[$i]['category_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>subcategory/delete/<?php echo $subcategories[$i]['category_id']; ?>" class="btn btn-outline-danger">Delete</a></div></td>
                                         </tr>
                                         <?php
                                         }

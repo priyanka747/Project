@@ -43,11 +43,13 @@ class Cart_model extends CI_Model
 	
 	function add_cart($data)
 	{
-		return $this->db->insert('cart',$data);
+		$this->db->insert('cart',$data);
+		return $this->db->insert_id();
 	}
 	function add_cart_info($data)
 	{
 		return $this->db->insert('cart_info',$data);
+		//  $this->db->insert_id();
 	}
 	
 	function check_cart_exist($user_id)

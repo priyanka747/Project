@@ -48,12 +48,12 @@
 											<div class="alert alert-danger"><?php echo $this->session->userdata('error'); $this->session->unset_userdata('error'); ?></div>
 										<?php }
 										 if(!empty($product)){
-											print_r( $product);
+											// print_r( $product);
 										}
 										if($this->session->userdata('success')){?>
 											<div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
 										<?php }?>
-										<form action="#" method="post" novalidate="novalidate">
+										<form action="#" method="post">
                                            
 										   <div class="form-group">
 						<label for="name" class="col-sm-12 control-label">Select Product Image</label>

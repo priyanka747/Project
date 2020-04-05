@@ -21,13 +21,37 @@ class Cart extends REST_Controller {
     public function index_get($id) {
         //returns all rows if the id parameter doesn't exist,
         //otherwise single row will be returned
-        
-            $data= $this->cart_model->get_cart_info($id);
+     
+          if($this->cart_model->check_cart_exist($id)>0){       
+            $res['cart']=$this->cart_model->get_cart_info($id);
+            if($res['cart']){
+              $msg="cart found";
+            }else{
+              $res=null;
+              $msg="cart not found";
+            }
+          }
+          else{
+            $data=array(
+              'cart_id'=>2,
+              'user_id'=> $id,
+            );
+             $res['cart_id']=$this->cart_model->add_cart($data);
+             if($res){
+               $msg="cart created";
+             }
+             else{
+               $res=null;
+              $msg="trouble while creating cart";
+             }
+          }
     
         //check if the user data exists
-        if(!empty($data)){
-            //set the response and exit         
-            $this->response($data);
+        if(!empty($res)){
+            //set the response and exit 
+            $res['status'] =1;
+            $res['message'] = $msg;
+            $this->response($res);
         }else{
             //set the response and exit
             $res=array(
@@ -37,7 +61,6 @@ class Cart extends REST_Controller {
            $this->response($res);
         }
     }
-
     // POST
 
     public function index_post($product_id,$cart_id){
