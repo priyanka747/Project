@@ -177,7 +177,31 @@
                 $this->load->view('changesocialmedialinks',$data);
                 $this->load->view('includes/footer');	
             }
-    }
+	}
+	
+	function delete($id){
+		if($this->setting_model->is_parent($id)>0){
+			if($this->product_model->update_setting($data)){
+				if($this->setting_model->delete_setting($id)){
+					$this->session->set_userdata('success','delete.!');
+					redirect(base_url('viewsetting'),'refresh');
+				}
+				else{
+					$this->session->set_userdata('error','trouble while deleting');
+					$this->load->view('include/header');
+					$this->load->view('include/nav',$data);
+					$this->load->view('viewsetting',$data);
+					$this->load->view('include/footer');
+				}
+				$this->session->set_userdata('error','trouble while deleting');
+				$this->load->view('include/header');
+					$this->load->view('include/nav',$data);
+					$this->load->view('viewsetting',$data);
+					$this->load->view('include/footer');
+				
+			}
+		}
+
     
     }
   
