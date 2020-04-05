@@ -124,4 +124,22 @@
 
     }
 
+    function get_products_with_specs_and_images($data)
+    {
+
+		$data=$this->db->select('*')->from ('product')->where ('status ','active')->where($data)->order_by('date_created','desc')->get()->result_array();
+		$product_cnt=count($data);
+		//echo $product_cnt;
+		for($i=0;$i<$product_cnt;$i++)
+		{
+			$data[$i]['images']=$this->get_images_by_product($data[$i]['product_id']);
+		}
+		for($i=0;$i<$product_cnt;$i++)
+		{
+			$data[$i]['specs']=$this->get_product_specs($data[$i]['product_info_id']);
+		}
+		return $data;
+
+    }
+
   }
