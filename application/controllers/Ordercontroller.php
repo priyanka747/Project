@@ -23,7 +23,7 @@ class Ordercontroller extends CI_Controller
 
 			if($user[0]['user_type']=='admin'){
 				$data['page'] = 'dashboard';
-				$data['orders']=$this->order_model->get_vieworders();
+				$data['orders']=$this->order_model->get_orders();
 				// print_r($data);				
 				$this->load->view('includes/header-view');
 				$this->load->view('includes/nav',$data);
