@@ -40,22 +40,19 @@ class Cart extends REST_Controller {
 
     // POST
 
-    public function index_post($userid=0){
+    public function index_post($product_id,$cart_id){
     
         // collecting form data inputs
         //extra input fields will be sent as hidden
         if($userid=0){
         $user_id = $this->security->xss_clean($this->input->post("cart_id"));
-        $user_id = $this->security->xss_clean($this->input->post("user_id"));
         $product_id=$this->security->xss_clean($this->input->post("product_id"));
         $quantity=$this->security->xss_clean($this->input->post("quantity"));
         $quantity=$this->security->xss_clean($this->input->post("color"));
         $quantity=$this->security->xss_clean($this->input->post("size"));
         }
         else{
-          if($this->cart_model->check_cart_exist()>0){
-            get_cart()
-          }
+         
         }
         // form validation for inputs  
     

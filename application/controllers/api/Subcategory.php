@@ -15,25 +15,25 @@ class Subcategory extends REST_Controller {
         //load user model
         $this->load->model('category_model');
     }
-    public function index_get() {
+    public function index_get($id=0) {
         //returns all rows if the id parameter doesn't exist,
         //otherwise single row will be returned
-        // if($id==0){
-            $subCategories= $this->category_model->get_all_sub_categories();
-        // }
-        // else{
-        //     $subCategories = $this->category_model->get_category($id);
-        // }
+        if($id==0){
+            $data['subcategories'] = $this->category_model->get_all_sub_categories();
+        }
+        else{
+            $data['subcategories'] = $this->category_model->get_all_sub_categories_by_parent($id);
+        }
         //check if the user data exists
-        if(!empty($subCategories)){
+        if(!empty($data['subcategories'])){
             //set the response and exit
          
-             $this->response($subCategories);
+             $this->response($data);
         }else{
             //set the response and exit
             $res=array(
-                'status' => FALSE,
-                'message' => 'No sub category were found.'
+                'status' => 0,
+                'message' => 'no subcategory were found.'
             );
             $this->response($res);
         }
