@@ -48,7 +48,7 @@ class Ordercontroller extends CI_Controller
 					redirect(base_url('vieworders'),'refresh');
 				}
 				else{
-					$this->session->set_userdata('error','trouble while adding new order');
+					$this->session->set_userdata('error','Trouble while deleting order');
 					$this->load->view('include/header');
 					$this->load->view('include/nav',$data);
 					$this->load->view('vieworders',$data);
