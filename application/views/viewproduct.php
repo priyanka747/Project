@@ -12,7 +12,16 @@
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    <li><a href="#">Dashboard</a></li>
+									<li><a href="#">Dashboard</a></li>
+									
+  								<!--- 
+									using the same view file for both add and update the details
+									if product found on request its work as edit else as
+									new product submission form
+									also form action change accordingly
+									----->
+
+
                                     <li class="active" ><a href="<?php echo base_url()?>viewproducts">products</a></li>
                                     <li class="active">view products</li>
                                 </ol>
@@ -33,7 +42,9 @@
                                 <strong class="card-title">Products</strong>
                             </div>
                             <div class="card-body">
-                            <?php 
+							<?php 
+							
+							//code to show errors and success for form validations using sessions or data sent through
 										// if( validation_errors()){
 											echo validation_errors('<div class="alert alert-danger">','</div>');
 										// }

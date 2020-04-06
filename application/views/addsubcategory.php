@@ -12,6 +12,14 @@
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
+
+									<!--- 
+									using the same view file for both add and update the details
+									if product found on request its work as edit else as
+									new product submission form
+									also form action change accordingly
+									----->
+
                                     <li><a href="#">Dashboard</a></li>
                                     <li><a href="#">Sub-category</a></li>
                                     <li class="active"><?php if(empty($category)){echo 'Add  Sub Category';}else{ echo 'Edit Sub Category';}?></li>
@@ -41,6 +49,10 @@
                                         </div>
                                         <!-- <hr> -->
 										<?php 
+
+								//code to show errors and success for form validations using sessions or data sent through						
+
+
 										// if( validation_errors()){
 											echo validation_errors('<div class="alert alert-danger">','</div>');
 										// }

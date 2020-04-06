@@ -12,6 +12,15 @@
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
+
+
+								<!--- 
+									using the same view file for both add and update the details
+									if product found on request its work as edit else as
+									new product submission form
+									also form action change accordingly
+									----->
+
                                     <li><a href="#">Dashboard</a></li>
                                     <li><a href="#">Settings</a></li>
                                     <li class="active">Privacy Policy</li>
@@ -38,7 +47,10 @@
 									
                                         <div class="card-title">  
 										  <h3 class="text-center">Privacy Policy</h3>
-                                          <?php 
+										  <?php
+										  
+						//code to show errors and success for form validations using sessions or data sent through				 
+						
 										// if( validation_errors()){
 											echo validation_errors('<div class="alert alert-danger">','</div>');
 										// }

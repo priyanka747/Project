@@ -34,7 +34,9 @@
                                 <strong class="card-title">Orders</strong>
                             </div>
                             <div class="card-body">
-                                    <?php 
+									<?php 
+									
+								//code to show errors and success for form validations using sessions or data sent through
                                         // if( validation_errors()){
                                             echo validation_errors('<div class="alert alert-danger">','</div>');
                                         // }

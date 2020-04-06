@@ -12,7 +12,15 @@
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    <li><a href="#">Dashboard</a></li>
+									<li><a href="#">Dashboard</a></li>
+									
+ 									<!--- 
+									using the same view file for both add and update the details
+									if product found on request its work as edit else as
+									new product submission form
+									also form action change accordingly
+									----->
+
                                     <li class="active" ><a href="<?php echo base_url()?>viewusers">users</a></li>
                                     <li class="active">view users</li>
                                 </ol>
