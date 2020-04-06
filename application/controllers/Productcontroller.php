@@ -24,7 +24,7 @@ class Productcontroller extends CI_Controller
 
 			if($user[0]['user_type']=='admin'){
 				$data['page'] = 'pro';
-				$data['products']=$this->product_model->get_all_products();
+				$data['products']=$this->product_model->get_product_image();
 				$this->load->view('includes/header-view');
 				$this->load->view('includes/nav',$data);
 				$this->load->view('viewproduct',$data);
