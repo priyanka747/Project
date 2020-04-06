@@ -48,7 +48,8 @@
 											<div class="alert alert-danger"><?php echo $this->session->userdata('error'); $this->session->unset_userdata('error'); ?></div>
 										<?php }
 										 if(!empty($product)){
-											// print_r( $product);
+											print_r( $product);
+
 										}
 										if($this->session->userdata('success')){?>
 											<div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
@@ -63,7 +64,7 @@
 					  </div> <!-- form-group // -->					
                        <div class="form-group"> 
 				       <div class="col-sm-12">     
-					  
+					  <!-- <?php echo $product?> -->
                         <label for="productCategory" class="col-sm-8 control-label">Product Category</label>
 						<select class="custom-select" name="parent_cate" required>
 								<option selected value="">Choose Category</option>
@@ -72,18 +73,17 @@
 								for($i=0;$i<count($categories);$i++){
 									if(!empty($product)){
 										$selected_id=$product[0]['category_id'];
+										echo $selected_id,$product[0]['category_id'];
 										if($selected_id==$categories[0]['category_id']){
 											$selected="selected";
+											
 										}
 										else{
 											$selected="";
 										}
 									}
-									else{
-										$selected="";
-									}
 									?>
-									<option value="<?php echo $categories[$i]['category_id'];?>" <?php echo $selected;?>><?php echo $categories[$i]['category_name'];?>-<?php echo $categories[$i]['parent_category'];?></option>
+									<option value="<?php echo $categories[$i]['category_id'];?>" <?php echo $selected;?>><?php echo $categories[$i]['category_name'];?> - <small><?php echo $categories[$i]['parent_category'];?></small></option>
 									<?php
 								}
 								?>

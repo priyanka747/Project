@@ -66,12 +66,12 @@
                             			<tr>
                                 	<td>  <?php echo $products[$i]['product_id']; ?></td>
                                 	<td> <?php echo $products[$i]['product_name']; ?> </td>
-                                	<td> <?php echo $products[$i]['decription']; ?> </td>
+                                	<td> <?php echo substr($products[$i]['decription'],0,30); ?>... </td>
                                 	<td> <?php echo $products[$i]['price']; ?> </td>
                                 	<td> <?php echo $products[$i]['discount_percentage']; ?> </td>
                                 	<td> <?php echo $products[$i]['reorder_level']; ?> </td>
                                 	<td> <?php echo $products[$i]['stock']; ?> </td>
-																	<td> <div><a type="a" href="<?php echo base_url();?>product/edit/<?php echo $products[$i]['product_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>product/delete/<?php echo $products[$i]['product_id']; ?>"" class="btn btn-outline-danger">Delete</a></div></td>
+																	<td> <div><a type="a" href="<?php echo base_url();?>product/edit/<?php echo $products[$i]['product_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>product/delete/<?php echo $products[$i]['product_id']; ?>" class="btn btn-outline-danger" onclick=" return confirm('Are you sure you want to delete?');">Delete</a></div></td>
                            				</tr>
                                   <?php
                                    }

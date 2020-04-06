@@ -78,7 +78,7 @@
 
 		$this->db->set('status', 'deleted');
 		$this->db->where('product_id', $product_id);
-		$result2 = $this->db->update('product_image');
+		$result1 = $this->db->update('product_image');
 
 		$this->db->set('status', 'delete');
 		$this->db->where('product_id', $product_id);
@@ -87,11 +87,13 @@
 		return $result1&&$result2;
 	}
 
-	function modify_product($data,$images, $product_id)
+	function modify_product($data, $product_id,$product_info,$product_info_id)
 	{
 		$this->db->where('product_id', $product_id);
-		return $this->db->update('product', $data);
-  	 
+		$product= $this->db->update('product', $data);
+		$this->db->where('product_info_id', $product_info_id);
+		$product_info =$this->db->update('product_specs', $data);
+		return($product&&$product_info_id);  	 
     }
     //filter function
     function filter_Result($data)
@@ -155,6 +157,7 @@
 		}
 		return $data;
 
-    }
+	}
+	
 
   }

@@ -24,7 +24,7 @@ class Productcontroller extends CI_Controller
 
 			if($user[0]['user_type']=='admin'){
 				$data['page'] = 'dashboard';
-				$data['products']=$this->product_model->get_product_image();
+				$data['products']=$this->product_model->get_all_products();
 				$this->load->view('includes/header-view');
 				$this->load->view('includes/nav',$data);
 				$this->load->view('viewproduct',$data);
@@ -61,7 +61,7 @@ class Productcontroller extends CI_Controller
                 redirect(base_url('viewproducts'),'refresh');
 		}
 		$data['categories']=$this->category_model->get_all_sub_categories();
-        $data['product']=$this->product_model->get_product($id);
+        $data['product']=$this->product_model->get_products_image($id);
         $this->load->view('includes/header');
         $this->load->view('includes/nav',$data);
         $this->load->view('addproduct',$data);
@@ -99,11 +99,54 @@ class Productcontroller extends CI_Controller
 				$this->load->view('includes/footer');	
 			}
 		}	
-	}		
+		
+		function update($id){
+			$cate_id = $this->uri->segment(2, 0);
+			if($cate_id==0){
+				$this->session->set_userdata('success','trouble while updating category');
+					// redirect(base_url('viewcategories'),'refresh');  
+			}
+			$name = $this->security->xss_clean($this->input->post('cate_name'));
+			$desc = $this->security->xss_clean($this->input->post('cate_desc'));
+			$pid=$this->security->xss_clean($this->input->post('parent_cate'));
+			$this->form_validation->set_rules('cate_name','category name','required');
+			// $this->form_validation->set_rules('parent_cate','parent category','required');
+			
+			$data = array(
+				'category_name'=>$name,
+				'description'=>$desc,
+				'parent_category'=>$pid,
+				'modified_by'=>$this->session->userdata('user')[0]['user_id']
+			);
+			if($this->form_validation->run()== TRUE){
+					//  print_r($data);
+					$res=$this->product_model->modify_product($data,$id);
+					if($res){
+						$this->session->set_userdata('success','product updated successfully');
+						redirect(base_url('viewproducts'),'refresh');
+						
+					}else{
+						$this->session->set_userdata('error','trouble while updating  product');
+						$data['product']=$this->product_model->get_products_image($id);
+						$this->load->view('includes/header');
+						$this->load->view('includes/nav',$data);
+						$this->load->view('addproduct',$data);
+						$this->load->view('includes/footer');
+					}
+			}
+			else{
+				$data['product']=$this->product_model->get_products_image($id);
+				$this->load->view('includes/header');
+				$this->load->view('includes/nav',$data);
+				$this->load->view('addproduct',$data);
+				$this->load->view('includes/footer');
+			}
+		}
 	function delete($id){
-		if($this->product_model->delete($id)){
+		echo $id;
+		if($this->product_model->delete_product($id)){
 			$this->session->set_userdata('success','product deleted successfully.! ');
-					redirect(base_url('viewproducts'));
+			redirect(base_url('viewproducts'));
 		}else{
 			$this->session->set_userdata('error','trouble while deleting products');
 					redirect(base_url('viewproducts'));
@@ -111,7 +154,7 @@ class Productcontroller extends CI_Controller
 
 		
 }
+}
 
-		
 
 ?>
