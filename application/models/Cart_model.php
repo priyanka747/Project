@@ -33,7 +33,7 @@ class Cart_model extends CI_Model
 		$this->db->order_by('created_date','desc');
 		$data['cart info']=$this->db->get()->result_array();
 		$product_cnt=count($data['cart info']);
-			echo $product_cnt;
+			// echo $product_cnt;
 			for($i=0;$i<$product_cnt;$i++)
 			{
 				 $data['cart info'][$i]['product']=$this->product_model->get_products_image($data['cart info'][$i]['product_id']);

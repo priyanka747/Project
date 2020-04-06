@@ -57,17 +57,8 @@ class Cart extends REST_Controller {
             $res['message'] = $msg;
             $this->response($res);
         }
-        // }else{
-        //     //set the response and exit
-        //     $res=array(
-        //         'status' => 0,
-        //         'message' => 'No cart were found.'
-        //     );
-        //    $this->response($res);
-        // }
     }
     // POST
-
     public function index_post(){
     
         // collecting form data inputs
