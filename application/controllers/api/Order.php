@@ -214,4 +214,3 @@ class Order extends REST_Controller {
         }
       } 
     }
-}
