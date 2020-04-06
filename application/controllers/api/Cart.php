@@ -23,8 +23,8 @@ class Cart extends REST_Controller {
         //otherwise single row will be returned
      if($id!=0){
           if($this->cart_model->check_cart_exist($id)>0){       
-            $res['cart']=$this->cart_model->get_cart_info($id);
-            if(!empty($res['cart'])){
+            $res=array('cart'=>$this->cart_model->get_cart_info($id)[0]);
+            if(!empty($res)){
               $msg="cart found";
               $code=0;
             }

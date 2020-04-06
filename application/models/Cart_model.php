@@ -31,14 +31,13 @@ class Cart_model extends CI_Model
 		$this->db->from('cart_info');
 		$this->db->where('cart_id',$cart_id);
 		$this->db->order_by('created_date','desc');
-		$data['cart info']=$this->db->get()->result_array();
-		$product_cnt=count($data['cart info']);
-			// echo $product_cnt;
+		$data=$this->db->get()->result_array();
+		$product_cnt=count($data);
 			for($i=0;$i<$product_cnt;$i++)
 			{
-				 $data['cart info'][$i]['product']=$this->product_model->get_products_image($data['cart info'][$i]['product_id']);
+				 $data[$i]['product']=$this->product_model->get_products_image($data[$i]['product_id'])[0];
 			}
-		return $data['cart info'];
+		return $data;
 	}
 	
 	function add_cart($data)
