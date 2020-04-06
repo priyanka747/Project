@@ -140,6 +140,13 @@ class Welcome extends CI_Controller {
 		$this->load->view('includes/nav');
 		$this->load->view('changecontactdetails');
 		$this->load->view('includes/footer');
+	} 
+				public function viewOrderReports()
+	{
+		$this->load->view('includes/header');
+		$this->load->view('includes/nav');
+		$this->load->view('vieworderreports');
+		$this->load->view('includes/footer');
 	}
 	public function comments()
     {
