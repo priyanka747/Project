@@ -13,7 +13,7 @@ class Ordercontroller extends CI_Controller
 	{
 		if(!$this->session->userdata('user')){
 			$data['page'] = 'login';
-			$this->load->view('includes/header-login');
+			$this->load->view('include/header-login');
 			$this->load->view('login');
 			$this->load->view('includes/footer-login');
 		}
@@ -87,32 +87,32 @@ class Ordercontroller extends CI_Controller
 				$this->load->view('includes/footer');	
 			}
 		}	
-	}		
+			
 	function delete($id){
-		if($this->product_model->is_parent($id)>0){
-			if($this->product_model->update_product($data)){
-				if($this->product_model->delete_product($id)){
-					$this->session->set_userdata('success','trouble while adding new product.!');
-					redirect(base_url('viewproduct'),'refresh');
+		//if($this->product_model->is_parent($id)>0){
+			//if($this->product_model->update_product($data)){
+				if($this->order_model->cancel_order($id)){
+					$this->session->set_userdata('success','Order deleted successfully.!');
+					redirect(base_url('vieworders'),'refresh');
 				}
 				else{
-					$this->session->set_userdata('error','trouble while adding new product');
+					$this->session->set_userdata('error','trouble while adding new order');
 					$this->load->view('include/header');
 					$this->load->view('include/nav',$data);
-					$this->load->view('viewproduct',$data);
+					$this->load->view('vieworders',$data);
 					$this->load->view('include/footer');
 				}
-			}else{
-				$this->session->set_userdata('error','trouble while adding new product');
-				$this->load->view('include/header');
-					$this->load->view('include/nav',$data);
-					$this->load->view('viewproduct',$data);
-					$this->load->view('include/footer');
+			//}else{
+			//	$this->session->set_userdata('error','trouble while adding new order');
+			//	$this->load->view('include/header');
+			//		$this->load->view('include/nav',$data);
+			//		$this->load->view('vieworder',$data);
+			//		$this->load->view('include/footer');
 				
 			}
-		}else{
+		//}else{
 
-		}	
+		//}	
 
 		
 }
