@@ -18,122 +18,103 @@ class Cart extends REST_Controller {
 
     // GET
 
-    public function index_get($id) {
+    public function index_get($id=0) {
         //returns all rows if the id parameter doesn't exist,
         //otherwise single row will be returned
-     
+     if($id!=0){
           if($this->cart_model->check_cart_exist($id)>0){       
             $res['cart']=$this->cart_model->get_cart_info($id);
-            if($res['cart']){
+            if(!empty($res['cart'])){
               $msg="cart found";
-            }else{
-              $res=null;
-              $msg="cart not found";
+              $code=0;
             }
           }
           else{
             $data=array(
-              'cart_id'=>2,
+              // 'cart_id'=>2,
               'user_id'=> $id,
             );
              $res['cart_id']=$this->cart_model->add_cart($data);
-             if($res){
+             if($res['cart_id']){
                $msg="cart created";
+               $code=1;
              }
              else{
                $res=null;
               $msg="trouble while creating cart";
+              $code=0;
              }
           }
+     }else{
+              $msg="trouble while creating cart";
+              $code=0;
+             }
     
         //check if the user data exists
-        if(!empty($res)){
+        if(!empty($msg)){
             //set the response and exit 
-            $res['status'] =1;
+            $res['status'] =$code;
             $res['message'] = $msg;
             $this->response($res);
-        }else{
-            //set the response and exit
-            $res=array(
-                'status' => FALSE,
-                'message' => 'No cart were found.'
-            );
-           $this->response($res);
         }
+        // }else{
+        //     //set the response and exit
+        //     $res=array(
+        //         'status' => 0,
+        //         'message' => 'No cart were found.'
+        //     );
+        //    $this->response($res);
+        // }
     }
     // POST
 
-    public function index_post($product_id,$cart_id){
+    public function index_post(){
     
         // collecting form data inputs
         //extra input fields will be sent as hidden
-        if($userid=0){
-        $user_id = $this->security->xss_clean($this->input->post("cart_id"));
+      
+        $cart_id = $this->security->xss_clean($this->input->post("cart_id"));
         $product_id=$this->security->xss_clean($this->input->post("product_id"));
         $quantity=$this->security->xss_clean($this->input->post("quantity"));
-        $quantity=$this->security->xss_clean($this->input->post("color"));
-        $quantity=$this->security->xss_clean($this->input->post("size"));
-        }
-        else{
-         
-        }
+        $color=$this->security->xss_clean($this->input->post("color"));
+        $size=$this->security->xss_clean($this->input->post("size"));
         // form validation for inputs  
-    
+        $this->form_validation->set_rules('cart_id', 'First Name', 'required|numeric');
+        $this->form_validation->set_rules('product_id', 'Last Name', 'required|numeric');
+        $this->form_validation->set_rules('quantity', 'Email', 'trim|required|numeric');
+        $this->form_validation->set_rules('color', 'Password', 'required|alpha');
+        $this->form_validation->set_rules('size', 'Contact Number', 'required|alpha');
         // checking form submittion have any error or not
-        if($this->form_validation->run() === FALSE){
-  
-          // we have some errors
-          $this->response(array(
-            "status" => 0,
-            "message" => "All fields are needed"
-          ) , REST_Controller::HTTP_NOT_FOUND);
-        }else{
-  
-          if(
-            !empty($cart_id) && !empty($user_id) && !empty($status) && !empty($date_created) && !empty($date_modified) 
-        ){
-            // all values are available
-            $cart = array(
-              "cart_id" => $cart_id,
-              "user_id" => $user_id,
-              "status" => $status,
-			  "date_created" => $date_created,
-			  "date_modified" => $date_modified
-            );
-
-            $cart_info = array(
-              "cart_id" => $order_id,
-              "product_id" => $product_id,
-              "quantity" => $quantity,
-              "status" => $status,
-              "date_created" => $date_create,
-              "date_modified" => $date_modified,
-                
-            );
-  
-            if($this->cart_model->add_cart($cart, $cart_info)){
+        if($this->form_validation->run() === TRUE){
+          $data=array(
+            'cart_id'=>$cart_id,
+            'product_id'=>$product_id,
+            'quantity'=>$quantity,
+            'size'=>$size,
+            'color'=>$color
+          );  
+          // $this->response($data);
+            if($this->cart_model->add_cart_info($data)){
   
               $this->response(array(
                 "status" => 1,
-                "message" => "Cart added Successfully"
+                "message" => "product added Successfully"
               ), REST_Controller::HTTP_OK);
             }else{
   
               $this->response(array(
                 "status" => 0,
-                "message" => "Failed to add Cart"
-              ), REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
+                "message" => "Failed to add product"
+              ), REST_Controller::HTTP_OK);
             }
           }else{
             // we have some empty field
             $this->response(array(
               "status" => 0,
               "message" => "All fields are needed"
-            ), REST_Controller::HTTP_NOT_FOUND);
+            ), REST_Controller::HTTP_OK);
           }
         }
-      }
-
       // DELETE
       // path : <project_url>/index.php/order
 
