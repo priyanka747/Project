@@ -22,7 +22,8 @@ class Home extends CI_Controller
 			// print_r($user);
 			if($user[0]['user_type']=='admin'){
 					$data['page'] = 'Dashboard';
-					$data['orders']=$this->order_model->get_vieworders();
+					$data['orders']=$this->order_model->get_orders();
+					// var_dump($this->order_model->get_orders());
 					$data['revenue']=$this->order_model->get_total();
 					$data['productcnt']=count($this->product_model->get_products());
 					$data['usercnt']=count($this->user_model->get_users());

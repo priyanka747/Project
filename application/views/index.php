@@ -118,7 +118,7 @@
                                         for($i=0;$i<$row_cnt;$i++){?>
                                         <tr>
                                             <td>  <?php echo $orders[$i]['order_id']; ?></td>
-                                            <td> <?php echo $orders[$i]['client_name']; ?> </td>
+                                            <td> <?php echo $orders[$i]['user'][0]['first_name'].' '.$orders[$i]['user'][0]['last_name']; ?> </td>
                                             <td> <?php echo $orders[$i]['date']; ?> </td>
                                             <td> <?php echo $orders[$i]['payment_type']; ?> </td>
                                             <td> <span class="badge badge-dark"><?php echo $orders[$i]['shipped_status']; ?> </span></td>
