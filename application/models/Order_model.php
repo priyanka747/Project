@@ -199,12 +199,26 @@ class Order_model extends CI_Model
 		
 		$this->db->set('status', 'delete');
 		$this->db->where('order_id', $order_id);
+		$this->db->where('shipped_status', 'notshipped');
 		$result1 = $this->db->update('orders');
 
-		$this->db->set('status', 'delete');
-		$this->db->where('order_id', $order_id);
-		$result2 = $this->db->update('order_info');
-		return $result1&&$result2;
+		//$result2 = $result1;
+
+		if($this->db->affected_rows() > 0){
+			$this->db->set('status', 'delete');
+			$this->db->where('order_id', $order_id);
+			$result2 = $this->db->update('order_info');
+		}
+
+		if ($this->db->affected_rows() > 0)
+		{
+  			return TRUE;
+		}
+		else
+		{
+  			return FALSE;
+		}
+		//return $result1&&$result2;
 
 	}
 

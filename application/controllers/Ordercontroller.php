@@ -49,10 +49,11 @@ class Ordercontroller extends CI_Controller
 				}
 				else{
 					$this->session->set_userdata('error','Trouble while deleting order');
-					$this->load->view('include/header');
-					$this->load->view('include/nav',$data);
-					$this->load->view('vieworders',$data);
-					$this->load->view('include/footer');
+					redirect(base_url('vieworders'),'refresh');
+					// $this->load->view('include/header');
+					// $this->load->view('include/nav',$data);
+					// $this->load->view('vieworders',$data);
+					// $this->load->view('include/footer');
 				}
 			//}else{
 			//	$this->session->set_userdata('error','trouble while adding new order');
