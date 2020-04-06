@@ -66,6 +66,41 @@ class Order_model extends CI_Model
 		}
 
 
+	//---------------------
+
+//get one order
+	function get_order_by_user_id($user_id)
+	{
+			$data=$this->db->select('order_id, user_id, promotion_id, shipping_address_id, mail_address_id, date, shipped_status, order_status, payment_type, total')->from ('orders')->where ('status ','active')->where ('user_id ', $user_id)->order_by('date_create','desc')->get()->result_array();
+			$order_cnt=count($data);
+			//echo $order_cnt;
+			for($i=0;$i<$order_cnt;$i++)
+			{
+				$data[$i]['user']=$this->get_user_details($data[$i]['user_id']);
+			}
+			for($i=0;$i<$order_cnt;$i++)
+			{
+				$data[$i]['promotion']=$this->get_promotion_details($data[$i]['promotion_id']);
+			}
+			for($i=0;$i<$order_cnt;$i++)
+			{
+				$data[$i]['shipping_address']=$this->get_shipping_address($data[$i]['shipping_address_id']);
+			}
+			for($i=0;$i<$order_cnt;$i++)
+			{
+				$data[$i]['mail_address']=$this->get_mailing_address($data[$i]['mail_address_id']);
+			}
+			for($i=0;$i<$order_cnt;$i++)
+			{
+				$data[$i]['products']=$this->get_products($data[$i]['order_id']);
+			}
+			return $data;
+	}
+
+
+	//---------------------
+
+
 	function get_total()
 	{
 		$this->db->select_sum('total');
