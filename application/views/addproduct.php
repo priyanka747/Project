@@ -14,7 +14,13 @@
                                 <ol class="breadcrumb text-right">
                                     <li><a href="#">Dashboard</a></li>
                                     <li><a href="#">manage product</a></li>
-                                    <li class="active">add new product</li>
+									<!--- 
+									using the same view file for both add and update the details
+									if product found on request its work as edit else as
+									new product submission form
+									also form action change accordingly
+									----->
+                                    <li class="active"><?php if(empty($category)){echo 'Add  Product';}else{ echo 'Update Product';}?></li>
                                 </ol>
                             </div>
                         </div>
@@ -37,20 +43,27 @@
                                 <div id="pay-invoice">
                                     <div class="card-body">
                                         <div class="card-title">
-                                            <h3 class="text-center">Add Product</h3>
+                                            <h3 class="text-center"><?php if(empty($category)){echo 'Add  Product';}else{ echo 'Update Product';}?></h3>
                                         </div>
                                         <!-- <hr> -->
 										<?php 
+
+
+
+						//code to show errors and success for form validations using sessions or data sent through 
+
+
+
 										// if( validation_errors()){
 											echo validation_errors('<div class="alert alert-danger">','</div>');
 										// }
 										if($this->session->userdata('error')){?>
 											<div class="alert alert-danger"><?php echo $this->session->userdata('error'); $this->session->unset_userdata('error'); ?></div>
 										<?php }
-										 if(!empty($product)){
-											print_r( $product);
+										//  if(!empty($product)){
+										// 	print_r( $product);
 
-										}
+										// }
 										if($this->session->userdata('success')){?>
 											<div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
 										<?php }?>
@@ -153,7 +166,7 @@
 					    </div>
 				    </div> <!-- form-group // -->  
 					<div>
-                                                <button id="btn btn-info" type="submit" class="btn btn-lg btn-info btn-block"> Submit
+                                                <button id="btn btn-info" type="submit" class="btn btn-lg btn-info btn-block"> <?php if(empty($category)){echo 'Add';}else{ echo 'Update';}?>
                                                 </button>
                                             </div>
                                         </form>

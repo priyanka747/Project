@@ -14,7 +14,7 @@
                                 <ol class="breadcrumb text-right">
                                     <li><a href="#">Dashboard</a></li>
                                     <li><a href="#">settings</a></li>
-                                    <li class="active">Company settings</li>
+                                    <li class="active">contact details settings</li>
                                 </ol>
                             </div>
                         </div>
