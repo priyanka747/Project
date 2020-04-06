@@ -88,7 +88,7 @@
                                             }
                                             ?>
                                             </td>
-											<td> <div><a type="a" href="<?php echo base_url();?>ordercontroller/edit/<?php echo $orders[$i]['order_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>ordercontroller/delete/<?php echo $orders[$i]['order_id']; ?>"" class="btn btn-outline-danger">Delete</a></div></td>
+											<td> <div><a type="a" href="<?php echo base_url();?>ordercontroller/edit/<?php echo $orders[$i]['order_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>ordercontroller/delete/<?php echo $orders[$i]['order_id']; ?>" class="btn btn-outline-danger" onclick=" return confirm('Are you sure you want to delete?');">Delete</a></div></td>
                                         </tr>
                                         <?php
                                         }

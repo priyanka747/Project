@@ -59,7 +59,7 @@
                           <tr>
 													<th class="serial">Product ID</th>
                           <th>Product Name</th>
-				           				<th>Description</th>
+				           				<th width="5%">Description</th>
 				            			<th>Price</th>
 				           				<th>Discount</th>
 				            			<th>Re-order level</th>

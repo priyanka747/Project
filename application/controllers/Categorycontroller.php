@@ -137,22 +137,24 @@ class Categorycontroller extends CI_Controller
         }
     }
     function delete($id){
+        $this->session->set_userdata('error','Trouble while deleting category');
+        redirect(base_url('viewcategories'),'refresh');
         // if($this->category_model->is_parent($id)>0){
-            if($this->product_model->update_product($data)){
-               if( $this->category_model->delete_category($id))
-               {
-                $this->session->set_userdata('success','trouble while adding new category');
-                redirect(base_url('viewcategories'),'refresh');
+            // if($this->product_model->update_product($data)){
+            //    if( $this->category_model->delete_category($id))
+            //    {
+            //     $this->session->set_userdata('success','trouble while adding new category');
+            //     redirect(base_url('viewcategories'),'refresh');
                 
-               }else{
-                $this->session->set_userdata('error','trouble while adding new category');
-                $data['page'] = 'cat';
-                $this->load->view('includes/header');
-                $this->load->view('includes/nav',$data);
-                $this->load->view('viewcategory',$data);
-                $this->load->view('includes/footer');
-               }
-            }
+            //    }else{
+            //     $this->session->set_userdata('error','trouble while adding new category');
+            //     $data['page'] = 'cat';
+            //     $this->load->view('includes/header');
+            //     $this->load->view('includes/nav',$data);
+            //     $this->load->view('viewcategory',$data);
+            //     $this->load->view('includes/footer');
+            //    }
+            // }
         //     $this->session->set_userdata('error','trouble while adding new category');
         // $this->load->view('includes/header');
         // $this->load->view('includes/nav',$data);
