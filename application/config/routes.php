@@ -48,6 +48,7 @@ $route['update-companysettings'] = 'settingscontroller/addproduct';
 $route['update-banner'] = 'settingscontroller/add';
 $route['update-socialmedia'] = 'settingscontroller/update_social_media';
 $route['update-privacypolicy'] = 'settingscontroller/update_privacy_policy';
+$route['update-contact-details'] = 'settingscontroller/update_contact_detail';
 //settings
 $route['vieworders'] = 'Ordercontroller';
 //reports

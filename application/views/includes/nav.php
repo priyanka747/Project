@@ -4,7 +4,6 @@
 }else{
     $item=="";
 }
-echo $item;
     ?>
 <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
@@ -19,7 +18,7 @@ class="active"
 ?>
 
 >
-                        <a href="<?php echo base_url();?>"><i class="menu-icon fa fa-laptop"></i>Dashboard <?php echo $item; ?></a>
+                        <a href="<?php echo base_url();?>"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
 					</li>
 					<li class="menu-item-has-children dropdown <?php if($item=="cat")
 {?> active
