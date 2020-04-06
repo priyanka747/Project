@@ -14,7 +14,7 @@ class Profilecontroller extends CI_Controller
 	{
 		if(!$this->session->userdata('user')){
 			$data['page'] = 'login';
-			$this->load->view('include/header-login');
+			$this->load->view('includes/header-login');
 			$this->load->view('login');
 			$this->load->view('includes/footer-login');
 		}

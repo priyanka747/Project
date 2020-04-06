@@ -13,7 +13,7 @@
      function index(){
          if(!$this->session->userdata('user')){
              $data['page'] = 'login';
-             $this->load->view('include/header-login');
+             $this->load->view('includes/header-login');
              $this->load->view('login');
              $this->load->view('includes/footer-login');
          }
@@ -35,7 +35,7 @@
      function banner(){
         if(!$this->session->userdata('user')){
             $data['page'] = 'login';
-            $this->load->view('include/header-login');
+            $this->load->view('includes/header-login');
             $this->load->view('login');
             $this->load->view('includes/footer-login');
         }
@@ -56,7 +56,7 @@
      function contactdetails(){
         if(!$this->session->userdata('user')){
             $data['page'] = 'login';
-            $this->load->view('include/header-login');
+            $this->load->view('includes/header-login');
             $this->load->view('login');
             $this->load->view('includes/footer-login');
         }
@@ -78,7 +78,7 @@
         if(!$this->session->userdata('user')){
             $data['page'] = 'login';
            
-            $this->load->view('include/header-login');
+            $this->load->view('includes/header-login');
             $this->load->view('login');
             $this->load->view('includes/footer-login');
         }
@@ -101,7 +101,7 @@
      function privacypolicy(){
         if(!$this->session->userdata('user')){
             $data['page'] = 'login';
-            $this->load->view('include/header-login');
+            $this->load->view('includes/header-login');
             $this->load->view('login');
             $this->load->view('includes/footer-login');
         }

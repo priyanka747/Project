@@ -50,6 +50,9 @@ $route['update-socialmedia'] = 'settingscontroller/update_social_media';
 $route['update-privacypolicy'] = 'settingscontroller/update_privacy_policy';
 //settings
 $route['vieworders'] = 'Ordercontroller';
+//reports
+$route['sales-report'] = 'Reportcontroller/salesreport';
+$route['product-report'] = 'Reportcontroller';
 
 
 
