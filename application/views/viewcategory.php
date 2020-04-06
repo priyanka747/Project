@@ -71,7 +71,7 @@
                                         if($row_cnt>0){
                                         for($i=0;$i<$row_cnt;$i++){?>
                                         <tr>
-                                            <td>  <?php echo $categories[$i]['category_id']; ?></td>
+                                            <td>  <?php echo $i+1;// $categories[$i]['category_id']; ?></td>
                                             <td> <?php echo $categories[$i]['category_name']; ?> </td>
                                             <td> <?php echo $categories[$i]['description']; ?> </td>
 											<td> <div><a type="a" href="<?php echo base_url();?>category/edit/<?php echo $categories[$i]['category_id']; ?>" class="btn btn-outline-info">Edit</a> <a type="a" href="<?php echo base_url();?>category/delete/<?php echo $categories[$i]['category_id']; ?>" class="btn btn-outline-danger">Delete</a></div></td>

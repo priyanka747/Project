@@ -14,7 +14,7 @@
 		function get_product_image(){
 			$data=$this->db->select('*')->from ('product')->where ('status ','active')->order_by('date_created','desc')->get()->result_array();
 			$product_cnt=count($data);
-			echo $product_cnt;
+// 			echo $product_cnt;
 			for($i=0;$i<$product_cnt;$i++)
 			{
 				$data[$i]['images']=$this->get_images_by_product($data[$i]['product_id']);
@@ -29,7 +29,7 @@
 		function get_products_image($id){
 			$data=$this->db->select('*')->from ('product')->where ('status ','active')->where ('product_id ',$id)->order_by('date_created','desc')->get()->result_array();
 			$product_cnt=count($data);
-			echo $product_cnt;
+// 			echo $product_cnt;
 			for($i=0;$i<$product_cnt;$i++)
 			{
 				$data[$i]['images']=$this->get_images_by_product($data[$i]['product_id']);

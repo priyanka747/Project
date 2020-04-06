@@ -62,7 +62,7 @@
                                         if($row_cnt>0){
                                         for($i=0;$i<$row_cnt;$i++){?>
                                         <tr>
-                                            <td>  <?php echo $subcategories[$i]['category_id']; ?></td>
+                                            <td>  <?php echo $i+1;//$subcategories[$i]['category_id']; ?></td>
                                             <td> <?php echo $subcategories[$i]['category_name']; ?> </td>
                                             <td> <?php echo $subcategories[$i]['description']; ?> </td>
                                             <!-- <td> <?php echo $subcategories[$i]['parent_category']; ?> </td> -->

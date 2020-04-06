@@ -75,7 +75,7 @@
                              			if($row_cnt>0){
                              			for($i=0;$i<$row_cnt;$i++){?>
                             			<tr>
-                                	<td>  <?php echo $products[$i]['product_id']; ?></td>
+                                	<td>  <?php echo $i+1;//$products[$i]['product_id']; ?></td>
                                 	<td> <?php echo $products[$i]['product_name']; ?> </td>
                                 	<td> <?php echo substr($products[$i]['decription'],0,30); ?>... </td>
                                 	<td> <?php echo $products[$i]['price']; ?> </td>

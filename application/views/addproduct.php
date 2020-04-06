@@ -20,7 +20,7 @@
 									new product submission form
 									also form action change accordingly
 									----->
-                                    <li class="active"><?php if(empty($category)){echo 'Add  Product';}else{ echo 'Update Product';}?></li>
+                                    <li class="active"><?php if(empty($product)){echo 'Add  Product';}else{ echo 'Update Product';}?></li>
                                 </ol>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                                 <div id="pay-invoice">
                                     <div class="card-body">
                                         <div class="card-title">
-                                            <h3 class="text-center"><?php if(empty($category)){echo 'Add  Product';}else{ echo 'Update Product';}?></h3>
+                                            <h3 class="text-center"><?php if(empty($product)){echo 'Add  Product';}else{ echo 'Update Product';}?></h3>
                                         </div>
                                         <!-- <hr> -->
 										<?php 
@@ -166,7 +166,7 @@
 					    </div>
 				    </div> <!-- form-group // -->  
 					<div>
-                                                <button id="btn btn-info" type="submit" class="btn btn-lg btn-info btn-block"> <?php if(empty($category)){echo 'Add';}else{ echo 'Update';}?>
+                                                <button id="btn btn-info" type="submit" class="btn btn-lg btn-info btn-block"> <?php if(empty($product)){echo 'Add';}else{ echo 'Update';}?>
                                                 </button>
                                             </div>
                                         </form>

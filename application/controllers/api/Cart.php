@@ -1,3 +1,4 @@
+
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -125,7 +126,7 @@ class Cart extends REST_Controller {
       }
     }
 
-   // PUT: <project_url>/index.php/student
+    // PUT: <project_url>/index.php/student
     public function index_put(){
      
       $cart_id = $data->cart_id;
@@ -156,5 +157,7 @@ class Cart extends REST_Controller {
         //   ), REST_Controller::HTTP_NOT_FOUND);
         // }
     } 
+  
+}    
   
 }    
