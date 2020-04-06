@@ -131,33 +131,33 @@ class Cart extends REST_Controller {
       //echo "This is PUT Method";
       //$data = json_decode(file_get_contents("php://input"));
 
-     if(isset($data->id) && isset($data->name) && isset($data->email) && isset($data->mobile) && isset($data->course)){
+    //  if(isset($data->id) && isset($data->name) && isset($data->email) && isset($data->mobile) && isset($data->course)){
   
-          $cart_id = $data->cart_id;
-          $order = array(
-            "cart_id" => $data->name,
-            "email" => $data->email,
-            "mobile" => $data->mobile,
-            "course" => $data->course,
+    //       $cart_id = $data->cart_id;
+    //       $order = array(
+    //         "cart_id" => $data->name,
+    //         "email" => $data->email,
+    //         "mobile" => $data->mobile,
+    //         "course" => $data->course,
 
-            "order_id" => $data->name,
-            "email" => $data->email,
-            "mobile" => $data->mobile,
-            "course" => $data->course,
+    //         "order_id" => $data->name,
+    //         "email" => $data->email,
+    //         "mobile" => $data->mobile,
+    //         "course" => $data->course,
 
-            "order_id" => $data->name,
-            "email" => $data->email,
-            "mobile" => $data->mobile,
-            "course" => $data->course,
+    //         "order_id" => $data->name,
+    //         "email" => $data->email,
+    //         "mobile" => $data->mobile,
+    //         "course" => $data->course,
             
 
-          );
-          $student_info = array(
-            "name" => $data->name,
-            "email" => $data->email,
-            "mobile" => $data->mobile,
-            "course" => $data->course
-          );
+    //       );
+    //       $student_info = array(
+    //         "name" => $data->name,
+    //         "email" => $data->email,
+    //         "mobile" => $data->mobile,
+    //         "course" => $data->course
+    //       );
   
       $cart_id = $data->cart_id;
 	  $user_id = $data->user_id;
@@ -165,7 +165,8 @@ class Cart extends REST_Controller {
       $date_created = $data_created->date;
       $date_modified = $date_modified->date;
 
-          if($this->student_model->update_student_information($student_id, $student_info)){
+          // if($this->cart_model->update_student_information($student_id, $student_info)){
+            if($this->cart_model->update_cart($data)){
   
               $this->response(array(
                 "status" => 1,
@@ -178,13 +179,13 @@ class Cart extends REST_Controller {
               "messsage" => "Failed to update student data"
             ), REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
           }
-        }else{
+        // }else{
   
-          $this->response(array(
-            "status" => 0,
-            "message" => "All fields are needed"
-          ), REST_Controller::HTTP_NOT_FOUND);
-        }
+        //   $this->response(array(
+        //     "status" => 0,
+        //     "message" => "All fields are needed"
+        //   ), REST_Controller::HTTP_NOT_FOUND);
+        // }
     } 
   
 }    

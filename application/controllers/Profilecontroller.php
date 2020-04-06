@@ -23,7 +23,7 @@ class Profilecontroller extends CI_Controller
 			//print_r ($user);
 
 			if($user[0]['user_type']=='admin'){
-				$data['page'] = 'dashboard';
+				$data['page'] = 'pi';
 				$data['user']=$this->user_model->get_user($user[0]['user_id']);
 				$this->load->view('includes/header');
 				$this->load->view('includes/nav',$data);
@@ -72,6 +72,7 @@ class Profilecontroller extends CI_Controller
 					redirect(base_url('profilecontroller'));
 			}
 			}else{
+				$data['page'] = 'pi';
 				$data['user']=$this->user_model->get_user($this->session->userdata('user')[0]['user_id']);
 				$this->load->view('includes/header');
 				$this->load->view('includes/nav',$data);

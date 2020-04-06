@@ -23,7 +23,7 @@ class Productcontroller extends CI_Controller
 			//print_r ($user);
 
 			if($user[0]['user_type']=='admin'){
-				$data['page'] = 'dashboard';
+				$data['page'] = 'pro';
 				$data['products']=$this->product_model->get_all_products();
 				$this->load->view('includes/header-view');
 				$this->load->view('includes/nav',$data);
@@ -44,7 +44,7 @@ class Productcontroller extends CI_Controller
 			$user=json_decode(json_encode($this->session->userdata('user')),true);
 
 			if($user[0]['user_type']=='admin'){
-				$data['page'] = 'dashboard';
+				$data['page'] = 'pro';
 				$data['categories']=$this->category_model->get_all_sub_categories();
 				$this->load->view('includes/header');
 				$this->load->view('includes/nav',$data);
@@ -60,6 +60,7 @@ class Productcontroller extends CI_Controller
             $this->session->set_userdata('error','seems like trying to update wrong category');
                 redirect(base_url('viewproducts'),'refresh');
 		}
+		$data['page'] = 'pro';
 		$data['categories']=$this->category_model->get_all_sub_categories();
         $data['product']=$this->product_model->get_products_image($id);
         $this->load->view('includes/header');
@@ -92,6 +93,7 @@ class Productcontroller extends CI_Controller
 					redirect(base_url('viewproducts'));
 				}
 			}else{
+				$data['page'] = 'pro';
 					$data['categories']=$this->product_model->get_all_products();
 				$this->load->view('includes/header');
 				$this->load->view('includes/nav',$data);
@@ -128,6 +130,7 @@ class Productcontroller extends CI_Controller
 					}else{
 						$this->session->set_userdata('error','trouble while updating  product');
 						$data['product']=$this->product_model->get_products_image($id);
+						$data['page'] = 'pro';
 						$this->load->view('includes/header');
 						$this->load->view('includes/nav',$data);
 						$this->load->view('addproduct',$data);
@@ -135,6 +138,7 @@ class Productcontroller extends CI_Controller
 					}
 			}
 			else{
+				$data['page'] = 'pro';
 				$data['product']=$this->product_model->get_products_image($id);
 				$this->load->view('includes/header');
 				$this->load->view('includes/nav',$data);

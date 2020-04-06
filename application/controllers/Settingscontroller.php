@@ -22,7 +22,7 @@
              //print_r ($user);
  
              if($user[0]['user_type']=='admin'){
-                 $data['page'] = 'dashboard';
+                 $data['page'] = 'setting';
                 //  $data['categories']=$this->product_model->get_all_products();
                  $this->load->view('includes/header');
                  $this->load->view('includes/nav',$data);
@@ -44,7 +44,7 @@
             //print_r ($user);
 
             if($user[0]['user_type']=='admin'){
-                $data['page'] = 'dashboard';
+                $data['page'] = 'setting';
                //  $data['categories']=$this->product_model->get_all_products();
                 $this->load->view('includes/header');
                 $this->load->view('includes/nav',$data);
@@ -65,7 +65,7 @@
             //print_r ($user);
 
             if($user[0]['user_type']=='admin'){
-                $data['page'] = 'dashboard';
+                $data['page'] = 'setting';
                //  $data['categories']=$this->product_model->get_all_products();
                 $this->load->view('includes/header');
                 $this->load->view('includes/nav',$data);
@@ -87,7 +87,7 @@
             //print_r ($user);
 
             if($user[0]['user_type']=='admin'){
-                $data['page'] = 'dashboard';
+                $data['page'] = 'setting';
                 $data['fl']=$this->setting_model->get_setting_by_settings_name('fb');
             $data['ll']=$this->setting_model->get_setting_by_settings_name('li');
             $data['tl']=$this->setting_model->get_setting_by_settings_name('tweeter');
@@ -100,7 +100,7 @@
      }
      function privacypolicy(){
         if(!$this->session->userdata('user')){
-            $data['page'] = 'login';
+            $data['page'] = 'setting';
             $this->load->view('includes/header-login');
             $this->load->view('login');
             $this->load->view('includes/footer-login');
@@ -110,7 +110,7 @@
             //print_r ($user);
 
             if($user[0]['user_type']=='admin'){
-                $data['page'] = 'settings';
+                $data['page'] = 'setting';
                 $data['pp']=$this->setting_model->get_setting_by_settings_name('privacy_policy');
                 $this->load->view('includes/header');
                 $this->load->view('includes/nav',$data);
@@ -190,7 +190,7 @@
                     redirect(base_url('socialmedia'));
                 }
             }else{
-               $data['page'] = 'settings';
+               $data['page'] = 'setting';
                $data['fl']=$this->setting_model->get_setting_by_settings_name('fb');
            $data['ll']=$this->setting_model->get_setting_by_settings_name('li');
            $data['tl']=$this->setting_model->get_setting_by_settings_name('tweeter');

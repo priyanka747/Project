@@ -19,7 +19,7 @@ class Subcategorycontroller extends CI_Controller
 			$user=json_decode(json_encode($this->session->userdata('user')),true);
 			// print_r($user);
 			if($user[0]['user_type']=='admin'){
-                    $data['page'] = 'Dashboard';
+                    $data['page'] = 'subcat';
                     $data['subcategories']=$this->category_model->get_all_sub_categories();
                     $this->load->view('includes/header-view');
 					$this->load->view('includes/nav',$data);
@@ -39,7 +39,7 @@ class Subcategorycontroller extends CI_Controller
         $user=json_decode(json_encode($this->session->userdata('user')),true);
         // print_r($user);
         if($user[0]['user_type']=='admin'){
-                $data['page'] = 'Dashboard';
+            $data['page'] = 'subcat';
                 $data['categories']=$this->category_model->get_categories();
                 $this->load->view('includes/header');
                 $this->load->view('includes/nav',$data);
@@ -78,6 +78,7 @@ class Subcategorycontroller extends CI_Controller
                 redirect(base_url('viewsubcategories'));
             }				
         }else {
+            $data['page'] = 'subcat';
             $data['categories']=$this->category_model->get_categories();
                 $this->load->view('includes/header');
                 $this->load->view('includes/nav',$data);
@@ -91,6 +92,7 @@ class Subcategorycontroller extends CI_Controller
             $this->session->set_userdata('error','seems like trying to update wrong category');
                 redirect(base_url('viewsubcategories'),'refresh');
         }
+        $data['page'] = 'subcat';
         $data['categories']=$this->category_model->get_categories();
         $data['subcategory']=$this->category_model->get_category($id);
         $this->load->view('includes/header');
@@ -125,6 +127,7 @@ class Subcategorycontroller extends CI_Controller
                     
                 }else{
                     $this->session->set_userdata('error','trouble while updating  subcategory');
+                    $data['page'] = 'subcat';
                     $data['category']=$this->category_model->get_category($id);
                     $this->load->view('includes/header');
                     $this->load->view('includes/nav',$data);
@@ -134,6 +137,7 @@ class Subcategorycontroller extends CI_Controller
         }
         else{
             $data['category']=$this->category_model->get_category($id);
+            $data['page'] = 'subcat';
             $this->load->view('includes/header');
             $this->load->view('includes/nav',$data);
             $this->load->view('addsubcategory',$data);
@@ -150,6 +154,7 @@ class Subcategorycontroller extends CI_Controller
                 
                }else{
                 $this->session->set_userdata('error','trouble while adding new sub-category');
+                $data['page'] = 'subcat';
                 $this->load->view('includes/header');
                 $this->load->view('includes/nav',$data);
                 $this->load->view('viewsubcategory',$data);
@@ -157,6 +162,7 @@ class Subcategorycontroller extends CI_Controller
                }
             }
             $this->session->set_userdata('error','trouble while adding new sub-category');
+            $data['page'] = 'subcat';
         $this->load->view('includes/header');
         $this->load->view('includes/nav',$data);
         $this->load->view('viewsubcategory',$data);

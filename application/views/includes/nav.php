@@ -4,6 +4,7 @@
 }else{
     $item=="";
 }
+echo $item;
     ?>
 <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
@@ -18,35 +19,48 @@ class="active"
 ?>
 
 >
-                        <a href="<?php echo base_url();?>"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                        <a href="<?php echo base_url();?>"><i class="menu-icon fa fa-laptop"></i>Dashboard <?php echo $item; ?></a>
 					</li>
 					<li class="menu-item-has-children dropdown <?php if($item=="cat")
 {?> active
 <?php
 }
+
 ?>">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Manage Categories</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>viewcategories">View Categories </a></li>
-                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addcategory">Add Category <?php echo $page;?></a></li>
+                            <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addcategory">Add Category</a></li>
                         </ul>
                         
 					</li>
-                    <li class="menu-item-has-children dropdown">
+                    <li class="menu-item-has-children dropdown <?php if($item=="subcat")
+{?> active
+<?php
+}
+?>">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Manage sub Categories</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>viewsubcategories">View sub Categories </a></li>
                             <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addsubcategory">Add sub Category</a></li>
                         </ul>
 					</li>
-                    <li class="menu-item-has-children dropdown">
+                    <li class="menu-item-has-children dropdown <?php if($item=="pro")
+{?> active
+<?php
+}
+?>">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Manage products</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>viewproducts">View Products </a></li>
                             <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>addproduct">Add Product</a></li>
                         </ul>
 					</li>
-                    <li class="menu-item-has-children dropdown">
+                    <li class="menu-item-has-children dropdown <?php if($item=="setting")
+{?> active
+<?php
+}
+?>">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Manage Site Settings</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-table"></i><a href="<?php echo base_url("");?>companysettings">Company Settings</a></li>
@@ -57,11 +71,15 @@ class="active"
                         </ul>
 					</li>
 					<li >
-                        <a href="<?php echo base_url("");?>vieworders"><i class="menu-icon fa fa-laptop"></i>View Orders </a>
+                        <a href="<?php echo base_url("");?>vieworders"><i class="menu-icon fa fa-laptop <?php if($item=="order")
+{?> active
+<?php
+}
+?>"></i>View Orders </a>
 					</li>
                     
                    
-                    <li class="menu-item-has-children dropdown <?php if($item=="cat")
+                    <li class="menu-item-has-children dropdown <?php if($item=="report")
 {?> active
 <?php
 }
