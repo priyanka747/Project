@@ -28,7 +28,7 @@ class Home extends CI_Controller
 					$data['usercnt']=count($this->user_model->get_users());
 					$data['orderscnt']=count($this->order_model->get_all_completed_orders());
 					$this->load->view('includes/header');
-					$this->load->view('includes/nav');
+					$this->load->view('includes/nav',$data);
 					$this->load->view('index',$data);
 					$this->load->view('includes/footer');
 			}

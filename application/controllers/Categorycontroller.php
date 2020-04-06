@@ -19,7 +19,7 @@ class Categorycontroller extends CI_Controller
 			$user=json_decode(json_encode($this->session->userdata('user')),true);
 			// print_r($user);
 			if($user[0]['user_type']=='admin'){
-                    $data['page'] = 'Dashboard';
+                    $data['page'] = 'cat';
                     $data['categories']=$this->category_model->get_all_categories();
                     $this->load->view('includes/header-view');
 					$this->load->view('includes/nav',$data);
@@ -39,7 +39,7 @@ class Categorycontroller extends CI_Controller
         $user=json_decode(json_encode($this->session->userdata('user')),true);
         // print_r($user);
         if($user[0]['user_type']=='admin'){
-                $data['page'] = 'ac';
+            $data['page'] = 'cat';
                 // $data['categories']=$this->category_model->get_all_categories();
                 $this->load->view('includes/header');
                 $this->load->view('includes/nav',$data);
@@ -74,6 +74,7 @@ class Categorycontroller extends CI_Controller
             }				
         }else {
             $data['categories']=$this->category_model->get_all_categories();
+            $data['page'] = 'cat';
             $this->load->view('includes/header');
             $this->load->view('includes/nav',$data);
             $this->load->view('addcategory',$data);
@@ -87,6 +88,7 @@ class Categorycontroller extends CI_Controller
                 redirect(base_url('viewcategories'),'refresh');
         }
         $data['category']=$this->category_model->get_category($id);
+        $data['page'] = 'cat';
         $this->load->view('includes/header');
         $this->load->view('includes/nav',$data);
         $this->load->view('addcategory',$data);
@@ -117,6 +119,7 @@ class Categorycontroller extends CI_Controller
                    }else{
                     $this->session->set_userdata('error','trouble while updating  category');
                     $data['category']=$this->category_model->get_category($id);
+                    $data['page'] = 'cat';
         $this->load->view('includes/header');
         $this->load->view('includes/nav',$data);
         $this->load->view('addcategory',$data);
@@ -126,6 +129,7 @@ class Categorycontroller extends CI_Controller
         }
         else{
             $data['category']=$this->category_model->get_category($id);
+            $data['page'] = 'cat';
         $this->load->view('includes/header');
         $this->load->view('includes/nav',$data);
         $this->load->view('addcategory',$data);
@@ -142,6 +146,7 @@ class Categorycontroller extends CI_Controller
                 
                }else{
                 $this->session->set_userdata('error','trouble while adding new category');
+                $data['page'] = 'cat';
                 $this->load->view('includes/header');
                 $this->load->view('includes/nav',$data);
                 $this->load->view('viewcategory',$data);

@@ -14,7 +14,7 @@
                                 <ol class="breadcrumb text-right">
                                     <li><a href="#">Dashboard</a></li>
                                     <li><a href="#">category</a></li>
-                                    <li class="active">add new category</li>
+                                    <li class="active"><?php if(empty($category)){echo 'Add Category';}else{ echo 'Edit Category';}?></li>
                                 </ol>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                                 <div id="pay-invoice">
                                     <div class="card-body">
                                         <div class="card-title">
-                                            <h3 class="text-center">Add Category</h3>
+                                            <h3 class="text-center"><?php if(empty($category)){echo 'Add Category';}else{ echo 'Edit Category';}?></h3>
                                         </div>
                                         <!-- <hr> -->
 										<?php 

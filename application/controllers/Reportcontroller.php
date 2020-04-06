@@ -21,7 +21,7 @@
              //print_r ($user);
  
              if($user[0]['user_type']=='admin'){
-                 $data['page'] = 'dashboard';
+                 $data['page'] = 'report';
                 //  $data['categories']=$this->product_model->get_all_products();
                  $this->load->view('includes/header');
                  $this->load->view('includes/nav',$data);
@@ -43,7 +43,7 @@
             //print_r ($user);
 
             if($user[0]['user_type']=='admin'){
-                $data['page'] = 'dashboard';
+                $data['page'] = 'report';
                //  $data['categories']=$this->product_model->get_all_products();
                 $this->load->view('includes/header');
                 $this->load->view('includes/nav',$data);
@@ -64,7 +64,7 @@
             //print_r ($user);
 
             if($user[0]['user_type']=='admin'){
-                $data['page'] = 'dashboard';
+                $data['page'] = 'report';
                //  $data['categories']=$this->product_model->get_all_products();
                 $this->load->view('includes/header');
                 $this->load->view('includes/nav',$data);
