@@ -27,13 +27,15 @@ class Category extends REST_Controller {
         //check if the user data exists
         if(!empty($data['categories'])){
             //set the response and exit
-         
+            $data['status']="1";
+            $data['message']="ok";
              $this->response($data);
         }else{
             //set the response and exit
             $res=array(
                 'status' => FALSE,
-                'message' => 'No category were found.'
+                'message' => 'No category were found.',
+                'categories'=>null
             );
             $this->response($res);
         }

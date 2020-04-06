@@ -21,7 +21,7 @@
 			}
 			for($i=0;$i<$product_cnt;$i++)
 			{
-				$data[$i]['specs']=$this->get_product_specs($data[$i]['product_info_id']);
+				$data[$i]['specs']=$this->get_product_specs($data[$i]['product_info_id'])[0];
 			}
 			return $data;
 
@@ -36,7 +36,7 @@
 			}
 			for($i=0;$i<$product_cnt;$i++)
 			{
-				$data[$i]['specs']=$this->get_product_specs($data[$i]['product_info_id']);
+				$data[$i]['specs']=$this->get_product_specs($data[$i]['product_info_id'])[0];
 			}
 			return $data;
 

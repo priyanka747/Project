@@ -27,13 +27,15 @@ class Subcategory extends REST_Controller {
         //check if the user data exists
         if(!empty($data['subcategories'])){
             //set the response and exit
-         
+             $data['status']="1";
+             $data['message']="ok";
              $this->response($data);
         }else{
             //set the response and exit
             $res=array(
                 'status' => 0,
-                'message' => 'no subcategory were found.'
+                'message' => 'no subcategory were found.',
+                'subcategories'=>null
             );
             $this->response($res);
         }
