@@ -89,7 +89,7 @@
 						<a  class="btn btn-primary " href="<?php echo base_url(); ?>">Back to dashboard</a>
 					
 							<button type="submit" class="btn btn-primary ">Submit</button>
-							<button type="submit" class="btn btn-primary float-right">Change password</button>
+							<a type="none" style="color:white;" class="btn btn-primary float-right">Change password</a>
                         </div>
 						
 						<!-- </div> -->

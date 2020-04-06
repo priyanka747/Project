@@ -61,7 +61,7 @@
 										if($this->session->userdata('success')){?>
 											<div class="alert alert-success"><?php echo $this->session->userdata('success'); $this->session->unset_userdata('success'); ?></div>
 										<?php }?>
-                                        <form action="<?php echo base_url();?>change-contact-details" method="post" >
+                                        <form action="" method="post" >
                                            
                                             <h4 class="text-center">Contact Numbers</h4>       
 												<div class="text-center"> 

@@ -74,7 +74,6 @@
 						<div class="form-group">
 						    
                            
-							<form action="/action_page.php">
 							<label for="myfile">Select Company logo:</label>
 							<input type="file" id="myfile" name="myfile" multiple><br><br>
 							
@@ -84,7 +83,6 @@
 						
 							<div class="form-group">
                             
-                            <form action="/action_page.php">
 							<label for="copyrightdate">Copyright Date:</label>
 							<input type="date" id="cpydate" name="cpydate">
 							
