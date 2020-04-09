@@ -10,3 +10,5 @@ for a given task.
 
 # StyleSatamp
 
+api documentation link
+https://docs.google.com/document/d/1_LVYK14z30y_h4Y8BxJc_2OUiIH2bM8zPY5_QI_vIJM/edit?usp=sharing
